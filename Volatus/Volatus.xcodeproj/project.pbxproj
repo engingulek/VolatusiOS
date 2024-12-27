@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		7D5DAB4B2D1F350700A37B21 /* VolatusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */; };
-		7D5DAB4D2D1F350700A37B21 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5DAB4C2D1F350700A37B21 /* ContentView.swift */; };
 		7D5DAB4F2D1F350900A37B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */; };
 		7D5DAB522D1F350900A37B21 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DAB512D1F350900A37B21 /* Preview Assets.xcassets */; };
+		7DC913612D1F3B7A00AD88C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913602D1F3B7A00AD88C9 /* HomeView.swift */; };
+		7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913632D1F441300AD88C9 /* LocationView.swift */; };
+		7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913662D1F458A00AD88C9 /* ImageTheme.swift */; };
+		7DC913692D1F496000AD88C9 /* TripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913682D1F496000AD88C9 /* TripButton.swift */; };
+		7DC9136B2D1F4A4F00AD88C9 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136A2D1F4A4F00AD88C9 /* TimeView.swift */; };
+		7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */; };
+		7DC9136F2D1F4BEC00AD88C9 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7D5DAB472D1F350700A37B21 /* Volatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Volatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatusApp.swift; sourceTree = "<group>"; };
-		7D5DAB4C2D1F350700A37B21 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D5DAB512D1F350900A37B21 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7DC913602D1F3B7A00AD88C9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7DC913632D1F441300AD88C9 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		7DC913662D1F458A00AD88C9 /* ImageTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTheme.swift; sourceTree = "<group>"; };
+		7DC913682D1F496000AD88C9 /* TripButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripButton.swift; sourceTree = "<group>"; };
+		7DC9136A2D1F4A4F00AD88C9 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
+		7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerView.swift; sourceTree = "<group>"; };
+		7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +63,9 @@
 		7D5DAB492D1F350700A37B21 /* Volatus */ = {
 			isa = PBXGroup;
 			children = (
+				7DC913652D1F457600AD88C9 /* resources */,
+				7DC9135E2D1F3AAE00AD88C9 /* screens */,
 				7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */,
-				7D5DAB4C2D1F350700A37B21 /* ContentView.swift */,
 				7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */,
 				7D5DAB502D1F350900A37B21 /* Preview Content */,
 			);
@@ -65,6 +78,43 @@
 				7D5DAB512D1F350900A37B21 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7DC9135E2D1F3AAE00AD88C9 /* screens */ = {
+			isa = PBXGroup;
+			children = (
+				7DC9135F2D1F3B5A00AD88C9 /* home */,
+			);
+			path = screens;
+			sourceTree = "<group>";
+		};
+		7DC9135F2D1F3B5A00AD88C9 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				7DC913622D1F440000AD88C9 /* components */,
+				7DC913602D1F3B7A00AD88C9 /* HomeView.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		7DC913622D1F440000AD88C9 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				7DC913632D1F441300AD88C9 /* LocationView.swift */,
+				7DC913682D1F496000AD88C9 /* TripButton.swift */,
+				7DC9136A2D1F4A4F00AD88C9 /* TimeView.swift */,
+				7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */,
+				7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		7DC913652D1F457600AD88C9 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				7DC913662D1F458A00AD88C9 /* ImageTheme.swift */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +187,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D5DAB4D2D1F350700A37B21 /* ContentView.swift in Sources */,
+				7DC913612D1F3B7A00AD88C9 /* HomeView.swift in Sources */,
+				7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */,
+				7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */,
+				7DC913692D1F496000AD88C9 /* TripButton.swift in Sources */,
 				7D5DAB4B2D1F350700A37B21 /* VolatusApp.swift in Sources */,
+				7DC9136B2D1F4A4F00AD88C9 /* TimeView.swift in Sources */,
+				7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */,
+				7DC9136F2D1F4BEC00AD88C9 /* SearchButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
