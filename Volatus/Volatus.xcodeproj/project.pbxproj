@@ -18,6 +18,8 @@
 		7DA399032D2017B2006B7927 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399022D2017B2006B7927 /* Color+Extension.swift */; };
 		7DA399052D201FB5006B7927 /* DateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399042D201FB5006B7927 /* DateState.swift */; };
 		7DA399072D20245B006B7927 /* LocationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399062D20245B006B7927 /* LocationState.swift */; };
+		7DA399122D20371E006B7927 /* VolatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399112D20371E006B7927 /* VolatusTests.swift */; };
+		7DA3991A2D20374E006B7927 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399192D20374E006B7927 /* HomeViewModelTest.swift */; };
 		7DC913612D1F3B7A00AD88C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913602D1F3B7A00AD88C9 /* HomeView.swift */; };
 		7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913632D1F441300AD88C9 /* LocationView.swift */; };
 		7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913662D1F458A00AD88C9 /* ImageTheme.swift */; };
@@ -26,6 +28,16 @@
 		7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */; };
 		7DC9136F2D1F4BEC00AD88C9 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7DA399132D20371E006B7927 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D5DAB3F2D1F350700A37B21 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D5DAB462D1F350700A37B21;
+			remoteInfo = Volatus;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7D5DAB472D1F350700A37B21 /* Volatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Volatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +52,9 @@
 		7DA399022D2017B2006B7927 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		7DA399042D201FB5006B7927 /* DateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateState.swift; sourceTree = "<group>"; };
 		7DA399062D20245B006B7927 /* LocationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationState.swift; sourceTree = "<group>"; };
+		7DA3990F2D20371E006B7927 /* VolatusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VolatusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DA399112D20371E006B7927 /* VolatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatusTests.swift; sourceTree = "<group>"; };
+		7DA399192D20374E006B7927 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		7DC913602D1F3B7A00AD88C9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7DC913632D1F441300AD88C9 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		7DC913662D1F458A00AD88C9 /* ImageTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTheme.swift; sourceTree = "<group>"; };
@@ -57,6 +72,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7DA3990C2D20371E006B7927 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				7D5DAB492D1F350700A37B21 /* Volatus */,
+				7DA399102D20371E006B7927 /* VolatusTests */,
 				7D5DAB482D1F350700A37B21 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				7D5DAB472D1F350700A37B21 /* Volatus.app */,
+				7DA3990F2D20371E006B7927 /* VolatusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +138,23 @@
 				7DA399022D2017B2006B7927 /* Color+Extension.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		7DA399102D20371E006B7927 /* VolatusTests */ = {
+			isa = PBXGroup;
+			children = (
+				7DA399182D203740006B7927 /* home */,
+				7DA399112D20371E006B7927 /* VolatusTests.swift */,
+			);
+			path = VolatusTests;
+			sourceTree = "<group>";
+		};
+		7DA399182D203740006B7927 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				7DA399192D20374E006B7927 /* HomeViewModelTest.swift */,
+			);
+			path = home;
 			sourceTree = "<group>";
 		};
 		7DC9135E2D1F3AAE00AD88C9 /* screens */ = {
@@ -177,6 +218,24 @@
 			productReference = 7D5DAB472D1F350700A37B21 /* Volatus.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7DA3990E2D20371E006B7927 /* VolatusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DA399152D20371E006B7927 /* Build configuration list for PBXNativeTarget "VolatusTests" */;
+			buildPhases = (
+				7DA3990B2D20371E006B7927 /* Sources */,
+				7DA3990C2D20371E006B7927 /* Frameworks */,
+				7DA3990D2D20371E006B7927 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7DA399142D20371E006B7927 /* PBXTargetDependency */,
+			);
+			name = VolatusTests;
+			productName = VolatusTests;
+			productReference = 7DA3990F2D20371E006B7927 /* VolatusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -189,6 +248,10 @@
 				TargetAttributes = {
 					7D5DAB462D1F350700A37B21 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					7DA3990E2D20371E006B7927 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 7D5DAB462D1F350700A37B21;
 					};
 				};
 			};
@@ -206,6 +269,7 @@
 			projectRoot = "";
 			targets = (
 				7D5DAB462D1F350700A37B21 /* Volatus */,
+				7DA3990E2D20371E006B7927 /* VolatusTests */,
 			);
 		};
 /* End PBXProject section */
@@ -217,6 +281,13 @@
 			files = (
 				7D5DAB522D1F350900A37B21 /* Preview Assets.xcassets in Resources */,
 				7D5DAB4F2D1F350900A37B21 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DA3990D2D20371E006B7927 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +317,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7DA3990B2D20371E006B7927 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DA399122D20371E006B7927 /* VolatusTests.swift in Sources */,
+				7DA3991A2D20374E006B7927 /* HomeViewModelTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7DA399142D20371E006B7927 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D5DAB462D1F350700A37B21 /* Volatus */;
+			targetProxy = 7DA399132D20371E006B7927 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7D5DAB532D1F350900A37B21 /* Debug */ = {
@@ -426,6 +514,42 @@
 			};
 			name = Release;
 		};
+		7DA399162D20371E006B7927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45DX68AP4J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = engingulek.VolatusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Volatus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Volatus";
+			};
+			name = Debug;
+		};
+		7DA399172D20371E006B7927 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45DX68AP4J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = engingulek.VolatusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Volatus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Volatus";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -443,6 +567,15 @@
 			buildConfigurations = (
 				7D5DAB562D1F350900A37B21 /* Debug */,
 				7D5DAB572D1F350900A37B21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DA399152D20371E006B7927 /* Build configuration list for PBXNativeTarget "VolatusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DA399162D20371E006B7927 /* Debug */,
+				7DA399172D20371E006B7927 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
