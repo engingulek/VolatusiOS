@@ -12,6 +12,7 @@ enum HomeActions {
     case onTappedOneWay
     case onTappedRounded
     case onTappedSwapIcon
+
 }
 
 
@@ -19,10 +20,9 @@ protocol HomeViewModelProtocol:ObservableObject {
     var uiState:UiState {get}
     var tripTypeState : TripTypeState {get}
     var dateState : DateState {get}
-    var locationState:LocationState {get}
+    var locationState:LocationState {get set}
     func onAction(action:HomeActions)
-    
-    
+   
 }
 
 final class HomeViewModel  :HomeViewModelProtocol  {
@@ -31,6 +31,7 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     @Published var tripTypeState: TripTypeState = TripTypeState()
     @Published var dateState: DateState = DateState()
     @Published var locationState: LocationState = LocationState()
+
     
     func onAction(action: HomeActions) {
         switch action {
@@ -40,9 +41,10 @@ final class HomeViewModel  :HomeViewModelProtocol  {
             onTappedRoundedAction()
         case .onTappedSwapIcon:
             onTappedSwapIconAction()
-            
+
         }
     }
+   
   
     
 }
@@ -75,6 +77,8 @@ extension HomeViewModel {
     }
     
     private func onTappedSwapIconAction(){
-        print("Selected Swap Icon")
+        let tempLocation = locationState.selectedFromLocation
+        locationState.selectedFromLocation = locationState.selectedToLocation
+        locationState.selectedToLocation = tempLocation
     }
 }

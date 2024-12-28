@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationView: View {
     let title:String
     let locationTitle:String
+  
     var body: some View {
         HStack{
             VStack(alignment:.leading){

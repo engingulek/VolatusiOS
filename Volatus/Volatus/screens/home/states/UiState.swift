@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 struct UiState {
    
     let backImage : String = "background"
@@ -22,4 +22,6 @@ struct UiState {
     let fromTitle : String = TextTheme.fromTitle.rawValue
     let toTitle : String = TextTheme.toTitle.rawValue
     let passenger : String = TextTheme.passenger.rawValue
+    
+ 
 }
