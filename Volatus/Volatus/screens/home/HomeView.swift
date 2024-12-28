@@ -7,43 +7,58 @@
 
 import SwiftUI
 
-struct HomeView: View {
-    @State private var selectedSegment = 0
+struct HomeView<ViewModel:HomeViewModelProtocol>: View {
+    @ObservedObject private var viewModel:ViewModel
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     var body: some View {
         ZStack{
             VStack{
-                Image("background")
+                Image(viewModel.uiState.backImage)
                     .resizable()
                     .frame(maxWidth: .infinity, maxHeight: 300)
-                   
                 Spacer()
             }
             
             VStack(spacing:15){
                 HStack{
+                  
                     TripButton(
-                        title: "One Way",
-                        backColor: .red,
-                        textColor: .white)
+                        title: viewModel.uiState.oneWayTitle,
+                        tripStateData: viewModel.tripTypeState.oneWayTripeType,
+                        action: {viewModel.onAction(action: .onTappedOneWay)})
+                 
                     
                     TripButton(
-                        title: "Rounded Trip",
-                        backColor: .white,
-                        textColor: .red)
+                        title: viewModel.uiState.roundedTitle,
+                        tripStateData: viewModel.tripTypeState.roundedTripeType,
+                        action: {viewModel.onAction(action: .onTappedRounded)})
                     
                 }
-               LocationView()
-                Image(systemName: ImageTheme.swapeIcon.rawValue)
-                     .font(.system(size: 30))
-                    .foregroundColor(.red)
-               LocationView()
+                LocationView(
+                    title: viewModel.uiState.fromTitle,
+                    locationTitle: viewModel.locationState.fromText)
+                Button {
+                    viewModel.onAction(action: .onTappedSwapIcon)
+                } label: {
+                    Image(systemName: viewModel.uiState.swapIcon)
+                         .font(.system(size: 30))
+                        .foregroundColor(.red)
+                }
+
+               
+                LocationView(
+                    title: viewModel.uiState.toTitle,
+                    locationTitle: viewModel.locationState.toText)
                 
                 HStack{
-                    TimeView()
-                    TimeView()
+                    DateView(title: viewModel.uiState.departureTitle)
+                    !viewModel.dateState.returnVisible ?
+                    DateView(title: viewModel.uiState.returnTitle) : nil
                 }
-                PassengerView()
-               SearchButton()
+                PassengerView(title: viewModel.uiState.passenger)
+                SearchButton(title:viewModel.uiState.searchButtonTitle)
             }
             .frame(maxWidth: .infinity)
             .padding(16)
@@ -61,5 +76,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel())
 }

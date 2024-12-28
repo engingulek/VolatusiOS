@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct SearchButton: View {
+    let title:String
     var body: some View {
         Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-            Text("Search")
+            Text(title)
                 .font(.title3)
                 .foregroundStyle(.white)
                 .fontWeight(.semibold)
@@ -23,5 +24,5 @@ struct SearchButton: View {
 }
 
 #Preview {
-    SearchButton()
+    SearchButton(title: "Search")
 }

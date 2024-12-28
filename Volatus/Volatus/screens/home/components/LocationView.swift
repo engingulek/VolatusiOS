@@ -8,24 +8,23 @@
 import SwiftUI
 
 struct LocationView: View {
+    let title:String
+    let locationTitle:String
     var body: some View {
         HStack{
-            
             VStack(alignment:.leading){
-                Text("From")
+                Text(title)
                     .foregroundStyle(.gray)
                     .font(.callout)
                 
                 
-                Text("Istanbul Airtport(IST)")
+                Text(locationTitle)
                     .foregroundStyle(.black)
                     .font(.title3)
                     .fontWeight(.semibold)
                 
             }
             Spacer()
-            
-            
         }
         .frame(maxWidth: .infinity)
         .background(Color.white)
@@ -39,5 +38,7 @@ struct LocationView: View {
 }
 
 #Preview {
-    LocationView()
+    LocationView(
+        title: TextTheme.fromTitle.rawValue,
+        locationTitle: "Choosen")
 }

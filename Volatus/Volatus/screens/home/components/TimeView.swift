@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct TimeView: View {
+struct DateView: View {
+    let title:String
     var body: some View {
         HStack{
             
             VStack(alignment:.leading){
-                Text("Depature")
+                Text(title)
                     .foregroundStyle(.gray)
                     .font(.callout)
                 
@@ -39,5 +40,5 @@ struct TimeView: View {
 }
 
 #Preview {
-    TimeView()
+    DateView(title: TextTheme.departure.rawValue)
 }

@@ -9,28 +9,28 @@ import SwiftUI
 
 struct TripButton: View {
     let title:String
-    let backColor:Color
-    let textColor:Color
+    let tripStateData:TripeTypeData
+    let action : () -> Void
     var body: some View {
-        Button(action: {
-           
-        }) {
+        Button(action: action) {
             Text(title)
-                .foregroundStyle(textColor)
+                .foregroundStyle(Color(hex: tripStateData.textColor))
                 .fontWeight(.semibold)
                 .padding()
         }
         .frame(width: 140)
-        .background(backColor)
+        .background(Color(hex: tripStateData.backColor))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.red, lineWidth: 1)
+                .stroke(Color(hex: tripStateData.backColor), lineWidth: 1)
         )
         .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
 #Preview {
-    TripButton(title: "One Way",
-             backColor: .red, textColor: .white)
+    TripButton(title: TextTheme.oneWay.rawValue,
+               tripStateData: TripeTypeData(
+                textColor: ColorTheme.white.rawValue,
+                backColor: ColorTheme.red.rawValue), action: {})
 }
