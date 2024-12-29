@@ -37,15 +37,17 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                     
                 }
                 
+            
                 
                 NavigationLink {
-                    AirportList(selectedFromLocation: $viewModel.locationState.selectedFromLocation,
+                    AirportList(viewModel: AirportListViewModel(), 
+                                selectedFromLocation: $viewModel.locationState.selectedFromLocation,
                                 selectedToLocation: $viewModel.locationState.selectedToLocation,
                                 searchType: .forFrom)
                 } label: {
                     LocationView(
                         title: viewModel.uiState.fromTitle,
-                        locationTitle: viewModel.locationState.selectedFromLocation)
+                        locationTitle: viewModel.locationState.fromText)
                 }
                 
                 Button {
@@ -59,13 +61,14 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
              
 
                 NavigationLink {
-                    AirportList(selectedFromLocation: $viewModel.locationState.selectedFromLocation,
+                    AirportList(viewModel: AirportListViewModel(), 
+                                selectedFromLocation: $viewModel.locationState.selectedFromLocation,
                                 selectedToLocation: $viewModel.locationState.selectedToLocation,
                                 searchType: .forTo)
                 } label: {
                     LocationView(
                         title: viewModel.uiState.toTitle,
-                        locationTitle: viewModel.locationState.selectedToLocation)
+                        locationTitle: viewModel.locationState.toText)
                 }
                 HStack{
                     DateView(title: viewModel.uiState.departureTitle)
@@ -87,6 +90,9 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 .padding(.horizontal, 20)
          
         }.ignoresSafeArea()
+            .onAppear{
+                viewModel.onAppear()
+            }
             
     }
 }

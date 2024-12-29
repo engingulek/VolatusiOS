@@ -21,7 +21,7 @@ struct LocationView: View {
                 
                 Text(locationTitle)
                     .foregroundStyle(.black)
-                    .font(.title3)
+                    .font(.system(size: 15))
                     .fontWeight(.semibold)
                 
             }

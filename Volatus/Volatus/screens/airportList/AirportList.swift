@@ -10,17 +10,20 @@ enum SearchType {
     case forFrom
     case forTo
 }
-struct AirportList: View {
-    let items = ["Airport 1", "Airport 2", "Airport 3", "Airport 4", "Airport 5"]
-    @Binding var selectedFromLocation:String
-    @Binding var selectedToLocation:String
+struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
+    
+    @ObservedObject var viewModel:ViewModel
+    @Binding var selectedFromLocation:Airport?
+    @Binding var selectedToLocation:Airport?
     @State private var searchText = ""
     @State var searchType: SearchType
     @Environment(\.dismiss) var dismiss
+    
+  
     var body: some View {
         VStack{
             VStack {
-                TextField("Search", text: $searchText)
+                TextField("Search Airport", text: $searchText)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
@@ -28,34 +31,26 @@ struct AirportList: View {
                     )
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(.horizontal,10)
-                
-                
-             
-                
             }.padding(.bottom,5)
             
-            List(items,id:\.self){item in
-                VStack(alignment:.leading){
-                    Text("City,Country")
-                    Text("Code-\(item)")
-                }.onTapGesture {
-                    switch searchType {
-                    case .forFrom:
-                        selectedFromLocation = item
-                    case .forTo:
-                        selectedToLocation = item
-                    }
-                    dismiss()
-                }
-            }.listStyle(.plain)
             
-           
+            AirportListView(airtportList: viewModel.airportList) { airport in
+                switch searchType {
+                case .forFrom:
+                    selectedFromLocation = airport
+                case .forTo:
+                    selectedToLocation = airport
+                }
+                dismiss()
+            }
+        }.onAppear{
+            viewModel.onAppear()
         }
     }
 }
 
 #Preview{
-    AirportList(selectedFromLocation: .constant(""), selectedToLocation: .constant(""), searchType: .forFrom)
+    AirportList(viewModel: AirportListViewModel(), selectedFromLocation: .constant(Airport(id: 1, name: "", code: "", city: "", country: "")), selectedToLocation: .constant(Airport(id: 1, name: "", code: "", city: "", country: "")), searchType: .forFrom)
 }
 
 

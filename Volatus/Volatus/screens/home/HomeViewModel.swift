@@ -22,11 +22,12 @@ protocol HomeViewModelProtocol:ObservableObject {
     var dateState : DateState {get}
     var locationState:LocationState {get set}
     func onAction(action:HomeActions)
+    func onAppear()
    
 }
 
 final class HomeViewModel  :HomeViewModelProtocol  {
- 
+
     @Published var uiState: UiState = UiState()
     @Published var tripTypeState: TripTypeState = TripTypeState()
     @Published var dateState: DateState = DateState()
@@ -44,6 +45,15 @@ final class HomeViewModel  :HomeViewModelProtocol  {
 
         }
     }
+    
+    
+    func onAppear() {
+        guard let fromLocation = locationState.selectedFromLocation else {return}
+        locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
+        guard let toLocation = locationState.selectedToLocation else {return}
+        locationState.toText = "\(toLocation.code)-\(toLocation.name)"
+    }
+ 
    
   
     
@@ -76,9 +86,17 @@ extension HomeViewModel {
         dateState = DateState(returnVisible: false)
     }
     
+    
+    
     private func onTappedSwapIconAction(){
         let tempLocation = locationState.selectedFromLocation
         locationState.selectedFromLocation = locationState.selectedToLocation
         locationState.selectedToLocation = tempLocation
+        
+    
+        guard let fromLocation = locationState.selectedFromLocation else {return}
+        locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
+        guard let toLocation = locationState.selectedToLocation else {return}
+        locationState.toText = "\(toLocation.code)-\(toLocation.name)"
     }
 }
