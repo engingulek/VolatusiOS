@@ -19,20 +19,25 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
     @State var searchType: SearchType
     @Environment(\.dismiss) var dismiss
     
-  
+    
     var body: some View {
         VStack{
             VStack {
-                TextField("Search Airport", text: $searchText)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.red, lineWidth: 2)
-                    )
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .padding(.horizontal,10)
+                TextField(viewModel.uiState.searchPlaceholder,
+                          text: $searchText)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.red, lineWidth: 2)
+                )
+                .textFieldStyle(PlainTextFieldStyle())
+                .padding(.horizontal,10)
+                .onChange(of: searchText) { _,newValue in
+                    viewModel.onChangeSearchText(
+                        text: newValue)
+                }
             }.padding(.bottom,5)
-            
+         
             
             AirportListView(airtportList: viewModel.airportList) { airport in
                 switch searchType {

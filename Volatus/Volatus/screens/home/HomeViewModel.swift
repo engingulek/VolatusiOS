@@ -48,10 +48,13 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     
     
     func onAppear() {
+        
         guard let fromLocation = locationState.selectedFromLocation else {return}
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
         guard let toLocation = locationState.selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
+       
+        
     }
  
    

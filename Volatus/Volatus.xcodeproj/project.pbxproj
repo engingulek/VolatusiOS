@@ -24,6 +24,7 @@
 		7DA399122D20371E006B7927 /* VolatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399112D20371E006B7927 /* VolatusTests.swift */; };
 		7DA3991A2D20374E006B7927 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399192D20374E006B7927 /* HomeViewModelTest.swift */; };
 		7DA3991D2D206254006B7927 /* AirportList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3991C2D206254006B7927 /* AirportList.swift */; };
+		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
 		7DC913612D1F3B7A00AD88C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913602D1F3B7A00AD88C9 /* HomeView.swift */; };
 		7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913632D1F441300AD88C9 /* LocationView.swift */; };
 		7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913662D1F458A00AD88C9 /* ImageTheme.swift */; };
@@ -63,6 +64,7 @@
 		7DA399112D20371E006B7927 /* VolatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatusTests.swift; sourceTree = "<group>"; };
 		7DA399192D20374E006B7927 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		7DA3991C2D206254006B7927 /* AirportList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportList.swift; sourceTree = "<group>"; };
+		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
 		7DC913602D1F3B7A00AD88C9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7DC913632D1F441300AD88C9 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		7DC913662D1F458A00AD88C9 /* ImageTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTheme.swift; sourceTree = "<group>"; };
@@ -176,12 +178,21 @@
 		7DA3991B2D20622C006B7927 /* airportList */ = {
 			isa = PBXGroup;
 			children = (
+				7DB2E3F62D2184BA00939B05 /* states */,
 				7D08C1102D2155B500370EAC /* components */,
 				7DA3991C2D206254006B7927 /* AirportList.swift */,
 				7D08C1132D2156A300370EAC /* Airport.swift */,
 				7D08C1152D21572000370EAC /* AirportListViewModel.swift */,
 			);
 			path = airportList;
+			sourceTree = "<group>";
+		};
+		7DB2E3F62D2184BA00939B05 /* states */ = {
+			isa = PBXGroup;
+			children = (
+				7DB2E3F72D2184D200939B05 /* AirportUiState.swift */,
+			);
+			path = states;
 			sourceTree = "<group>";
 		};
 		7DC9135E2D1F3AAE00AD88C9 /* screens */ = {
@@ -333,6 +344,7 @@
 				7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */,
 				7DA398FC2D20130E006B7927 /* TextTheme.swift in Sources */,
 				7D08C1162D21572000370EAC /* AirportListViewModel.swift in Sources */,
+				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
 				7DA398FA2D201199006B7927 /* UiState.swift in Sources */,
 				7D08C1122D21561900370EAC /* AirportListView.swift in Sources */,
 				7DA399002D201637006B7927 /* ColorTheme.swift in Sources */,

@@ -9,14 +9,23 @@ import Foundation
 
 protocol AirportListViewModelProtocol:ObservableObject {
     var airportList:[Airport] {get}
+    var uiState : AirportUiState {get}
+    
     func onAppear()
+    func onChangeSearchText(
+        text:String)
+    
+    
 }
 
 final class AirportListViewModel : AirportListViewModelProtocol {
+   
+    
+ 
     @Published var airportList: [Airport] = []
-    
-    
-    
+    //TODO: this will be removed
+    @Published var uiState: AirportUiState = AirportUiState()
+    private var tempAirportList : [Airport] = []
     
     func onAppear() {
         airportList = [
@@ -27,12 +36,18 @@ final class AirportListViewModel : AirportListViewModelProtocol {
             .init(id: 5, name: "Istanbul Airport", code: "IST", city: "Istanbul", country: "Turkey")
             
         ]
+        tempAirportList = airportList
+
+          
     }
     
     
+    func onChangeSearchText(text: String) {
     
-    
-    
-    
-    
+        if text.isEmpty {
+            airportList = tempAirportList
+        }else{
+            airportList = tempAirportList.filter{ $0.name.lowercased().contains(text.lowercased())}
+        }
+    }
 }
