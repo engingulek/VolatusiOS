@@ -10,4 +10,8 @@ import Foundation
 struct LocationState {
     var fromText : String = TextTheme.choosen.rawValue
     var toText: String = TextTheme.choosen.rawValue
+    var searchType:SearchType = .forFrom
+    var selectedFromLocation:Airport? = nil
+    var selectedToLocation : Airport? = nil
+    
 }

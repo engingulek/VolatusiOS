@@ -36,9 +36,20 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                         action: {viewModel.onAction(action: .onTappedRounded)})
                     
                 }
-                LocationView(
-                    title: viewModel.uiState.fromTitle,
-                    locationTitle: viewModel.locationState.fromText)
+                
+            
+                
+                NavigationLink {
+                    AirportList(viewModel: AirportListViewModel(), 
+                                selectedFromLocation: $viewModel.locationState.selectedFromLocation,
+                                selectedToLocation: $viewModel.locationState.selectedToLocation,
+                                searchType: .forFrom)
+                } label: {
+                    LocationView(
+                        title: viewModel.uiState.fromTitle,
+                        locationTitle: viewModel.locationState.fromText)
+                }
+                
                 Button {
                     viewModel.onAction(action: .onTappedSwapIcon)
                 } label: {
@@ -46,12 +57,19 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                          .font(.system(size: 30))
                         .foregroundColor(.red)
                 }
+              
+             
 
-               
-                LocationView(
-                    title: viewModel.uiState.toTitle,
-                    locationTitle: viewModel.locationState.toText)
-                
+                NavigationLink {
+                    AirportList(viewModel: AirportListViewModel(), 
+                                selectedFromLocation: $viewModel.locationState.selectedFromLocation,
+                                selectedToLocation: $viewModel.locationState.selectedToLocation,
+                                searchType: .forTo)
+                } label: {
+                    LocationView(
+                        title: viewModel.uiState.toTitle,
+                        locationTitle: viewModel.locationState.toText)
+                }
                 HStack{
                     DateView(title: viewModel.uiState.departureTitle)
                     !viewModel.dateState.returnVisible ?
@@ -72,6 +90,10 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 .padding(.horizontal, 20)
          
         }.ignoresSafeArea()
+            .onAppear{
+                viewModel.onAppear()
+            }
+            
     }
 }
 

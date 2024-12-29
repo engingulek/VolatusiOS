@@ -18,4 +18,5 @@ enum TextTheme  : String {
     case toTitle = "To"
     case choosen = "Choosen"
     case passenger = "Passenger"
+    case searchPlaceholder = "Search Airport"
 }

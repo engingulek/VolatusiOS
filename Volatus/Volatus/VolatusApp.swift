@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct VolatusApp: App {
+  
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: HomeViewModel())
+            NavigationStack {
+                HomeView(viewModel: HomeViewModel())
+            }
+            
+           
         }
     }
 }
