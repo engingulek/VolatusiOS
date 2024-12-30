@@ -12,7 +12,7 @@ enum HomeActions {
     case onTappedOneWay
     case onTappedRounded
     case onTappedSwapIcon
-
+    
 }
 
 
@@ -20,10 +20,14 @@ protocol HomeViewModelProtocol:ObservableObject {
     var uiState:UiState {get}
     var tripTypeState : TripTypeState {get}
     var dateState : DateState {get}
-    var locationState:LocationState {get set}
+    var locationState:LocationState {get}
+    var selectedFromLocation:Airport? {get set}
+    var selectedToLocation : Airport? {get set}
+    var depatureDate:Date {get set}
+    var returnDate:Date? {get set}
     func onAction(action:HomeActions)
     func onAppear()
-   
+    
 }
 
 final class HomeViewModel  :HomeViewModelProtocol  {
@@ -32,7 +36,16 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     @Published var tripTypeState: TripTypeState = TripTypeState()
     @Published var dateState: DateState = DateState()
     @Published var locationState: LocationState = LocationState()
-
+    @Published var selectedFromLocation: Airport?
+    @Published    var selectedToLocation: Airport?
+    var depatureDate: Date = Date.now
+    var returnDate: Date? = nil
+    
+    
+    
+    
+    
+    
     
     func onAction(action: HomeActions) {
         switch action {
@@ -42,23 +55,27 @@ final class HomeViewModel  :HomeViewModelProtocol  {
             onTappedRoundedAction()
         case .onTappedSwapIcon:
             onTappedSwapIconAction()
-
+            
         }
     }
     
     
     func onAppear() {
         
-        guard let fromLocation = locationState.selectedFromLocation else {return}
+        guard let fromLocation = selectedFromLocation else {return}
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
-        guard let toLocation = locationState.selectedToLocation else {return}
+        guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
-       
+        
+        
+        dateState.depatureDate = depatureDate.covertDate(formatterType: .typeOne)
+      
+        
         
     }
- 
-   
-  
+    
+    
+    
     
 }
 
@@ -74,6 +91,9 @@ extension HomeViewModel {
             backColor: ColorTheme.white.rawValue)
         
         dateState = DateState(returnVisible: true)
+        
+        dateState.returnDate = ""
+//        returnDate = nil
     }
     
     
@@ -87,19 +107,21 @@ extension HomeViewModel {
             backColor: ColorTheme.red.rawValue)
         
         dateState = DateState(returnVisible: false)
+        dateState.returnDate = Date.now.covertDate(formatterType: .typeOne)
+        returnDate = Date.now
     }
     
     
     
     private func onTappedSwapIconAction(){
-        let tempLocation = locationState.selectedFromLocation
-        locationState.selectedFromLocation = locationState.selectedToLocation
-        locationState.selectedToLocation = tempLocation
+        let tempLocation =  selectedFromLocation
+        selectedFromLocation = selectedToLocation
+        selectedToLocation = tempLocation
         
-    
-        guard let fromLocation = locationState.selectedFromLocation else {return}
+        
+        guard let fromLocation = selectedFromLocation else {return}
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
-        guard let toLocation = locationState.selectedToLocation else {return}
+        guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
     }
 }
