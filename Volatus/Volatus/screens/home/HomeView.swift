@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView<ViewModel:HomeViewModelProtocol>: View {
     @ObservedObject private var viewModel:ViewModel
+    @State var selectedDepatureDate : Date = .now
+    
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
@@ -23,12 +25,12 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
             
             VStack(spacing:15){
                 HStack{
-                  
+                    
                     TripButton(
                         title: viewModel.uiState.oneWayTitle,
                         tripStateData: viewModel.tripTypeState.oneWayTripeType,
                         action: {viewModel.onAction(action: .onTappedOneWay)})
-                 
+                    
                     
                     TripButton(
                         title: viewModel.uiState.roundedTitle,
@@ -37,12 +39,12 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                     
                 }
                 
-            
+                
                 
                 NavigationLink {
-                    AirportList(viewModel: AirportListViewModel(), 
-                                selectedFromLocation: $viewModel.locationState.selectedFromLocation,
-                                selectedToLocation: $viewModel.locationState.selectedToLocation,
+                    AirportList(viewModel: AirportListViewModel(),
+                                selectedFromLocation: $viewModel.selectedFromLocation,
+                                selectedToLocation: $viewModel.selectedToLocation,
                                 searchType: .forFrom)
                 } label: {
                     LocationView(
@@ -54,16 +56,16 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                     viewModel.onAction(action: .onTappedSwapIcon)
                 } label: {
                     Image(systemName: viewModel.uiState.swapIcon)
-                         .font(.system(size: 30))
+                        .font(.system(size: 30))
                         .foregroundColor(.red)
                 }
-              
-             
-
+                
+                
+                
                 NavigationLink {
-                    AirportList(viewModel: AirportListViewModel(), 
-                                selectedFromLocation: $viewModel.locationState.selectedFromLocation,
-                                selectedToLocation: $viewModel.locationState.selectedToLocation,
+                    AirportList(viewModel: AirportListViewModel(),
+                                selectedFromLocation: $viewModel.selectedFromLocation,
+                                selectedToLocation: $viewModel.selectedToLocation,
                                 searchType: .forTo)
                 } label: {
                     LocationView(
@@ -71,9 +73,29 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                         locationTitle: viewModel.locationState.toText)
                 }
                 HStack{
-                    DateView(title: viewModel.uiState.departureTitle)
+                  
+                    
+                   
+                    
+                   NavigationLink {
+                       DateListView(viewModel: DateListViewModel(),
+                                    depatureDate: $viewModel.depatureDate,
+                                    returnDate: $viewModel.returnDate, type: true)
+                    } label: {
+                    DateView(title: viewModel.uiState.departureTitle,
+                             date: viewModel.dateState.depatureDate)
+                    }
+                    
+                    NavigationLink {
+                        DateListView(viewModel: DateListViewModel(),
+                                     depatureDate: $viewModel.depatureDate,
+                                     returnDate: $viewModel.returnDate, type: false)
+                    } label: {
                     !viewModel.dateState.returnVisible ?
-                    DateView(title: viewModel.uiState.returnTitle) : nil
+                    DateView(title: viewModel.uiState.returnTitle,
+                             date: viewModel.dateState.returnDate) : nil
+                    }
+                    
                 }
                 PassengerView(title: viewModel.uiState.passenger)
                 SearchButton(title:viewModel.uiState.searchButtonTitle)
@@ -81,22 +103,54 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
             .frame(maxWidth: .infinity)
             .padding(16)
             .background(Color.white)
-                .cornerRadius(16)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                )
-                
-                .padding(.horizontal, 20)
-         
+            .cornerRadius(16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+            )
+            
+            .padding(.horizontal, 20)
+            
         }.ignoresSafeArea()
             .onAppear{
-                viewModel.onAppear()
+                viewModel.updateLocation()
+                viewModel.updateDate()
+                print("homve view \(viewModel.depatureDate)")
             }
-            
+        
     }
 }
 
+
+
+
 #Preview {
     HomeView(viewModel: HomeViewModel())
+}
+
+
+struct DatePickerView: View {
+    @Binding var selectedDate: Date // Seçilen tarihi bağlama
+    
+    var body: some View {
+        VStack {
+            Text("Bir Tarih Seçin")
+                .font(.headline)
+            
+            DatePicker(
+                "Tarih",
+                selection: $selectedDate,
+                in: Date()..., // Sadece bugünden ileri tarihler seçilebilsin
+                displayedComponents: .date // Sadece tarihi göster
+            )
+            .datePickerStyle(.graphical) // Grafik tarzı DatePicker
+            .padding()
+            
+            Button("Tamam") {
+                // Tarih seçildiğinde yapılacak işlemler
+            }
+            .padding()
+        }
+        .padding()
+    }
 }

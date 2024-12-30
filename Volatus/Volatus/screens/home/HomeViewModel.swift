@@ -12,7 +12,7 @@ enum HomeActions {
     case onTappedOneWay
     case onTappedRounded
     case onTappedSwapIcon
-
+    
 }
 
 
@@ -20,10 +20,15 @@ protocol HomeViewModelProtocol:ObservableObject {
     var uiState:UiState {get}
     var tripTypeState : TripTypeState {get}
     var dateState : DateState {get}
-    var locationState:LocationState {get set}
+    var locationState:LocationState {get}
+    var selectedFromLocation:Airport? {get set}
+    var selectedToLocation : Airport? {get set}
+    var depatureDate:Date {get set}
+    var returnDate:Date? {get set}
     func onAction(action:HomeActions)
-    func onAppear()
-   
+    func updateLocation()
+    func updateDate()
+    
 }
 
 final class HomeViewModel  :HomeViewModelProtocol  {
@@ -32,7 +37,10 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     @Published var tripTypeState: TripTypeState = TripTypeState()
     @Published var dateState: DateState = DateState()
     @Published var locationState: LocationState = LocationState()
-
+    @Published var selectedFromLocation: Airport?
+    @Published    var selectedToLocation: Airport?
+  @Published  var depatureDate: Date = Date.now
+    var returnDate: Date? = nil
     
     func onAction(action: HomeActions) {
         switch action {
@@ -42,23 +50,41 @@ final class HomeViewModel  :HomeViewModelProtocol  {
             onTappedRoundedAction()
         case .onTappedSwapIcon:
             onTappedSwapIconAction()
-
+            
         }
     }
     
     
-    func onAppear() {
+    func updateLocation() {
         
-        guard let fromLocation = locationState.selectedFromLocation else {return}
+        guard let fromLocation = selectedFromLocation else {return}
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
-        guard let toLocation = locationState.selectedToLocation else {return}
+        guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
+        
        
+      
+      
+        
         
     }
- 
-   
-  
+    
+    func updateDate() {
+        dateState.depatureDate = depatureDate.covertDate(formatterType: .typeOne)
+        if returnDate != nil {
+            dateState.returnDate = returnDate!.covertDate(formatterType: .typeOne)
+            if returnDate! < depatureDate {
+                dateState.returnDate = depatureDate.covertDate(formatterType: .typeOne)
+                returnDate = depatureDate
+            }
+        }else{
+            dateState.returnDate = depatureDate.covertDate(formatterType: .typeOne)
+        }
+        
+    }
+    
+    
+    
     
 }
 
@@ -74,6 +100,9 @@ extension HomeViewModel {
             backColor: ColorTheme.white.rawValue)
         
         dateState = DateState(returnVisible: true)
+        
+        dateState.returnDate = ""
+//        returnDate = nil
     }
     
     
@@ -87,19 +116,24 @@ extension HomeViewModel {
             backColor: ColorTheme.red.rawValue)
         
         dateState = DateState(returnVisible: false)
+        dateState.returnDate = depatureDate.covertDate(formatterType: .typeOne)
+        
+        
+        dateState.depatureDate = depatureDate.covertDate(formatterType: .typeOne)
+        returnDate = depatureDate
     }
     
     
     
     private func onTappedSwapIconAction(){
-        let tempLocation = locationState.selectedFromLocation
-        locationState.selectedFromLocation = locationState.selectedToLocation
-        locationState.selectedToLocation = tempLocation
+        let tempLocation =  selectedFromLocation
+        selectedFromLocation = selectedToLocation
+        selectedToLocation = tempLocation
         
-    
-        guard let fromLocation = locationState.selectedFromLocation else {return}
+        
+        guard let fromLocation = selectedFromLocation else {return}
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
-        guard let toLocation = locationState.selectedToLocation else {return}
+        guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
     }
 }

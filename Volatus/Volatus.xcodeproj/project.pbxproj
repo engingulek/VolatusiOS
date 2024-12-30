@@ -13,6 +13,7 @@
 		7D5DAB4B2D1F350700A37B21 /* VolatusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */; };
 		7D5DAB4F2D1F350900A37B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */; };
 		7D5DAB522D1F350900A37B21 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DAB512D1F350900A37B21 /* Preview Assets.xcassets */; };
+		7D99CFED2D22BB9500263945 /* DateListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D99CFEC2D22BB9500263945 /* DateListViewModel.swift */; };
 		7DA398F72D201110006B7927 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA398F62D201110006B7927 /* HomeViewModel.swift */; };
 		7DA398FA2D201199006B7927 /* UiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA398F92D201199006B7927 /* UiState.swift */; };
 		7DA398FC2D20130E006B7927 /* TextTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA398FB2D20130E006B7927 /* TextTheme.swift */; };
@@ -25,6 +26,9 @@
 		7DA3991A2D20374E006B7927 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399192D20374E006B7927 /* HomeViewModelTest.swift */; };
 		7DA3991D2D206254006B7927 /* AirportList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3991C2D206254006B7927 /* AirportList.swift */; };
 		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
+		7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FA2D21AA6300939B05 /* DateView.swift */; };
+		7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */; };
+		7DB2E3FF2D21D6FB00939B05 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FE2D21D6FB00939B05 /* TextView.swift */; };
 		7DC913612D1F3B7A00AD88C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913602D1F3B7A00AD88C9 /* HomeView.swift */; };
 		7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913632D1F441300AD88C9 /* LocationView.swift */; };
 		7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913662D1F458A00AD88C9 /* ImageTheme.swift */; };
@@ -32,6 +36,7 @@
 		7DC9136B2D1F4A4F00AD88C9 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136A2D1F4A4F00AD88C9 /* TimeView.swift */; };
 		7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */; };
 		7DC9136F2D1F4BEC00AD88C9 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */; };
+		7DEE3C342D2305A60049231F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3C332D2305A60049231F /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,7 @@
 		7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatusApp.swift; sourceTree = "<group>"; };
 		7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D5DAB512D1F350900A37B21 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7D99CFEC2D22BB9500263945 /* DateListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListViewModel.swift; sourceTree = "<group>"; };
 		7DA398F62D201110006B7927 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7DA398F92D201199006B7927 /* UiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiState.swift; sourceTree = "<group>"; };
 		7DA398FB2D20130E006B7927 /* TextTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTheme.swift; sourceTree = "<group>"; };
@@ -65,6 +71,9 @@
 		7DA399192D20374E006B7927 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		7DA3991C2D206254006B7927 /* AirportList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportList.swift; sourceTree = "<group>"; };
 		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
+		7DB2E3FA2D21AA6300939B05 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		7DB2E3FE2D21D6FB00939B05 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		7DC913602D1F3B7A00AD88C9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7DC913632D1F441300AD88C9 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		7DC913662D1F458A00AD88C9 /* ImageTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTheme.swift; sourceTree = "<group>"; };
@@ -72,6 +81,7 @@
 		7DC9136A2D1F4A4F00AD88C9 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerView.swift; sourceTree = "<group>"; };
 		7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		7DEE3C332D2305A60049231F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +137,7 @@
 				7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */,
 				7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */,
 				7D5DAB502D1F350900A37B21 /* Preview Content */,
+				7DB2E3FE2D21D6FB00939B05 /* TextView.swift */,
 			);
 			path = Volatus;
 			sourceTree = "<group>";
@@ -154,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				7DA399022D2017B2006B7927 /* Color+Extension.swift */,
+				7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */,
+				7DEE3C332D2305A60049231F /* String+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -195,9 +208,19 @@
 			path = states;
 			sourceTree = "<group>";
 		};
+		7DB2E3F92D21AA4900939B05 /* date */ = {
+			isa = PBXGroup;
+			children = (
+				7DB2E3FA2D21AA6300939B05 /* DateView.swift */,
+				7D99CFEC2D22BB9500263945 /* DateListViewModel.swift */,
+			);
+			path = date;
+			sourceTree = "<group>";
+		};
 		7DC9135E2D1F3AAE00AD88C9 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				7DB2E3F92D21AA4900939B05 /* date */,
 				7DA3991B2D20622C006B7927 /* airportList */,
 				7DC9135F2D1F3B5A00AD88C9 /* home */,
 			);
@@ -343,19 +366,24 @@
 				7DA398F72D201110006B7927 /* HomeViewModel.swift in Sources */,
 				7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */,
 				7DA398FC2D20130E006B7927 /* TextTheme.swift in Sources */,
+				7DEE3C342D2305A60049231F /* String+Extension.swift in Sources */,
+				7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */,
 				7D08C1162D21572000370EAC /* AirportListViewModel.swift in Sources */,
 				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
+				7DB2E3FF2D21D6FB00939B05 /* TextView.swift in Sources */,
 				7DA398FA2D201199006B7927 /* UiState.swift in Sources */,
 				7D08C1122D21561900370EAC /* AirportListView.swift in Sources */,
 				7DA399002D201637006B7927 /* ColorTheme.swift in Sources */,
 				7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */,
 				7DA399072D20245B006B7927 /* LocationState.swift in Sources */,
 				7DA398FE2D2014EB006B7927 /* TripTypeState.swift in Sources */,
+				7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */,
 				7D08C1142D2156A300370EAC /* Airport.swift in Sources */,
 				7DC913692D1F496000AD88C9 /* TripButton.swift in Sources */,
 				7D5DAB4B2D1F350700A37B21 /* VolatusApp.swift in Sources */,
 				7DC9136B2D1F4A4F00AD88C9 /* TimeView.swift in Sources */,
 				7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */,
+				7D99CFED2D22BB9500263945 /* DateListViewModel.swift in Sources */,
 				7DA399052D201FB5006B7927 /* DateState.swift in Sources */,
 				7DC9136F2D1F4BEC00AD88C9 /* SearchButton.swift in Sources */,
 			);

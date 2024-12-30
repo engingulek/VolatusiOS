@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DateView: View {
     let title:String
+    let date:String
+    @State var testDate = Date.now
     var body: some View {
         HStack{
             
@@ -17,11 +19,11 @@ struct DateView: View {
                     .foregroundStyle(.gray)
                     .font(.callout)
                 
-                
-                Text("June 22,2024")
+                 Text(date)
                     .foregroundStyle(.black)
-                    .font(.callout)
+                    .font(.system(size: 15))
                     .fontWeight(.semibold)
+                    .multilineTextAlignment(.leading)
                 
             }
             Spacer()
@@ -40,5 +42,5 @@ struct DateView: View {
 }
 
 #Preview {
-    DateView(title: TextTheme.departure.rawValue)
+    DateView(title: TextTheme.departure.rawValue, date: "June 22,2024")
 }

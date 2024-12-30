@@ -10,4 +10,6 @@ import Foundation
 struct DateState {
    
     var returnVisible:Bool = true
+    var depatureDate:String = Date.now.covertDate(formatterType: .typeOne)
+    var returnDate:String = ""
 }

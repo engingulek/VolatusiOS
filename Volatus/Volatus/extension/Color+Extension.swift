@@ -26,4 +26,36 @@ extension Color {
         
         self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
+    
+    
+  static  func calenderBackColor(type:DateValueType) -> String {
+        switch type {
+        case .now:
+            ColorTheme.black.rawValue
+        case .selected:
+            ColorTheme.red.rawValue
+        case .disable:
+            ColorTheme.white.rawValue
+        case .defaultDate:
+            ColorTheme.white.rawValue
+        case .betwween:
+            ColorTheme.lightRed.rawValue
+        }
+    }
+    
+    
+    static  func calenderDateColor(type:DateValueType) -> String {
+        switch type {
+        case .now:
+            ColorTheme.white.rawValue
+        case .selected:
+            ColorTheme.white.rawValue
+        case .disable:
+            ColorTheme.gray.rawValue
+        case .defaultDate:
+            ColorTheme.black.rawValue
+        case .betwween:
+            ColorTheme.white.rawValue
+        }
+    }
 }
