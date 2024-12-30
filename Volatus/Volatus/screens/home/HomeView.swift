@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView<ViewModel:HomeViewModelProtocol>: View {
     @ObservedObject private var viewModel:ViewModel
     @State var selectedDepatureDate : Date = .now
-    @State var openDepatureDatePicler : Bool = false
+    
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
@@ -78,7 +78,8 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                    
                     
                    NavigationLink {
-                       DateListView(viewModel: DateListViewModel())
+                       DateListView(viewModel: DateListViewModel(),
+                                    depatureDate: $viewModel.depatureDate)
                     } label: {
                     DateView(title: viewModel.uiState.departureTitle,
                              date: viewModel.dateState.depatureDate)
@@ -110,7 +111,9 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
             
         }.ignoresSafeArea()
             .onAppear{
-                viewModel.onAppear()
+                viewModel.updateLocation()
+                viewModel.updateDate()
+                print("homve view \(viewModel.depatureDate)")
             }
         
     }

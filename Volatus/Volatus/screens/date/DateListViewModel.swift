@@ -11,33 +11,85 @@ enum DateValueType {
     case selected
     case disable
     case defaultDate
+    case betwween
+
 }
 
 protocol DateListViewModelProtocol: ObservableObject {
-    func onAppear()
+    func onAppear(getDepartureDate:Date)
     var weekdays: [String] { get }
     var mountCalender: [Int: String] { get }
     var dateCalender: [Int: [(type: DateValueType, dayValue: String)]] { get }
+    func selectDate(index:Int, dayValue:String) -> Date
 }
 
 final class DateListViewModel: DateListViewModelProtocol {
+   
     @Published var dateCalender: [Int: [(type: DateValueType, dayValue: String)]] = [:]
     @Published var mountCalender: [Int: String] = [:]
     @Published var weekdays: [String] = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Pzr"]
+    private var oldIndex:Int = -1
+    private var oldValueIndex:Int = -1
+    private var olddayValue : String = ""
+    private var selected:Bool = false
+    private var dates:[(index:Int,dayValue:String,dateComponents:DateComponents)] = []
+    
+    
 
-    func onAppear() {
-        createCalendar()
+    func onAppear(getDepartureDate:Date) {
+        createCalendar(getDepartureDate:getDepartureDate)
+    }
+    
+    func selectDate(index: Int, dayValue:String)  -> Date {
+        if  selected {
+            
+            selected = false
+            dateCalender[oldIndex]?[oldValueIndex].type = DateValueType.defaultDate
+            
+            oldIndex = index
+            
+            guard let list = dateCalender[index] else {return Date.now}
+            guard let valueIndex = list.firstIndex(where: { $0.dayValue == dayValue }) else {return Date.now}
+            oldValueIndex = valueIndex
+            dateCalender[index]?[valueIndex].type = DateValueType.selected
+            olddayValue = dayValue
+            selected = true
+            
+        }else{
+            oldIndex = index
+            guard let list = dateCalender[index] else {return Date.now}
+            guard let valueIndex = list.firstIndex(where: { $0.dayValue == dayValue }) else {return Date.now}
+            oldValueIndex = valueIndex
+            dateCalender[index]?[valueIndex].type = DateValueType.selected
+            olddayValue = dayValue
+            selected = true
+        }
+       
+        let selectedDateValueComponents = dates.filter { $0.index == index && $0.dayValue == dayValue }.first
+       
+        let selectedDate = Calendar.current.date(from: selectedDateValueComponents!.dateComponents)
+        return selectedDate ?? Date.now
+       
+
+      
     }
 
-    private func createCalendar() {
-        let calendar = Calendar.current
-        let departureDate = Date()
-        let nowComponents = calendar.dateComponents([.day, .month, .year], from: Date.now)
 
+    private func createCalendar(getDepartureDate:Date) {
+      
+        mountCalender = [:]
+    dateCalender  = [:]
+        let calendar = Calendar.current
+        let departureDate = getDepartureDate
+        var depatureDateComponents = calendar.dateComponents([.day, .month, .year], from: departureDate)
+        depatureDateComponents.timeZone = TimeZone(abbreviation: "UTC")
+        var nowComponents = calendar.dateComponents([.day, .month, .year], from: Date.now)
+        nowComponents.timeZone = TimeZone(abbreviation: "UTC")
+        
         for i in 0...3 {
-            if let dateWithAddedMonths = calendar.date(byAdding: .month, value: i, to: departureDate) {
-                let components = calendar.dateComponents([.month, .year], from: dateWithAddedMonths)
-                
+            if let dateWithAddedMonths = calendar.date(byAdding: .month, value: i, to: Date.now) {
+                var components = calendar.dateComponents([.month, .year], from: dateWithAddedMonths)
+                components.timeZone = TimeZone(abbreviation: "UTC")
                 if let month = components.month, let year = components.year {
                     mountCalender[i] = dateWithAddedMonths.covertDate(formatterType: .typeTwo)
 
@@ -55,14 +107,35 @@ final class DateListViewModel: DateListViewModelProtocol {
                         dateComponents.day = day
                         dateComponents.month = month
                         dateComponents.year = year
-
-                        if nowComponents == dateComponents {
+                        dateComponents.timeZone = TimeZone(abbreviation: "UTC")
+                        dates.append((index: i, dayValue: "\(day)", dateComponents: dateComponents))
+                        
+                        let dateRange = Calendar.current.date(from: dateComponents)!
+                        let nowDate = Calendar.current.date(from: nowComponents)!
+                        
+                        if dateRange == nowDate {
+                            dateCalender[i]?.append((type: .now, dayValue: "\(day)"))
+                        }else if nowDate > dateRange {
+                            dateCalender[i]?.append((type: .disable, dayValue: "\(day)"))
+                        }else if dateRange == departureDate {
+                            dateCalender[i]?.append((type: .selected, dayValue: "\(day)"))
+                        }
+                        
+                        else{
+                            dateCalender[i]?.append((type: .defaultDate, dayValue: "\(day)"))
+                        }
+                        
+                        
+                        
+                        
+                        
+                        /*if nowComponents == dateComponents {
                             dateCalender[i]?.append((type: .now, dayValue: "\(day)"))
                         } else if Date.now > calendar.date(from: dateComponents)! {
                             dateCalender[i]?.append((type: .disable, dayValue: "\(day)"))
                         } else {
                             dateCalender[i]?.append((type: .defaultDate, dayValue: "\(day)"))
-                        }
+                        }*/
                     }
                 }
             }

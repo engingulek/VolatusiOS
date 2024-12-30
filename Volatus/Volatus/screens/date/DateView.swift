@@ -9,12 +9,10 @@ import SwiftUI
 
 struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)
-    @ObservedObject private var viewModel:ViewModel
+    @ObservedObject  var viewModel:ViewModel
+    @Binding var depatureDate:Date
+    @Environment(\.dismiss) var dismiss
     
-    init(viewModel: ViewModel) {
-        self.viewModel = viewModel
-        
-    }
     
     var body: some View {
         ScrollView {
@@ -42,6 +40,13 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                                         .font(.caption)
                                         .foregroundStyle(Color(hex:Color.calenderDateColor(type:date.type)))
                                         .clipShape(RoundedRectangle(cornerRadius: 8))
+                                        .onTapGesture {
+                                            if date.type != DateValueType.disable {
+                                             let date = viewModel.selectDate(index: index,dayValue:date.dayValue)
+                                                depatureDate = date
+                                                dismiss()
+                                            }
+                                        }
                                     
                                 } else {
                                     Rectangle()
@@ -55,7 +60,8 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
             }
             .padding()
         }.onAppear{
-            viewModel.onAppear()
+            print("Date View \(depatureDate)")
+            viewModel.onAppear(getDepartureDate: depatureDate)
         }
     }
 }

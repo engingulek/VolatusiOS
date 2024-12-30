@@ -31,13 +31,15 @@ extension Color {
   static  func calenderBackColor(type:DateValueType) -> String {
         switch type {
         case .now:
-            ColorTheme.red.rawValue
+            ColorTheme.black.rawValue
         case .selected:
-            ColorTheme.white.rawValue
+            ColorTheme.red.rawValue
         case .disable:
             ColorTheme.white.rawValue
         case .defaultDate:
             ColorTheme.white.rawValue
+        case .betwween:
+            ColorTheme.lightRed.rawValue
         }
     }
     
@@ -47,11 +49,13 @@ extension Color {
         case .now:
             ColorTheme.white.rawValue
         case .selected:
-            ColorTheme.black.rawValue
+            ColorTheme.white.rawValue
         case .disable:
             ColorTheme.gray.rawValue
         case .defaultDate:
             ColorTheme.black.rawValue
+        case .betwween:
+            ColorTheme.white.rawValue
         }
     }
 }

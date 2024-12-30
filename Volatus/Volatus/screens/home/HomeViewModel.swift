@@ -26,7 +26,8 @@ protocol HomeViewModelProtocol:ObservableObject {
     var depatureDate:Date {get set}
     var returnDate:Date? {get set}
     func onAction(action:HomeActions)
-    func onAppear()
+    func updateLocation()
+    func updateDate()
     
 }
 
@@ -38,7 +39,7 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     @Published var locationState: LocationState = LocationState()
     @Published var selectedFromLocation: Airport?
     @Published    var selectedToLocation: Airport?
-    var depatureDate: Date = Date.now
+  @Published  var depatureDate: Date = Date.now
     var returnDate: Date? = nil
     
     
@@ -60,18 +61,22 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     }
     
     
-    func onAppear() {
+    func updateLocation() {
         
         guard let fromLocation = selectedFromLocation else {return}
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
         guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
         
-        
-        dateState.depatureDate = depatureDate.covertDate(formatterType: .typeOne)
+       
+      
       
         
         
+    }
+    
+    func updateDate() {
+        dateState.depatureDate = depatureDate.covertDate(formatterType: .typeOne)
     }
     
     

@@ -36,6 +36,7 @@
 		7DC9136B2D1F4A4F00AD88C9 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136A2D1F4A4F00AD88C9 /* TimeView.swift */; };
 		7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */; };
 		7DC9136F2D1F4BEC00AD88C9 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */; };
+		7DEE3C342D2305A60049231F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3C332D2305A60049231F /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		7DC9136A2D1F4A4F00AD88C9 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerView.swift; sourceTree = "<group>"; };
 		7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		7DEE3C332D2305A60049231F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				7DA399022D2017B2006B7927 /* Color+Extension.swift */,
 				7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */,
+				7DEE3C332D2305A60049231F /* String+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				7DA398F72D201110006B7927 /* HomeViewModel.swift in Sources */,
 				7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */,
 				7DA398FC2D20130E006B7927 /* TextTheme.swift in Sources */,
+				7DEE3C342D2305A60049231F /* String+Extension.swift in Sources */,
 				7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */,
 				7D08C1162D21572000370EAC /* AirportListViewModel.swift in Sources */,
 				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
