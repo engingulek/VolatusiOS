@@ -42,12 +42,6 @@ final class HomeViewModel  :HomeViewModelProtocol  {
   @Published  var depatureDate: Date = Date.now
     var returnDate: Date? = nil
     
-    
-    
-    
-    
-    
-    
     func onAction(action: HomeActions) {
         switch action {
         case .onTappedOneWay:
@@ -77,6 +71,16 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     
     func updateDate() {
         dateState.depatureDate = depatureDate.covertDate(formatterType: .typeOne)
+        if returnDate != nil {
+            dateState.returnDate = returnDate!.covertDate(formatterType: .typeOne)
+            if returnDate! < depatureDate {
+                dateState.returnDate = depatureDate.covertDate(formatterType: .typeOne)
+                returnDate = depatureDate
+            }
+        }else{
+            dateState.returnDate = depatureDate.covertDate(formatterType: .typeOne)
+        }
+        
     }
     
     
@@ -112,8 +116,11 @@ extension HomeViewModel {
             backColor: ColorTheme.red.rawValue)
         
         dateState = DateState(returnVisible: false)
-        dateState.returnDate = Date.now.covertDate(formatterType: .typeOne)
-        returnDate = Date.now
+        dateState.returnDate = depatureDate.covertDate(formatterType: .typeOne)
+        
+        
+        dateState.depatureDate = depatureDate.covertDate(formatterType: .typeOne)
+        returnDate = depatureDate
     }
     
     

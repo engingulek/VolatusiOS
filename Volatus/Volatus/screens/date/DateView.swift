@@ -11,6 +11,8 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)
     @ObservedObject  var viewModel:ViewModel
     @Binding var depatureDate:Date
+    @Binding var returnDate:Date?
+    var type:Bool
     @Environment(\.dismiss) var dismiss
     
     
@@ -43,7 +45,14 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                                         .onTapGesture {
                                             if date.type != DateValueType.disable {
                                              let date = viewModel.selectDate(index: index,dayValue:date.dayValue)
-                                                depatureDate = date
+                                                if type {
+                                                    depatureDate = date
+                                                    print("depature \(depatureDate)")
+                                                }else{
+                                                    returnDate = date
+                                                    print("returnDate \(returnDate)")
+                                                }
+                                               
                                                 dismiss()
                                             }
                                         }
@@ -59,9 +68,10 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                 }
             }
             .padding()
+            .navigationTitle(type ? "Depature Date" : "Return Date")
         }.onAppear{
             print("Date View \(depatureDate)")
-            viewModel.onAppear(getDepartureDate: depatureDate)
+            viewModel.onAppear(getDepartureDate: depatureDate, getReturnDate: returnDate, type: type)
         }
     }
 }

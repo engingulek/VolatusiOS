@@ -79,20 +79,22 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                     
                    NavigationLink {
                        DateListView(viewModel: DateListViewModel(),
-                                    depatureDate: $viewModel.depatureDate)
+                                    depatureDate: $viewModel.depatureDate,
+                                    returnDate: $viewModel.returnDate, type: true)
                     } label: {
                     DateView(title: viewModel.uiState.departureTitle,
                              date: viewModel.dateState.depatureDate)
                     }
                     
-                    /*NavigationLink {
-                        DateListView(depatureData:$viewModel.depatureDate,
-                                     retrunDate: $viewModel.returnDate)
+                    NavigationLink {
+                        DateListView(viewModel: DateListViewModel(),
+                                     depatureDate: $viewModel.depatureDate,
+                                     returnDate: $viewModel.returnDate, type: false)
                     } label: {
                     !viewModel.dateState.returnVisible ?
                     DateView(title: viewModel.uiState.returnTitle,
                              date: viewModel.dateState.returnDate) : nil
-                    }*/
+                    }
                     
                 }
                 PassengerView(title: viewModel.uiState.passenger)

@@ -16,7 +16,7 @@ enum DateValueType {
 }
 
 protocol DateListViewModelProtocol: ObservableObject {
-    func onAppear(getDepartureDate:Date)
+    func onAppear(getDepartureDate:Date,getReturnDate:Date?,type:Bool)
     var weekdays: [String] { get }
     var mountCalender: [Int: String] { get }
     var dateCalender: [Int: [(type: DateValueType, dayValue: String)]] { get }
@@ -36,8 +36,10 @@ final class DateListViewModel: DateListViewModelProtocol {
     
     
 
-    func onAppear(getDepartureDate:Date) {
-        createCalendar(getDepartureDate:getDepartureDate)
+    func onAppear(getDepartureDate:Date,getReturnDate:Date?,type:Bool) {
+        createCalendar(getDepartureDate:getDepartureDate,
+                       getReturnDate:getReturnDate,
+                       control:type)
     }
     
     func selectDate(index: Int, dayValue:String)  -> Date {
@@ -75,7 +77,7 @@ final class DateListViewModel: DateListViewModelProtocol {
     }
 
 
-    private func createCalendar(getDepartureDate:Date) {
+    private func createCalendar(getDepartureDate:Date,getReturnDate:Date?,control:Bool) {
       
         mountCalender = [:]
     dateCalender  = [:]
@@ -85,7 +87,7 @@ final class DateListViewModel: DateListViewModelProtocol {
         depatureDateComponents.timeZone = TimeZone(abbreviation: "UTC")
         var nowComponents = calendar.dateComponents([.day, .month, .year], from: Date.now)
         nowComponents.timeZone = TimeZone(abbreviation: "UTC")
-        
+       
         for i in 0...3 {
             if let dateWithAddedMonths = calendar.date(byAdding: .month, value: i, to: Date.now) {
                 var components = calendar.dateComponents([.month, .year], from: dateWithAddedMonths)
@@ -113,29 +115,23 @@ final class DateListViewModel: DateListViewModelProtocol {
                         let dateRange = Calendar.current.date(from: dateComponents)!
                         let nowDate = Calendar.current.date(from: nowComponents)!
                         
+                        let type: DateValueType
+
                         if dateRange == nowDate {
-                            dateCalender[i]?.append((type: .now, dayValue: "\(day)"))
-                        }else if nowDate > dateRange {
-                            dateCalender[i]?.append((type: .disable, dayValue: "\(day)"))
-                        }else if dateRange == departureDate {
-                            dateCalender[i]?.append((type: .selected, dayValue: "\(day)"))
-                        }
-                        
-                        else{
-                            dateCalender[i]?.append((type: .defaultDate, dayValue: "\(day)"))
-                        }
-                        
-                        
-                        
-                        
-                        
-                        /*if nowComponents == dateComponents {
-                            dateCalender[i]?.append((type: .now, dayValue: "\(day)"))
-                        } else if Date.now > calendar.date(from: dateComponents)! {
-                            dateCalender[i]?.append((type: .disable, dayValue: "\(day)"))
+                            type = .now
+                        } else if (control && nowDate > dateRange) || (!control && departureDate > dateRange) {
+                            type = .disable
+                        } else if dateRange == departureDate || dateRange == getReturnDate {
+                            type = .selected
+                        } else if departureDate < dateRange && dateRange < (getReturnDate ?? departureDate) {
+                            type = .betwween
                         } else {
-                            dateCalender[i]?.append((type: .defaultDate, dayValue: "\(day)"))
-                        }*/
+                            type = .defaultDate
+                        }
+                        dateCalender[i]?.append((type: type, dayValue: "\(day)"))
+                    
+                        
+    
                     }
                 }
             }
