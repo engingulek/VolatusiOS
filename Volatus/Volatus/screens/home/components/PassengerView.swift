@@ -20,7 +20,7 @@ struct PassengerView: View {
                 
                 Text("1 Adult")
                     .foregroundStyle(.black)
-                    .font(.title3)
+                    .font(.callout)
                     .fontWeight(.semibold)
                 
             }

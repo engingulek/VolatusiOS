@@ -97,7 +97,13 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                     }
                     
                 }
-                PassengerView(title: viewModel.uiState.passenger)
+                NavigationLink {
+                    PassengerSelectView(viewModel: PassengerSelectViewModel())
+                } label: {
+                    PassengerView(title: viewModel.uiState.passenger)
+                }
+
+                
                 SearchButton(title:viewModel.uiState.searchButtonTitle)
             }
             .frame(maxWidth: .infinity)
@@ -115,7 +121,7 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
             .onAppear{
                 viewModel.updateLocation()
                 viewModel.updateDate()
-                print("homve view \(viewModel.depatureDate)")
+                
             }
         
     }

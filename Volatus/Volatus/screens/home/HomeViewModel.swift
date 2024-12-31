@@ -25,6 +25,7 @@ protocol HomeViewModelProtocol:ObservableObject {
     var selectedToLocation : Airport? {get set}
     var depatureDate:Date {get set}
     var returnDate:Date? {get set}
+    
     func onAction(action:HomeActions)
     func updateLocation()
     func updateDate()
@@ -39,7 +40,8 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     @Published var locationState: LocationState = LocationState()
     @Published var selectedFromLocation: Airport?
     @Published    var selectedToLocation: Airport?
-  @Published  var depatureDate: Date = Date.now
+    @Published  var depatureDate: Date = Date.now
+
     var returnDate: Date? = nil
     
     func onAction(action: HomeActions) {

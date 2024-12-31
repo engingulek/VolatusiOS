@@ -37,6 +37,10 @@
 		7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */; };
 		7DC9136F2D1F4BEC00AD88C9 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */; };
 		7DEE3C342D2305A60049231F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3C332D2305A60049231F /* String+Extension.swift */; };
+		7DEE3C372D240BE20049231F /* PassengerSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3C362D240BE20049231F /* PassengerSelectView.swift */; };
+		7DEE3C392D240CA70049231F /* PassengerSelectState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3C382D240CA70049231F /* PassengerSelectState.swift */; };
+		7DEE3C3B2D240D410049231F /* PassengerSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3C3A2D240D410049231F /* PassengerSelectViewModel.swift */; };
+		7DEE3C3E2D241FC80049231F /* PassengerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3C3D2D241FC80049231F /* PassengerComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +86,10 @@
 		7DC9136C2D1F4AEC00AD88C9 /* PassengerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerView.swift; sourceTree = "<group>"; };
 		7DC9136E2D1F4BEC00AD88C9 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		7DEE3C332D2305A60049231F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		7DEE3C362D240BE20049231F /* PassengerSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerSelectView.swift; sourceTree = "<group>"; };
+		7DEE3C382D240CA70049231F /* PassengerSelectState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerSelectState.swift; sourceTree = "<group>"; };
+		7DEE3C3A2D240D410049231F /* PassengerSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerSelectViewModel.swift; sourceTree = "<group>"; };
+		7DEE3C3D2D241FC80049231F /* PassengerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +228,7 @@
 		7DC9135E2D1F3AAE00AD88C9 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				7DEE3C352D240BC80049231F /* passengerSelect */,
 				7DB2E3F92D21AA4900939B05 /* date */,
 				7DA3991B2D20622C006B7927 /* airportList */,
 				7DC9135F2D1F3B5A00AD88C9 /* home */,
@@ -258,6 +267,25 @@
 				7DA398FF2D201637006B7927 /* ColorTheme.swift */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		7DEE3C352D240BC80049231F /* passengerSelect */ = {
+			isa = PBXGroup;
+			children = (
+				7DEE3C3C2D241FAC0049231F /* components */,
+				7DEE3C362D240BE20049231F /* PassengerSelectView.swift */,
+				7DEE3C382D240CA70049231F /* PassengerSelectState.swift */,
+				7DEE3C3A2D240D410049231F /* PassengerSelectViewModel.swift */,
+			);
+			path = passengerSelect;
+			sourceTree = "<group>";
+		};
+		7DEE3C3C2D241FAC0049231F /* components */ = {
+			isa = PBXGroup;
+			children = (
+				7DEE3C3D2D241FC80049231F /* PassengerComponent.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,11 +392,14 @@
 				7DA3991D2D206254006B7927 /* AirportList.swift in Sources */,
 				7DA399032D2017B2006B7927 /* Color+Extension.swift in Sources */,
 				7DA398F72D201110006B7927 /* HomeViewModel.swift in Sources */,
+				7DEE3C372D240BE20049231F /* PassengerSelectView.swift in Sources */,
 				7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */,
 				7DA398FC2D20130E006B7927 /* TextTheme.swift in Sources */,
 				7DEE3C342D2305A60049231F /* String+Extension.swift in Sources */,
 				7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */,
 				7D08C1162D21572000370EAC /* AirportListViewModel.swift in Sources */,
+				7DEE3C3B2D240D410049231F /* PassengerSelectViewModel.swift in Sources */,
+				7DEE3C392D240CA70049231F /* PassengerSelectState.swift in Sources */,
 				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
 				7DB2E3FF2D21D6FB00939B05 /* TextView.swift in Sources */,
 				7DA398FA2D201199006B7927 /* UiState.swift in Sources */,
@@ -377,6 +408,7 @@
 				7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */,
 				7DA399072D20245B006B7927 /* LocationState.swift in Sources */,
 				7DA398FE2D2014EB006B7927 /* TripTypeState.swift in Sources */,
+				7DEE3C3E2D241FC80049231F /* PassengerComponent.swift in Sources */,
 				7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */,
 				7D08C1142D2156A300370EAC /* Airport.swift in Sources */,
 				7DC913692D1F496000AD88C9 /* TripButton.swift in Sources */,

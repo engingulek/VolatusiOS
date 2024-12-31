@@ -19,4 +19,16 @@ enum TextTheme  : String {
     case choosen = "Choosen"
     case passenger = "Passenger"
     case searchPlaceholder = "Search Airport"
+    
+    case adultTitle = "Adult"
+    case adultRangeTitle = "18+ age"
+    
+    case child = "Child"
+    case childRangeTitle = "2-18 age"
+    
+    case babyTitle = "Baby"
+    case babyRangeTitle = "0-2 age"
+    
+    case passengerTitle = "Passenger Select"
+    case confirm = "Confirm"
 }
