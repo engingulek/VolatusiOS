@@ -98,9 +98,11 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                     
                 }
                 NavigationLink {
-                    PassengerSelectView(viewModel: PassengerSelectViewModel())
+                    PassengerSelectView(viewModel: PassengerSelectViewModel(),
+                                        passengerList: $viewModel.passengerList)
                 } label: {
-                    PassengerView(title: viewModel.uiState.passenger)
+                    PassengerView(title: viewModel.uiState.passenger,
+                                  passenger:viewModel.uiState.passengerText)
                 }
 
                 
@@ -121,6 +123,7 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
             .onAppear{
                 viewModel.updateLocation()
                 viewModel.updateDate()
+                viewModel.updatePassengerValue()
                 
             }
         

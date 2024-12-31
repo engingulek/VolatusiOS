@@ -9,8 +9,8 @@ import SwiftUI
 
 struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
     @ObservedObject  var viewModel:ViewModel
-
-   
+    @Environment(\.dismiss) var dismiss
+    @Binding var passengerList : [PassengerValue]
     var body: some View {
         VStack {
             
@@ -28,7 +28,11 @@ struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
             }
             Spacer()
             
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Button(action: {
+              
+                passengerList = viewModel.passengerSelectState.passengerList
+                dismiss()
+            }, label: {
                 Text(viewModel.passengerSelectState.confirmButtonTitle)
                     .font(.title3)
                     .foregroundStyle(.white)
@@ -44,12 +48,12 @@ struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
        
             .navigationTitle(viewModel.passengerSelectState.passengerTitle)
         }.onAppear{
-            viewModel.opAppear()
+            viewModel.opAppear(passengerValue: passengerList)
         }
       
     }
 }
 
 #Preview {
-    PassengerSelectView(viewModel: PassengerSelectViewModel())
+    PassengerSelectView(viewModel: PassengerSelectViewModel(), passengerList: .constant([]))
 }

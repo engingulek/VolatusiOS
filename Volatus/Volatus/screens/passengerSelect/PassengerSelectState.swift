@@ -13,6 +13,7 @@ struct PassengerSelectState {
     var passengerList:[PassengerValue] = []
     var passengerTitle:String = TextTheme.passengerTitle.rawValue
     var confirmButtonTitle : String = TextTheme.confirm.rawValue
+    
 }
 
 

@@ -16,7 +16,7 @@ enum PassengerAction {
 protocol PassengerSelectViewModelProtocol : ObservableObject {
     var passengerSelectState :PassengerSelectState {get}
      func onAction(action:PassengerAction)
-    func opAppear()
+    func opAppear(passengerValue:[PassengerValue])
 }
 
 final class PassengerSelectViewModel : PassengerSelectViewModelProtocol {
@@ -24,21 +24,9 @@ final class PassengerSelectViewModel : PassengerSelectViewModelProtocol {
     
     @Published var passengerSelectState: PassengerSelectState = PassengerSelectState()
 
-    func opAppear() {
-        passengerSelectState.passengerList = [
-            .init(title: TextTheme.adultTitle.rawValue,
-                  ageSpaceTitle: TextTheme.adultRangeTitle.rawValue,
-                  count: 1, minusButtonStatus: true),
-            
-                .init(title: TextTheme.child.rawValue,
-                      ageSpaceTitle: TextTheme.childRangeTitle.rawValue,
-                      count:0,minusButtonStatus: true),
-            
-            
-                .init(title: TextTheme.babyTitle.rawValue,
-                      ageSpaceTitle: TextTheme.babyRangeTitle.rawValue,
-                      count: 0,minusButtonStatus:true),
-        ]
+    func opAppear(passengerValue:[PassengerValue]) {
+        passengerSelectState.passengerList = passengerValue
+      
     }
     
     
