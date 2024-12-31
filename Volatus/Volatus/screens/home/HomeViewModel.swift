@@ -25,22 +25,36 @@ protocol HomeViewModelProtocol:ObservableObject {
     var selectedToLocation : Airport? {get set}
     var depatureDate:Date {get set}
     var returnDate:Date? {get set}
+    var passengerList:[PassengerValue] {get set}
     func onAction(action:HomeActions)
     func updateLocation()
     func updateDate()
+    func updatePassengerValue()
     
 }
 
 final class HomeViewModel  :HomeViewModelProtocol  {
-
     @Published var uiState: UiState = UiState()
     @Published var tripTypeState: TripTypeState = TripTypeState()
     @Published var dateState: DateState = DateState()
     @Published var locationState: LocationState = LocationState()
     @Published var selectedFromLocation: Airport?
-    @Published    var selectedToLocation: Airport?
-  @Published  var depatureDate: Date = Date.now
+    @Published var selectedToLocation: Airport?
+    var depatureDate: Date = Date.now
     var returnDate: Date? = nil
+    
+    var passengerList: [PassengerValue] = [
+        .init(title: TextTheme.adultTitle.rawValue,
+              ageSpaceTitle: TextTheme.adultRangeTitle.rawValue,
+              count: 1, minusButtonStatus: true),
+        .init(title: TextTheme.child.rawValue,
+              ageSpaceTitle: TextTheme.childRangeTitle.rawValue,
+              count: 0, minusButtonStatus: true),
+        .init(title: TextTheme.babyTitle.rawValue,
+              ageSpaceTitle: TextTheme.babyRangeTitle.rawValue,
+              count: 0, minusButtonStatus: true)
+    
+    ]
     
     func onAction(action: HomeActions) {
         switch action {
@@ -61,12 +75,6 @@ final class HomeViewModel  :HomeViewModelProtocol  {
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
         guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
-        
-       
-      
-      
-        
-        
     }
     
     func updateDate() {
@@ -83,9 +91,15 @@ final class HomeViewModel  :HomeViewModelProtocol  {
         
     }
     
-    
-    
-    
+    func updatePassengerValue() {
+      
+      let list =  passengerList.map { $0.count != 0 ? "\($0.count) \($0.title)" : "" }
+        let text = list.filter { !$0.isEmpty }.joined(separator: ",")
+        uiState.passengerText = text
+        
+        
+        
+    }
 }
 
 extension HomeViewModel {
@@ -102,7 +116,6 @@ extension HomeViewModel {
         dateState = DateState(returnVisible: true)
         
         dateState.returnDate = ""
-//        returnDate = nil
     }
     
     

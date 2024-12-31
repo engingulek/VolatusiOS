@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PassengerView: View {
     let title:String
+    let passenger:String
     var body: some View {
         HStack{
             
@@ -18,9 +19,9 @@ struct PassengerView: View {
                     .font(.callout)
                 
                 
-                Text("1 Adult")
+                Text(passenger)
                     .foregroundStyle(.black)
-                    .font(.title3)
+                    .font(.callout)
                     .fontWeight(.semibold)
                 
             }
@@ -40,5 +41,5 @@ struct PassengerView: View {
 }
 
 #Preview {
-    PassengerView(title: "")
+    PassengerView(title: "",passenger: "")
 }

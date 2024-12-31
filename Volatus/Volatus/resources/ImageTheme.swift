@@ -9,4 +9,6 @@ import Foundation
 
 enum ImageTheme : String {
     case swapeIcon = "arrow.up.arrow.down.circle.fill"
+    case minus = "minus.circle.fill"
+    case plus = "plus.circle.fill"
 }

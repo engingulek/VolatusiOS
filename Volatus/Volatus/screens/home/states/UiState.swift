@@ -23,5 +23,7 @@ struct UiState {
     let toTitle : String = TextTheme.toTitle.rawValue
     let passenger : String = TextTheme.passenger.rawValue
     
+    var passengerText:String = ""
+    
  
 }
