@@ -10,16 +10,13 @@ import SwiftUI
 struct SearchButton: View {
     let title:String
     var body: some View {
-        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-            Text(title)
-                .font(.title3)
-                .foregroundStyle(.white)
-                .fontWeight(.semibold)
-        })
-        .frame(maxWidth:.infinity)
-        .frame(height:40)
-        .background(.red)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
+        NavigationLink {
+            TicketListView()
+        } label: {
+        
+        }
+
+      
     }
 }
 

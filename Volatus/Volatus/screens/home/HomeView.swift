@@ -104,9 +104,20 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                     PassengerView(title: viewModel.uiState.passenger,
                                   passenger:viewModel.uiState.passengerText)
                 }
-
                 
-                SearchButton(title:viewModel.uiState.searchButtonTitle)
+                NavigationLink {
+                    TicketListView()
+                } label: {
+                    Text(viewModel.uiState.searchButtonTitle)
+                        .font(.title3)
+                        .foregroundStyle(.white)
+                        .fontWeight(.semibold)
+                        .frame(maxWidth:.infinity)
+                        .frame(height:40)
+                        .background(.red)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+              
             }
             .frame(maxWidth: .infinity)
             .padding(16)
