@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct VolatusApp: App {
-  
+
+    @StateObject private var sharedModel = SharedModel()
     var body: some Scene {
         WindowGroup {
            // TestView()
             NavigationStack {
                 HomeView(viewModel: HomeViewModel())
+                    .environmentObject(sharedModel)
             }
             
            

@@ -10,7 +10,7 @@ import SwiftUI
 struct DayListComponent: View {
     let list : [DayAndPrice]
     let onTap:(Int) -> Void
-   
+    @EnvironmentObject var sharedModel : SharedModel
     var body: some View {
         ScrollView(.horizontal,
                    showsIndicators: false) {
@@ -32,6 +32,8 @@ struct DayListComponent: View {
                     }.foregroundStyle(Color(hex: value.selectedStateColor))
                         .onTapGesture {
                             onTap(value.id)
+                          //  sharedModel.updateDate(type: true, date: Date.now)
+                           
                         }
                                          
                 }

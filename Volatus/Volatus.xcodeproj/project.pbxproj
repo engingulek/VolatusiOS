@@ -27,7 +27,11 @@
 		7DA399122D20371E006B7927 /* VolatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399112D20371E006B7927 /* VolatusTests.swift */; };
 		7DA3991A2D20374E006B7927 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399192D20374E006B7927 /* HomeViewModelTest.swift */; };
 		7DA3991D2D206254006B7927 /* AirportList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3991C2D206254006B7927 /* AirportList.swift */; };
-		7DA9B8D22D28028C0060CF54 /* TicketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8D12D28028C0060CF54 /* TicketListViewModel.swift */; };
+		7DA9B8D22D28028C0060CF54 /* DepartureTicketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8D12D28028C0060CF54 /* DepartureTicketListViewModel.swift */; };
+		7DA9B8DA2D282CF70060CF54 /* ReturnTicketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8D92D282CF70060CF54 /* ReturnTicketListView.swift */; };
+		7DA9B8DC2D282D4E0060CF54 /* TicketComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8DB2D282D4E0060CF54 /* TicketComponent.swift */; };
+		7DA9B8DF2D282E0A0060CF54 /* PassengerInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8DE2D282E0A0060CF54 /* PassengerInfoScreen.swift */; };
+		7DA9B8E12D28374C0060CF54 /* SharedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8E02D28374C0060CF54 /* SharedModel.swift */; };
 		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
 		7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FA2D21AA6300939B05 /* DateView.swift */; };
 		7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */; };
@@ -77,7 +81,11 @@
 		7DA399112D20371E006B7927 /* VolatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatusTests.swift; sourceTree = "<group>"; };
 		7DA399192D20374E006B7927 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		7DA3991C2D206254006B7927 /* AirportList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportList.swift; sourceTree = "<group>"; };
-		7DA9B8D12D28028C0060CF54 /* TicketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketListViewModel.swift; sourceTree = "<group>"; };
+		7DA9B8D12D28028C0060CF54 /* DepartureTicketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTicketListViewModel.swift; sourceTree = "<group>"; };
+		7DA9B8D92D282CF70060CF54 /* ReturnTicketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnTicketListView.swift; sourceTree = "<group>"; };
+		7DA9B8DB2D282D4E0060CF54 /* TicketComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketComponent.swift; sourceTree = "<group>"; };
+		7DA9B8DE2D282E0A0060CF54 /* PassengerInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerInfoScreen.swift; sourceTree = "<group>"; };
+		7DA9B8E02D28374C0060CF54 /* SharedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModel.swift; sourceTree = "<group>"; };
 		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
 		7DB2E3FA2D21AA6300939B05 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -123,9 +131,9 @@
 		7D45E2E22D271FF000FDC1EE /* ticketList */ = {
 			isa = PBXGroup;
 			children = (
+				7DA9B8D82D282CE50060CF54 /* return */,
+				7DA9B8D72D282CD60060CF54 /* departure */,
 				7D45E2E52D2727E900FDC1EE /* components */,
-				7D45E2E32D27200400FDC1EE /* DepartureTTicketListView.swift */,
-				7DA9B8D12D28028C0060CF54 /* TicketListViewModel.swift */,
 			);
 			path = ticketList;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				7D45E2E62D27281A00FDC1EE /* DayListComponent.swift */,
+				7DA9B8DB2D282D4E0060CF54 /* TicketComponent.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -227,6 +236,31 @@
 			path = airportList;
 			sourceTree = "<group>";
 		};
+		7DA9B8D72D282CD60060CF54 /* departure */ = {
+			isa = PBXGroup;
+			children = (
+				7D45E2E32D27200400FDC1EE /* DepartureTTicketListView.swift */,
+				7DA9B8D12D28028C0060CF54 /* DepartureTicketListViewModel.swift */,
+			);
+			path = departure;
+			sourceTree = "<group>";
+		};
+		7DA9B8D82D282CE50060CF54 /* return */ = {
+			isa = PBXGroup;
+			children = (
+				7DA9B8D92D282CF70060CF54 /* ReturnTicketListView.swift */,
+			);
+			path = return;
+			sourceTree = "<group>";
+		};
+		7DA9B8DD2D282DEE0060CF54 /* passengerInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7DA9B8DE2D282E0A0060CF54 /* PassengerInfoScreen.swift */,
+			);
+			path = passengerInfo;
+			sourceTree = "<group>";
+		};
 		7DB2E3F62D2184BA00939B05 /* states */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,11 +281,13 @@
 		7DC9135E2D1F3AAE00AD88C9 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				7DA9B8DD2D282DEE0060CF54 /* passengerInfo */,
 				7D45E2E22D271FF000FDC1EE /* ticketList */,
 				7DEE3C352D240BC80049231F /* passengerSelect */,
 				7DB2E3F92D21AA4900939B05 /* date */,
 				7DA3991B2D20622C006B7927 /* airportList */,
 				7DC9135F2D1F3B5A00AD88C9 /* home */,
+				7DA9B8E02D28374C0060CF54 /* SharedModel.swift */,
 			);
 			path = screens;
 			sourceTree = "<group>";
@@ -413,16 +449,20 @@
 				7DA398F72D201110006B7927 /* HomeViewModel.swift in Sources */,
 				7DEE3C372D240BE20049231F /* PassengerSelectView.swift in Sources */,
 				7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */,
+				7DA9B8DF2D282E0A0060CF54 /* PassengerInfoScreen.swift in Sources */,
 				7DA398FC2D20130E006B7927 /* TextTheme.swift in Sources */,
 				7DEE3C342D2305A60049231F /* String+Extension.swift in Sources */,
 				7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */,
 				7D08C1162D21572000370EAC /* AirportListViewModel.swift in Sources */,
+				7DA9B8DC2D282D4E0060CF54 /* TicketComponent.swift in Sources */,
 				7DEE3C3B2D240D410049231F /* PassengerSelectViewModel.swift in Sources */,
 				7DEE3C392D240CA70049231F /* PassengerSelectState.swift in Sources */,
 				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
 				7DA398FA2D201199006B7927 /* UiState.swift in Sources */,
 				7D08C1122D21561900370EAC /* AirportListView.swift in Sources */,
 				7DA399002D201637006B7927 /* ColorTheme.swift in Sources */,
+				7DA9B8DA2D282CF70060CF54 /* ReturnTicketListView.swift in Sources */,
+				7DA9B8E12D28374C0060CF54 /* SharedModel.swift in Sources */,
 				7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */,
 				7DA399072D20245B006B7927 /* LocationState.swift in Sources */,
 				7D45E2E42D27200400FDC1EE /* DepartureTTicketListView.swift in Sources */,
@@ -436,7 +476,7 @@
 				7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */,
 				7D99CFED2D22BB9500263945 /* DateListViewModel.swift in Sources */,
 				7DA399052D201FB5006B7927 /* DateState.swift in Sources */,
-				7DA9B8D22D28028C0060CF54 /* TicketListViewModel.swift in Sources */,
+				7DA9B8D22D28028C0060CF54 /* DepartureTicketListViewModel.swift in Sources */,
 				7D45E2E72D27281A00FDC1EE /* DayListComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

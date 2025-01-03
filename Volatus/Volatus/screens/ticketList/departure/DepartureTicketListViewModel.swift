@@ -22,25 +22,25 @@ struct DayAndPrice {
 
 protocol DepartureTicketListViewModelProtocol : ObservableObject {
     var dateAndPrice : [DayAndPrice] {get}
-    func onAppear(fromAirport:Airport?,toAirport:Airport?,depatureDate:Date,returnDate:Date?)
-    
+    var updatedDepartureDate:Date  {get}
+        var updatedReturnDate: Date? {get}
+    func onAppear(depatureDate:Date,returnDate:Date?)
+  
     func onAction(action:TicketListActions)
+  
 }
 
 
 final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol {
    @Published var dateAndPrice: [DayAndPrice] = []
     private var oldSelectedIndex:Int?
-    private var getreturnDate:Date?
-  
+   var updatedDepartureDate:Date = Date.now
+   var updatedReturnDate: Date?
+    private var tempList:[DayAndPrice]  = []
     
-    
-    
-    func onAppear(fromAirport:Airport?,toAirport:Airport?,depatureDate:Date,returnDate:Date?){
-       
-        
+    func onAppear(depatureDate:Date,returnDate:Date?) {
         createDatePrice(getDate: depatureDate)
-        getreturnDate = returnDate
+        updatedReturnDate = returnDate
     }
     
     
@@ -63,6 +63,7 @@ extension DepartureTicketListViewModel {
          for offset in 0..<30 {
              if let dayDate = calendar.date(byAdding: .day, value: offset, to: Date.now) {
                  let dateValue = formatter.string(from: dayDate)
+               
                  let dayAndPrice = DayAndPrice(
                     id: offset,
                     date: dayDate,
@@ -71,6 +72,7 @@ extension DepartureTicketListViewModel {
                  )
              
                  dateAndPrice.append(dayAndPrice)
+                 tempList.append(dayAndPrice)
                  
              }
          }
@@ -84,12 +86,11 @@ extension DepartureTicketListViewModel {
         oldSelectedIndex = id
         dateAndPrice[id].selectedStateColor = ColorTheme.red.rawValue
         let selectedDate =  dateAndPrice[id].date
-        
-        guard let returnDate = getreturnDate else {return}
+        updatedDepartureDate = selectedDate
+        guard let returnDate = updatedReturnDate else {return}
         
         if(selectedDate >= returnDate) {
-            getreturnDate = selectedDate
+            updatedReturnDate = selectedDate
         }
-       
     }
 }

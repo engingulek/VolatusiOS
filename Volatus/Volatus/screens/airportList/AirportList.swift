@@ -12,12 +12,13 @@ enum SearchType {
 }
 struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
     
-    @ObservedObject var viewModel:ViewModel
-    @Binding var selectedFromLocation:Airport?
-    @Binding var selectedToLocation:Airport?
+    @StateObject var viewModel:ViewModel
+   // @Binding var selectedFromLocation:Airport?
+  //  @Binding var selectedToLocation:Airport?
     @State private var searchText = ""
     @State var searchType: SearchType
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var sharedModel : SharedModel
     
     
     var body: some View {
@@ -40,12 +41,8 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
          
             
             AirportListView(airtportList: viewModel.airportList) { airport in
-                switch searchType {
-                case .forFrom:
-                    selectedFromLocation = airport
-                case .forTo:
-                    selectedToLocation = airport
-                }
+                sharedModel.updateLocation(searchType: searchType, airport: airport)
+               
                 dismiss()
             }
         }.onAppear{
@@ -55,7 +52,7 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
 }
 
 #Preview{
-    AirportList(viewModel: AirportListViewModel(), selectedFromLocation: .constant(Airport(id: 1, name: "", code: "", city: "", country: "")), selectedToLocation: .constant(Airport(id: 1, name: "", code: "", city: "", country: "")), searchType: .forFrom)
+    AirportList(viewModel: AirportListViewModel(), searchType: .forFrom)
 }
 
 
