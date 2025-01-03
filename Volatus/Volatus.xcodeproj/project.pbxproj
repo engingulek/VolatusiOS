@@ -32,6 +32,7 @@
 		7DA9B8DC2D282D4E0060CF54 /* TicketComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8DB2D282D4E0060CF54 /* TicketComponent.swift */; };
 		7DA9B8DF2D282E0A0060CF54 /* PassengerInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8DE2D282E0A0060CF54 /* PassengerInfoScreen.swift */; };
 		7DA9B8E12D28374C0060CF54 /* SharedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8E02D28374C0060CF54 /* SharedModel.swift */; };
+		7DA9B9012D287AA40060CF54 /* ReturnTicketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B9002D287AA40060CF54 /* ReturnTicketListViewModel.swift */; };
 		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
 		7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FA2D21AA6300939B05 /* DateView.swift */; };
 		7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */; };
@@ -86,6 +87,7 @@
 		7DA9B8DB2D282D4E0060CF54 /* TicketComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketComponent.swift; sourceTree = "<group>"; };
 		7DA9B8DE2D282E0A0060CF54 /* PassengerInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerInfoScreen.swift; sourceTree = "<group>"; };
 		7DA9B8E02D28374C0060CF54 /* SharedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModel.swift; sourceTree = "<group>"; };
+		7DA9B9002D287AA40060CF54 /* ReturnTicketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnTicketListViewModel.swift; sourceTree = "<group>"; };
 		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
 		7DB2E3FA2D21AA6300939B05 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				7DA9B8D92D282CF70060CF54 /* ReturnTicketListView.swift */,
+				7DA9B9002D287AA40060CF54 /* ReturnTicketListViewModel.swift */,
 			);
 			path = return;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				7D99CFED2D22BB9500263945 /* DateListViewModel.swift in Sources */,
 				7DA399052D201FB5006B7927 /* DateState.swift in Sources */,
 				7DA9B8D22D28028C0060CF54 /* DepartureTicketListViewModel.swift in Sources */,
+				7DA9B9012D287AA40060CF54 /* ReturnTicketListViewModel.swift in Sources */,
 				7D45E2E72D27281A00FDC1EE /* DayListComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TicketComponent: View {
+    let onTap:() -> Void
     var body: some View {
         VStack {
             //MARK: head Start
@@ -71,9 +72,12 @@ struct TicketComponent: View {
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding(.horizontal, 8)
+        .onTapGesture {
+            onTap()
+        }
     }
 }
 
 #Preview {
-    TicketComponent()
+    TicketComponent(onTap: {})
 }

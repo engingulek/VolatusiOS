@@ -9,6 +9,7 @@ import Foundation
 
 enum TicketListActions{
     case onTappedDate(id:Int)
+
 }
 struct DayAndPrice {
     let id:Int
@@ -24,7 +25,10 @@ protocol DepartureTicketListViewModelProtocol : ObservableObject {
     var dateAndPrice : [DayAndPrice] {get}
     var updatedDepartureDate:Date  {get}
         var updatedReturnDate: Date? {get}
+  
     func onAppear(depatureDate:Date,returnDate:Date?)
+    
+    
   
     func onAction(action:TicketListActions)
   
@@ -33,10 +37,12 @@ protocol DepartureTicketListViewModelProtocol : ObservableObject {
 
 final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol {
    @Published var dateAndPrice: [DayAndPrice] = []
+    
     private var oldSelectedIndex:Int?
    var updatedDepartureDate:Date = Date.now
    var updatedReturnDate: Date?
     private var tempList:[DayAndPrice]  = []
+    
     
     func onAppear(depatureDate:Date,returnDate:Date?) {
         createDatePrice(getDate: depatureDate)
@@ -48,6 +54,7 @@ final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol 
         switch action {
         case .onTappedDate(let id):
             selectedDateAction(id: id)
+      
         }
     }
 }
@@ -55,7 +62,9 @@ final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol 
 
 
 extension DepartureTicketListViewModel {
+   
     private func createDatePrice(getDate:Date){
+        dateAndPrice = []
         let calendar = Calendar.current
          let formatter = DateFormatter()
          formatter.dateFormat = "E d MMM"

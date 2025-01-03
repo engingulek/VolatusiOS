@@ -19,6 +19,9 @@ class SharedModel : ObservableObject {
     @Published    var depatureDateTxet:String = Date.now.covertDate(formatterType: .typeOne)
     @Published   var returnDateText:String = ""
     
+    var departureTicketId:Int?
+    
+    
     var passengerList: [PassengerValue] = [
         .init(title: TextTheme.adultTitle.rawValue,
               ageSpaceTitle: TextTheme.adultRangeTitle.rawValue,
@@ -78,7 +81,7 @@ class SharedModel : ObservableObject {
             returnDateText = departureDate.covertDate(formatterType: .typeOne)
         }
         
-        print("\(departureDate) \(returnDate)")
+     
         
       
     }
@@ -89,5 +92,17 @@ class SharedModel : ObservableObject {
         let list =  passengerList.map { $0.count != 0 ? "\($0.count) \($0.title)" : "" }
         let text = list.filter { !$0.isEmpty }.joined(separator: ",")
         passengerText = text
+    }
+    
+    func updatedepatureTicketId(type:Bool,ticketId:Int){
+        if type {
+            departureTicketId = ticketId
+         
+            print(departureTicketId)
+           
+        }else{
+            
+        }
+       
     }
 }
