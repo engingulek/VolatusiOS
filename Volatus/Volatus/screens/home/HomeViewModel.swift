@@ -33,6 +33,7 @@ protocol HomeViewModelProtocol:ObservableObject {
     func updateLocation()
     func updateDate()
     func updatePassengerValue()
+  
     
 }
 
@@ -41,8 +42,8 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     @Published var tripTypeState: TripTypeState = TripTypeState()
     @Published var dateState: DateState = DateState()
     @Published var locationState: LocationState = LocationState()
-    @Published var selectedFromLocation: Airport?
-    @Published var selectedToLocation: Airport?
+    var selectedFromLocation: Airport?
+    var selectedToLocation: Airport?
     
     var depatureDate: Date = Date.now
     var returnDate: Date? = nil
@@ -60,6 +61,9 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     
     ]
     
+    
+    
+    
     func onAction(action: HomeActions) {
         switch action {
         case .onTappedOneWay:
@@ -68,8 +72,6 @@ final class HomeViewModel  :HomeViewModelProtocol  {
             onTappedRoundedAction()
         case .onTappedSwapIcon:
             onTappedSwapIconAction()
-  
-            
         }
     }
     

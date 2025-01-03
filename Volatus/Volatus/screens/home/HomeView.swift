@@ -106,7 +106,13 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 }
                 
                 NavigationLink {
-                    TicketListView()
+                    DepartureTicketListView(
+                        viewModel: DepartureTicketListViewModel(),
+                        fromAirport: viewModel.selectedFromLocation,
+                        toAirport: viewModel.selectedToLocation,
+                        depatureDate: viewModel.depatureDate,
+                        returnDate: viewModel.returnDate
+                       )
                     
                 } label: {
                     Text(viewModel.uiState.searchButtonTitle)
@@ -147,31 +153,4 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
 
 #Preview {
     HomeView(viewModel: HomeViewModel())
-}
-
-
-struct DatePickerView: View {
-    @Binding var selectedDate: Date // Seçilen tarihi bağlama
-    
-    var body: some View {
-        VStack {
-            Text("Bir Tarih Seçin")
-                .font(.headline)
-            
-            DatePicker(
-                "Tarih",
-                selection: $selectedDate,
-                in: Date()..., // Sadece bugünden ileri tarihler seçilebilsin
-                displayedComponents: .date // Sadece tarihi göster
-            )
-            .datePickerStyle(.graphical) // Grafik tarzı DatePicker
-            .padding()
-            
-            Button("Tamam") {
-                // Tarih seçildiğinde yapılacak işlemler
-            }
-            .padding()
-        }
-        .padding()
-    }
 }

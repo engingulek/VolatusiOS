@@ -10,7 +10,7 @@
 		7D08C1122D21561900370EAC /* AirportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C1112D21561900370EAC /* AirportListView.swift */; };
 		7D08C1142D2156A300370EAC /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C1132D2156A300370EAC /* Airport.swift */; };
 		7D08C1162D21572000370EAC /* AirportListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C1152D21572000370EAC /* AirportListViewModel.swift */; };
-		7D45E2E42D27200400FDC1EE /* TicketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D45E2E32D27200400FDC1EE /* TicketListView.swift */; };
+		7D45E2E42D27200400FDC1EE /* DepartureTTicketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D45E2E32D27200400FDC1EE /* DepartureTTicketListView.swift */; };
 		7D45E2E72D27281A00FDC1EE /* DayListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D45E2E62D27281A00FDC1EE /* DayListComponent.swift */; };
 		7D5DAB4B2D1F350700A37B21 /* VolatusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */; };
 		7D5DAB4F2D1F350900A37B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */; };
@@ -28,11 +28,9 @@
 		7DA3991A2D20374E006B7927 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA399192D20374E006B7927 /* HomeViewModelTest.swift */; };
 		7DA3991D2D206254006B7927 /* AirportList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3991C2D206254006B7927 /* AirportList.swift */; };
 		7DA9B8D22D28028C0060CF54 /* TicketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8D12D28028C0060CF54 /* TicketListViewModel.swift */; };
-		7DA9B8D42D2803650060CF54 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8D32D2803650060CF54 /* Date.swift */; };
 		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
 		7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FA2D21AA6300939B05 /* DateView.swift */; };
 		7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */; };
-		7DB2E3FF2D21D6FB00939B05 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FE2D21D6FB00939B05 /* TextView.swift */; };
 		7DC913612D1F3B7A00AD88C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913602D1F3B7A00AD88C9 /* HomeView.swift */; };
 		7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913632D1F441300AD88C9 /* LocationView.swift */; };
 		7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC913662D1F458A00AD88C9 /* ImageTheme.swift */; };
@@ -60,7 +58,7 @@
 		7D08C1112D21561900370EAC /* AirportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListView.swift; sourceTree = "<group>"; };
 		7D08C1132D2156A300370EAC /* Airport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
 		7D08C1152D21572000370EAC /* AirportListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListViewModel.swift; sourceTree = "<group>"; };
-		7D45E2E32D27200400FDC1EE /* TicketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketListView.swift; sourceTree = "<group>"; };
+		7D45E2E32D27200400FDC1EE /* DepartureTTicketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTTicketListView.swift; sourceTree = "<group>"; };
 		7D45E2E62D27281A00FDC1EE /* DayListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayListComponent.swift; sourceTree = "<group>"; };
 		7D5DAB472D1F350700A37B21 /* Volatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Volatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolatusApp.swift; sourceTree = "<group>"; };
@@ -80,11 +78,9 @@
 		7DA399192D20374E006B7927 /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
 		7DA3991C2D206254006B7927 /* AirportList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportList.swift; sourceTree = "<group>"; };
 		7DA9B8D12D28028C0060CF54 /* TicketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketListViewModel.swift; sourceTree = "<group>"; };
-		7DA9B8D32D2803650060CF54 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
 		7DB2E3FA2D21AA6300939B05 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		7DB2E3FE2D21D6FB00939B05 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		7DC913602D1F3B7A00AD88C9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7DC913632D1F441300AD88C9 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		7DC913662D1F458A00AD88C9 /* ImageTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTheme.swift; sourceTree = "<group>"; };
@@ -128,9 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				7D45E2E52D2727E900FDC1EE /* components */,
-				7D45E2E32D27200400FDC1EE /* TicketListView.swift */,
+				7D45E2E32D27200400FDC1EE /* DepartureTTicketListView.swift */,
 				7DA9B8D12D28028C0060CF54 /* TicketListViewModel.swift */,
-				7DA9B8D32D2803650060CF54 /* Date.swift */,
 			);
 			path = ticketList;
 			sourceTree = "<group>";
@@ -170,7 +165,6 @@
 				7D5DAB4A2D1F350700A37B21 /* VolatusApp.swift */,
 				7D5DAB4E2D1F350900A37B21 /* Assets.xcassets */,
 				7D5DAB502D1F350900A37B21 /* Preview Content */,
-				7DB2E3FE2D21D6FB00939B05 /* TextView.swift */,
 			);
 			path = Volatus;
 			sourceTree = "<group>";
@@ -426,17 +420,15 @@
 				7DEE3C3B2D240D410049231F /* PassengerSelectViewModel.swift in Sources */,
 				7DEE3C392D240CA70049231F /* PassengerSelectState.swift in Sources */,
 				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
-				7DB2E3FF2D21D6FB00939B05 /* TextView.swift in Sources */,
 				7DA398FA2D201199006B7927 /* UiState.swift in Sources */,
 				7D08C1122D21561900370EAC /* AirportListView.swift in Sources */,
 				7DA399002D201637006B7927 /* ColorTheme.swift in Sources */,
 				7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */,
 				7DA399072D20245B006B7927 /* LocationState.swift in Sources */,
-				7D45E2E42D27200400FDC1EE /* TicketListView.swift in Sources */,
+				7D45E2E42D27200400FDC1EE /* DepartureTTicketListView.swift in Sources */,
 				7DA398FE2D2014EB006B7927 /* TripTypeState.swift in Sources */,
 				7DEE3C3E2D241FC80049231F /* PassengerComponent.swift in Sources */,
 				7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */,
-				7DA9B8D42D2803650060CF54 /* Date.swift in Sources */,
 				7D08C1142D2156A300370EAC /* Airport.swift in Sources */,
 				7DC913692D1F496000AD88C9 /* TripButton.swift in Sources */,
 				7D5DAB4B2D1F350700A37B21 /* VolatusApp.swift in Sources */,

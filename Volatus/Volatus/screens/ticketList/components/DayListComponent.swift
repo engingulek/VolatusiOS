@@ -8,30 +8,32 @@
 import SwiftUI
 
 struct DayListComponent: View {
+    let list : [DayAndPrice]
+    let onTap:(Int) -> Void
+   
     var body: some View {
         ScrollView(.horizontal,
                    showsIndicators: false) {
             LazyHStack(spacing: 10) {
-                ForEach(1...20, id: \.self) { index in
+                ForEach(list, id: \.id) { value in
                     
                     VStack{
                         HStack(spacing:5){
-                            Text("Wed")
+                            
+                            Text(value.date.covertDate(formatterType: .typeFour))
                                 .font(.title2)
-                            Text("1")
-                                .fontWeight(.semibold)
-                                .font(.title)
-                            Text("Jun")
-                                .font(.title2)
+                        
                         }
-                        Text("TRY 1.550")
+                        Text("TRY \(value.price)")
                         
                         Divider()
                             .frame(height: 3)
-                            .background( index == 3 ? Color.red : Color.white)
-                    }
-               
-                      
+                            .background(Color(hex: value.selectedStateColor))
+                    }.foregroundStyle(Color(hex: value.selectedStateColor))
+                        .onTapGesture {
+                            onTap(value.id)
+                        }
+                                         
                 }
             }
             .padding()

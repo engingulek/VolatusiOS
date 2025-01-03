@@ -12,6 +12,7 @@ enum DateFormatterType:String {
     case typeOne = "MMMM dd, yyyy"
     case typeTwo = "MMMM yyyy"
     case typeThree = "d MMMM yyyy"
+    case typeFour = "E d MMM"
 }
 
 extension Date {

@@ -7,11 +7,18 @@
 
 import SwiftUI
 
-struct TicketListView: View {
-    var testFlightTicketList:[String] = ["","","","",""]
+struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: View {
+    @ObservedObject  var viewModel:ViewModel
+    let fromAirport:Airport?
+    let toAirport:Airport?
+    let depatureDate: Date
+    let returnDate: Date?
     var body: some View {
         VStack{
-            DayListComponent()
+            DayListComponent(
+                list: viewModel.dateAndPrice){ id in
+                    viewModel.onAction(action: .onTappedDate(id: id))
+                }
             Spacer()
             ScrollView {
                 LazyVStack(spacing: 10) {
@@ -91,10 +98,14 @@ struct TicketListView: View {
             
         }.frame(maxWidth: .infinity,maxHeight: .infinity)
             .background(Color.gray.opacity(0.1))
+            .navigationTitle("Departure Ticket List")
+            .onAppear{
+                viewModel.onAppear(fromAirport: fromAirport, toAirport: toAirport, depatureDate: depatureDate, returnDate: returnDate)
+            }
           
     }
 }
 
 #Preview {
-    TicketListView()
+    DepartureTicketListView(viewModel: DepartureTicketListViewModel(), fromAirport: nil, toAirport: nil, depatureDate: Date.now, returnDate: nil)
 }
