@@ -13,6 +13,7 @@ enum HomeActions {
     case onTappedRounded
     case onTappedSwapIcon
     
+    
 }
 
 
@@ -26,6 +27,8 @@ protocol HomeViewModelProtocol:ObservableObject {
     var depatureDate:Date {get set}
     var returnDate:Date? {get set}
     var passengerList:[PassengerValue] {get set}
+   
+    
     func onAction(action:HomeActions)
     func updateLocation()
     func updateDate()
@@ -40,6 +43,7 @@ final class HomeViewModel  :HomeViewModelProtocol  {
     @Published var locationState: LocationState = LocationState()
     @Published var selectedFromLocation: Airport?
     @Published var selectedToLocation: Airport?
+    
     var depatureDate: Date = Date.now
     var returnDate: Date? = nil
     
@@ -64,6 +68,7 @@ final class HomeViewModel  :HomeViewModelProtocol  {
             onTappedRoundedAction()
         case .onTappedSwapIcon:
             onTappedSwapIconAction()
+  
             
         }
     }
@@ -75,6 +80,10 @@ final class HomeViewModel  :HomeViewModelProtocol  {
         locationState.fromText = "\(fromLocation.code)-\(fromLocation.name)"
         guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
+        
+        
+        uiState.searchButtonStatus = selectedFromLocation == nil || selectedToLocation == nil
+        uiState.searchButtonColor = uiState.searchButtonStatus ? ColorTheme.lightRed.rawValue : ColorTheme.red.rawValue
     }
     
     func updateDate() {
@@ -149,4 +158,6 @@ extension HomeViewModel {
         guard let toLocation = selectedToLocation else {return}
         locationState.toText = "\(toLocation.code)-\(toLocation.name)"
     }
+
+    
 }

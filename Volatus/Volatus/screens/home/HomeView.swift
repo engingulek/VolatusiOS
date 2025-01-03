@@ -107,6 +107,7 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 
                 NavigationLink {
                     TicketListView()
+                    
                 } label: {
                     Text(viewModel.uiState.searchButtonTitle)
                         .font(.title3)
@@ -114,9 +115,9 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                         .fontWeight(.semibold)
                         .frame(maxWidth:.infinity)
                         .frame(height:40)
-                        .background(.red)
+                        .background(Color(hex: viewModel.uiState.searchButtonColor))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
-                }
+                }.disabled(viewModel.uiState.searchButtonStatus)
               
             }
             .frame(maxWidth: .infinity)
