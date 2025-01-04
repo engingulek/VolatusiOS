@@ -15,5 +15,7 @@ enum ImageTheme : String {
     case airplane = "airplane"
     case airplaneDeparture = "airplane.departure"
     case airplaneArrival = "airplane.arrival"
+    case downArrow = "chevron.down"
+    case upArrow = "chevron.up"
     
 }

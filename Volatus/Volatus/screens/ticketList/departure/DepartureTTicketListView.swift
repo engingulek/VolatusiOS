@@ -41,7 +41,7 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
             .navigationTitle("Departure Ticket List")
             .navigationDestination(isPresented: $navigation, destination: {
                 sharedModel.returnDate == nil ?
-                   AnyView(  PassengerInfoScreen().environmentObject(sharedModel)) :
+                AnyView(  PassengerInfoScreen(viewModel:PassengerInfoViewModel()).environmentObject(sharedModel)) :
                 AnyView(ReturnTicketListView(viewModel: ReturnTicketListViewModel()).environmentObject(sharedModel)
                 )
             })
