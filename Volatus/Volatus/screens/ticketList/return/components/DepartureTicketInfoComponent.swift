@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct DepartureTicketInfoComponent: View {
+struct TicketInfoComponent: View {
+    let title:String
     var body: some View {
         VStack(alignment:.leading){
-            Text("Your Departure Flight")
+            Text(title)
                 .foregroundStyle(Color.red)
                
             VStack{
@@ -34,5 +35,5 @@ struct DepartureTicketInfoComponent: View {
 }
 
 #Preview {
-    DepartureTicketInfoComponent()
+    TicketInfoComponent(title: "Your Departure Flight")
 }

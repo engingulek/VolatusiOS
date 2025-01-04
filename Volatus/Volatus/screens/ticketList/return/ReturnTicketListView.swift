@@ -13,7 +13,7 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
     @State private  var navigation: Bool = false
     var body: some View {
         VStack {
-           DepartureTicketInfoComponent()
+            TicketInfoComponent(title: "Your Departure Flight")
             DayListComponent(list: viewModel.dateAndPrice) { id in
                 viewModel.onAction(action: .onTappedDate(id: id))
                 sharedModel.updateDate(type: false, date: viewModel.updatedReturnDate)
@@ -36,7 +36,7 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
             .frame(maxWidth: .infinity,maxHeight: .infinity)
                 .background(Color.gray.opacity(0.1))
                 .navigationDestination(isPresented: $navigation, destination: {
-                    PassengerInfoScreen().environmentObject(sharedModel)
+                    PassengerInfoScreen(viewModel: PassengerInfoViewModel()).environmentObject(sharedModel)
                 })
                 .onAppear{
                     viewModel.onAppear(

@@ -21,6 +21,11 @@ extension Date {
         formatter.dateFormat = formatterType.rawValue
         return formatter.string(from: self)
     }
+    
+    func subtractYears(_ years: Int) -> Date {
+            let calendar = Calendar.current
+        return calendar.date(byAdding: .year, value: -years, to: self) ?? Date.now
+        }
 }
 
 
