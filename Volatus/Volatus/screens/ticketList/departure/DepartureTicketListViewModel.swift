@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TicketListActions{
+enum DepartureTicketListActions{
     case onTappedDate(id:Int)
 
 }
@@ -30,7 +30,7 @@ protocol DepartureTicketListViewModelProtocol : ObservableObject {
     
     
   
-    func onAction(action:TicketListActions)
+    func onAction(action:DepartureTicketListActions)
   
 }
 
@@ -50,7 +50,7 @@ final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol 
     }
     
     
-    func onAction(action: TicketListActions) {
+    func onAction(action: DepartureTicketListActions) {
         switch action {
         case .onTappedDate(let id):
             selectedDateAction(id: id)

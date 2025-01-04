@@ -20,6 +20,7 @@ class SharedModel : ObservableObject {
     @Published   var returnDateText:String = ""
     
     var departureTicketId:Int?
+    var retrunTicketId:Int?
     
     
     var passengerList: [PassengerValue] = [
@@ -94,13 +95,14 @@ class SharedModel : ObservableObject {
         passengerText = text
     }
     
-    func updatedepatureTicketId(type:Bool,ticketId:Int){
+    func updateTicketId(type:Bool,ticketId:Int){
         if type {
             departureTicketId = ticketId
          
             print(departureTicketId)
            
         }else{
+            retrunTicketId = ticketId
             
         }
        

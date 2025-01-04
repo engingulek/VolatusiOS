@@ -10,7 +10,7 @@ import SwiftUI
 struct DayListComponent: View {
     let list : [DayAndPrice]
     let onTap:(Int) -> Void
-    @EnvironmentObject var sharedModel : SharedModel
+    
     var body: some View {
         ScrollView(.horizontal,
                    showsIndicators: false) {

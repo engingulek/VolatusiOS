@@ -13,7 +13,7 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
     @State private  var navigation: Bool = false
     
     var body: some View {
-        VStack{
+        VStack(alignment:.leading){
             DayListComponent(
                 list: viewModel.dateAndPrice){ id in
                     viewModel.onAction(action: .onTappedDate(id: id))
@@ -21,14 +21,15 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
                     sharedModel.updateDate(type: true, date: viewModel.updatedDepartureDate)
                     sharedModel.updateDate(type: false, date: viewModel.updatedReturnDate)
            
-                }.environmentObject(sharedModel)
+                }
             Spacer()
-            Text("\(viewModel.dateAndPrice.count)")
+            Text("Ticket Count :\(viewModel.dateAndPrice.count)")
+                .fontWeight(.semibold)
             ScrollView {
                 LazyVStack(spacing: 10) {
                     ForEach(1...20, id: \.self) { index in
                         TicketComponent(){
-                            sharedModel.updatedepatureTicketId(type: true, ticketId: index)
+                            sharedModel.updateTicketId(type: true, ticketId: index)
                             navigation = true
                         }
                     }
@@ -41,7 +42,8 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
             .navigationDestination(isPresented: $navigation, destination: {
                 sharedModel.returnDate == nil ?
                    AnyView(  PassengerInfoScreen().environmentObject(sharedModel)) :
-                       AnyView(ReturnTicketListView())
+                AnyView(ReturnTicketListView(viewModel: ReturnTicketListViewModel()).environmentObject(sharedModel)
+                )
             })
             .onAppear{
                 viewModel.onAppear(depatureDate: sharedModel.departureDate, returnDate: sharedModel.returnDate)

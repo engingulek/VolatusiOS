@@ -11,9 +11,12 @@ struct PassengerInfoScreen: View {
     @EnvironmentObject private var sharedModel:SharedModel
     var body: some View {
         Text("\(sharedModel.fromAirport?.name ?? "")")
+        Text("\(sharedModel.departureDate.covertDate(formatterType: .typeFour))")
+        Text("\(sharedModel.departureTicketId ?? -1)")
+        Text("----------------------------------------")
         Text("\(sharedModel.toAirport?.name ?? "")")
-        Text("\(sharedModel.departureDate)")
         Text("\(sharedModel.returnDate?.covertDate(formatterType: .typeFour) ?? "" )")
+        Text("\(sharedModel.retrunTicketId ?? -1)")
         
     }
 }
