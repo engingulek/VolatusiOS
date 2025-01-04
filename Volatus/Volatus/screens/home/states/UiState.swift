@@ -25,5 +25,8 @@ struct UiState {
     
     var passengerText:String = ""
     
+    var searchButtonStatus:Bool = true
+    var searchButtonColor:String = ColorTheme.lightRed.rawValue
+    
  
 }

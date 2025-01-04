@@ -9,11 +9,11 @@ import SwiftUI
 
 struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)
-    @ObservedObject  var viewModel:ViewModel
-    @Binding var depatureDate:Date
-    @Binding var returnDate:Date?
+    @StateObject  var viewModel:ViewModel
+   
     var type:Bool
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var sharedModel : SharedModel
     
     
     var body: some View {
@@ -45,13 +45,8 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                                         .onTapGesture {
                                             if date.type != DateValueType.disable {
                                              let date = viewModel.selectDate(index: index,dayValue:date.dayValue)
-                                                if type {
-                                                    depatureDate = date
-                                                    print("depature \(depatureDate)")
-                                                }else{
-                                                    returnDate = date
-                                                    print("returnDate \(returnDate)")
-                                                }
+                                                sharedModel.updateDate(type: type, date: date)
+                                            
                                                
                                                 dismiss()
                                             }
@@ -70,8 +65,10 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
             .padding()
             .navigationTitle(type ? "Depature Date" : "Return Date")
         }.onAppear{
-            print("Date View \(depatureDate)")
-            viewModel.onAppear(getDepartureDate: depatureDate, getReturnDate: returnDate, type: type)
+            
+            viewModel.onAppear(
+                getDepartureDate: sharedModel.departureDate,
+                getReturnDate: sharedModel.returnDate, type: type)
         }
     }
 }

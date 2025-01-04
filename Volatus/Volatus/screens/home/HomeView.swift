@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct HomeView<ViewModel:HomeViewModelProtocol>: View {
-    @ObservedObject private var viewModel:ViewModel
+    @StateObject  var viewModel:ViewModel
     @State var selectedDepatureDate : Date = .now
+    @EnvironmentObject var sharedModel : SharedModel
     
-    init(viewModel: ViewModel) {
-        self.viewModel = viewModel
-    }
+ 
     var body: some View {
         ZStack{
             VStack{
@@ -43,17 +42,15 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 
                 NavigationLink {
                     AirportList(viewModel: AirportListViewModel(),
-                                selectedFromLocation: $viewModel.selectedFromLocation,
-                                selectedToLocation: $viewModel.selectedToLocation,
-                                searchType: .forFrom)
+                                searchType: .forFrom).environmentObject(sharedModel)
                 } label: {
                     LocationView(
                         title: viewModel.uiState.fromTitle,
-                        locationTitle: viewModel.locationState.fromText)
+                        locationTitle: sharedModel.fromText)
                 }
                 
                 Button {
-                    viewModel.onAction(action: .onTappedSwapIcon)
+                    sharedModel.swapAction()
                 } label: {
                     Image(systemName: viewModel.uiState.swapIcon)
                         .font(.system(size: 30))
@@ -64,49 +61,57 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 
                 NavigationLink {
                     AirportList(viewModel: AirportListViewModel(),
-                                selectedFromLocation: $viewModel.selectedFromLocation,
-                                selectedToLocation: $viewModel.selectedToLocation,
-                                searchType: .forTo)
+                                searchType: .forTo).environmentObject(sharedModel)
                 } label: {
                     LocationView(
                         title: viewModel.uiState.toTitle,
-                        locationTitle: viewModel.locationState.toText)
+                        locationTitle: sharedModel.toText)
                 }
                 HStack{
                   
-                    
-                   
-                    
                    NavigationLink {
                        DateListView(viewModel: DateListViewModel(),
-                                    depatureDate: $viewModel.depatureDate,
-                                    returnDate: $viewModel.returnDate, type: true)
+                                     type: true).environmentObject(sharedModel)
                     } label: {
                     DateView(title: viewModel.uiState.departureTitle,
-                             date: viewModel.dateState.depatureDate)
+                             date: sharedModel.depatureDateTxet)
                     }
                     
                     NavigationLink {
                         DateListView(viewModel: DateListViewModel(),
-                                     depatureDate: $viewModel.depatureDate,
-                                     returnDate: $viewModel.returnDate, type: false)
+                                    type: false).environmentObject(sharedModel)
                     } label: {
-                    !viewModel.dateState.returnVisible ?
+                        !viewModel.dateState.returnVisible || sharedModel.returnDate != nil ?
                     DateView(title: viewModel.uiState.returnTitle,
-                             date: viewModel.dateState.returnDate) : nil
+                             date: sharedModel.returnDateText) : nil
                     }
                     
                 }
                 NavigationLink {
-                    PassengerSelectView(viewModel: PassengerSelectViewModel(),
-                                        passengerList: $viewModel.passengerList)
+                    PassengerSelectView(viewModel: PassengerSelectViewModel())
+                    .environmentObject(sharedModel)
                 } label: {
                     PassengerView(title: viewModel.uiState.passenger,
-                                  passenger:viewModel.uiState.passengerText)
+                                  passenger:sharedModel.passengerText)
                 }
-
                 
-                SearchButton(title:viewModel.uiState.searchButtonTitle)
+                NavigationLink {
+                    DepartureTicketListView(
+                        viewModel: DepartureTicketListViewModel()
+                    ).environmentObject(sharedModel)
+                    
+                } label: {
+                    Text(viewModel.uiState.searchButtonTitle)
+                        .font(.title3)
+                        .foregroundStyle(.white)
+                        .fontWeight(.semibold)
+                        .frame(maxWidth:.infinity)
+                        .frame(height:40)
+                        .background(Color(hex: ColorTheme.red.rawValue))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+                .disabled(sharedModel.fromAirport == nil && sharedModel.toAirport == nil)
+              
             }
             .frame(maxWidth: .infinity)
             .padding(16)
@@ -120,12 +125,7 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
             .padding(.horizontal, 20)
             
         }.ignoresSafeArea()
-            .onAppear{
-                viewModel.updateLocation()
-                viewModel.updateDate()
-                viewModel.updatePassengerValue()
-                
-            }
+          
         
     }
 }
@@ -135,31 +135,4 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
 
 #Preview {
     HomeView(viewModel: HomeViewModel())
-}
-
-
-struct DatePickerView: View {
-    @Binding var selectedDate: Date // Seçilen tarihi bağlama
-    
-    var body: some View {
-        VStack {
-            Text("Bir Tarih Seçin")
-                .font(.headline)
-            
-            DatePicker(
-                "Tarih",
-                selection: $selectedDate,
-                in: Date()..., // Sadece bugünden ileri tarihler seçilebilsin
-                displayedComponents: .date // Sadece tarihi göster
-            )
-            .datePickerStyle(.graphical) // Grafik tarzı DatePicker
-            .padding()
-            
-            Button("Tamam") {
-                // Tarih seçildiğinde yapılacak işlemler
-            }
-            .padding()
-        }
-        .padding()
-    }
 }

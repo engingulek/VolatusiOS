@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
-    @ObservedObject  var viewModel:ViewModel
+    @StateObject  var viewModel:ViewModel
     @Environment(\.dismiss) var dismiss
-    @Binding var passengerList : [PassengerValue]
+    @EnvironmentObject var sharedModel : SharedModel
     var body: some View {
         VStack {
             
@@ -30,7 +30,8 @@ struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
             
             Button(action: {
               
-                passengerList = viewModel.passengerSelectState.passengerList
+                let list = viewModel.passengerSelectState.passengerList
+                sharedModel.updatePassenger(list: list)
                 dismiss()
             }, label: {
                 Text(viewModel.passengerSelectState.confirmButtonTitle)
@@ -48,12 +49,12 @@ struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
        
             .navigationTitle(viewModel.passengerSelectState.passengerTitle)
         }.onAppear{
-            viewModel.opAppear(passengerValue: passengerList)
+            viewModel.opAppear(passengerValue: sharedModel.passengerList)
         }
       
     }
 }
 
 #Preview {
-    PassengerSelectView(viewModel: PassengerSelectViewModel(), passengerList: .constant([]))
+    PassengerSelectView(viewModel: PassengerSelectViewModel())
 }
