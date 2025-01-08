@@ -46,46 +46,8 @@ extension String{
         
         return true
     }
-    
- 
-    
-    
-    
+
 }
-
-
-
-extension String {
-    // Tarihi 12022015 gibi bir değerden 12/02/2015 formatına dönüştür
-    func formatAsDate() -> String {
-        // Yalnızca rakamları al
-        let filteredInput = self.filter { "0123456789".contains($0) }
-        
-        // İlk 8 karakteri al, fazla karakter varsa kes
-        let limitedInput = String(filteredInput.prefix(8))
-        
-        var formattedText = ""
-        
-        // 8 karakter varsa, tarihi formatla
-        if limitedInput.count >= 4 {
-            let startIndex = limitedInput.startIndex
-            let day = limitedInput[startIndex..<limitedInput.index(startIndex, offsetBy: 2)]  // Gün
-            let month = limitedInput[limitedInput.index(startIndex, offsetBy: 2)..<limitedInput.index(startIndex, offsetBy: 4)]  // Ay
-            let year = limitedInput[limitedInput.index(startIndex, offsetBy: 4)..<limitedInput.endIndex]  // Yıl
-            
-            formattedText = "\(day)/\(month)/\(year)"
-        } else {
-            // Eğer yeterince karakter yoksa, aynen bırak
-            formattedText = limitedInput
-        }
-        
-        return formattedText
-    }
-}
-
-
-
-
 
 
 

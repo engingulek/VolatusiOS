@@ -27,12 +27,3 @@ extension Date {
         return calendar.date(byAdding: .year, value: -years, to: self) ?? Date.now
         }
 }
-
-
-/*extension DateComponents {
-    func covertDate(formatterType:DateFormatterType) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = formatterType.rawValue
-        return formatter.string(from: self)
-    }
-}*/
