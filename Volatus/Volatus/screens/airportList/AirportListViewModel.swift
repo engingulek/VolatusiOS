@@ -7,23 +7,22 @@
 
 import Foundation
 
+enum AirportListViewActions {
+    case onChangeSearchText(String)
+}
+
+
 protocol AirportListViewModelProtocol:ObservableObject {
     var airportList:[Airport] {get}
     var uiState : AirportUiState {get}
     
     func onAppear()
-    func onChangeSearchText(
-        text:String)
-    
-    
+    func onActions(action:AirportListViewActions)
 }
 
 final class AirportListViewModel : AirportListViewModelProtocol {
    
-    
- 
     @Published var airportList: [Airport] = []
-    //TODO: this will be removed
     @Published var uiState: AirportUiState = AirportUiState()
     private var tempAirportList : [Airport] = []
     
@@ -37,17 +36,31 @@ final class AirportListViewModel : AirportListViewModelProtocol {
             
         ]
         tempAirportList = airportList
-
-          
     }
     
-    
-    func onChangeSearchText(text: String) {
-    
-        if text.isEmpty {
-            airportList = tempAirportList
-        }else{
-            airportList = tempAirportList.filter{ $0.name.lowercased().contains(text.lowercased())}
+    func onActions(action: AirportListViewActions) {
+        switch action {
+        case .onChangeSearchText(let text):
+            onChangeSearchTextAction(text: text)
         }
     }
+}
+
+
+extension AirportListViewModel {
+    private func onChangeSearchTextAction(text: String) {
+     
+         if text.isEmpty {
+             airportList = tempAirportList
+             uiState.listState = (message:TextTheme.defaultEmpty.rawValue,false)
+         }else{
+             airportList = tempAirportList.filter{ $0.name.lowercased().contains(text.lowercased())}
+             if airportList.isEmpty {
+                 uiState.listState = (message:TextTheme.notFoundAirport.rawValue,true)
+             }else {
+                 uiState.listState = (message:TextTheme.defaultEmpty.rawValue,false)
+             }
+           
+         }
+     }
 }

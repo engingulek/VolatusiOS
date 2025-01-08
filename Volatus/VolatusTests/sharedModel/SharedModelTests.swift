@@ -18,8 +18,6 @@ final class SharedModelTests : XCTestCase {
     }
     
     
-    
-    
     func test_airportState_returnTrue() {
         XCTAssertTrue(sharedModel.airportState)
     }

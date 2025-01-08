@@ -8,6 +8,8 @@
 import Foundation
 
 enum TextTheme  : String {
+    
+    case defaultEmpty = ""
     /// is Search
     case search = "Search"
     /// is One Way
@@ -48,4 +50,9 @@ enum TextTheme  : String {
     case previewDate = "June 22,2024"
     /// is 1 Adult
     case previewPassengerText = "1 Adult"
+    /// is All Airports
+    case allAirports = "All Airports"
+    
+    // airport not found
+    case notFoundAirport = "Airport Not Found"
 }

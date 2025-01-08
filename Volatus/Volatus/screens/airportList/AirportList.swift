@@ -32,17 +32,26 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(.horizontal,10)
                 .onChange(of: searchText) { _,newValue in
-                    viewModel.onChangeSearchText(
-                        text: newValue)
+                    viewModel.onActions(action: .onChangeSearchText(newValue))
                 }
             }.padding(.bottom,5)
          
-            
-            AirportListView(airtportList: viewModel.airportList) { airport in
+            viewModel.uiState.listState.state ?
+            AnyView(
+                VStack{
+                    Text(viewModel.uiState.listState.message)
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color(hex: ColorTheme.red.rawValue))
+                }.frame(maxHeight:.infinity)
+              
+            )
+            :
+            AnyView( AirportListView(airtportList: viewModel.airportList) { airport in
                 sharedModel.updateLocation(selectedType: selectedType, airport: airport)
-               
                 dismiss()
-            }
+            })
+           
         }.onAppear{
             viewModel.onAppear()
         }
