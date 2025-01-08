@@ -13,7 +13,7 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
     @State private  var navigation: Bool = false
     var body: some View {
         VStack {
-            TicketInfoComponent(title: "Your Departure Flight")
+            TicketInfoComponent(title: TextTheme.yourDepartureTicketInfo.rawValue)
             DayListComponent(list: viewModel.dateAndPrice) { id in
                 viewModel.onAction(action: .onTappedDate(id: id))
                 sharedModel.updateDate(selectedType: .to, date: viewModel.updatedReturnDate)
@@ -32,7 +32,7 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
             }
             
           
-        }.navigationTitle("Return Ticket List")
+        }.navigationTitle(TextTheme.returnTicketList.rawValue)
             .frame(maxWidth: .infinity,maxHeight: .infinity)
                 .background(Color.gray.opacity(0.1))
                 .navigationDestination(isPresented: $navigation, destination: {

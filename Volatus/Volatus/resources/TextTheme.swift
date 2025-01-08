@@ -60,4 +60,10 @@ enum TextTheme  : String {
     
     /// is Return Date
     case dateReturn = "Return Date"
+    /// is Departure Ticket List
+    case departureTicketList = "Departure Ticket List"
+    /// is Your Departure Flight
+    case yourDepartureTicketInfo = "Your Departure Flight"
+    /// is Return Ticket List
+    case returnTicketList = "Return Ticket List"
 }
