@@ -22,8 +22,7 @@ class SharedModel : ObservableObject {
     
     var departureTicketId:Int?
     var retrunTicketId:Int?
-    
-    
+
     var passengerList: [PassengerValue] = [
         .init(title: TextTheme.adultTitle.rawValue,
               ageSpaceTitle: TextTheme.adultRangeTitle.rawValue,
@@ -38,6 +37,7 @@ class SharedModel : ObservableObject {
     
     @Published var passengerText = "1 Adult"
     
+    //MARK: updateLocation
     func updateLocation(selectedType:SelectedType,airport:Airport) {
         switch selectedType {
         case .from:
@@ -50,7 +50,7 @@ class SharedModel : ObservableObject {
         
         airportState = (fromAirport == nil || toAirport == nil) || (fromAirport?.id == toAirport?.id)
     }
-    
+    //MARK: swapAction
     func swapAction() {
         let tempLocation =  fromAirport
         fromAirport = toAirport
@@ -63,6 +63,7 @@ class SharedModel : ObservableObject {
         toText = "\(toAirport.code) - \(toAirport.name)"
     }
     
+    //MARK: updateDate
     func updateDate(selectedType:SelectedType,date:Date?) {
         guard let date = date else {return}
         if selectedType == .from {
@@ -83,6 +84,7 @@ class SharedModel : ObservableObject {
         }
     }
     
+    //MARK: updatePassenger
     func updatePassenger(list:[PassengerValue]) {
         passengerList = list
         
@@ -91,6 +93,7 @@ class SharedModel : ObservableObject {
         passengerText = text
     }
     
+    //MARK: updateTicketId
     func updateTicketId(type:Bool,ticketId:Int){
         if type {
             departureTicketId = ticketId
