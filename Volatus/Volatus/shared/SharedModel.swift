@@ -38,8 +38,6 @@ class SharedModel : ObservableObject {
     
     @Published var passengerText = "1 Adult"
     
-    
-    
     func updateLocation(selectedType:SelectedType,airport:Airport) {
         switch selectedType {
         case .from:
@@ -70,8 +68,7 @@ class SharedModel : ObservableObject {
         if selectedType == .from {
             departureDate = date
         }else{
-            
-            returnDate = date
+           returnDate = date
         }
         
         depatureDateTxet = departureDate.covertDate(formatterType: .typeOne)
@@ -84,10 +81,6 @@ class SharedModel : ObservableObject {
         }else{
             returnDateText = departureDate.covertDate(formatterType: .typeOne)
         }
-        
-     
-        
-      
     }
     
     func updatePassenger(list:[PassengerValue]) {
@@ -101,15 +94,8 @@ class SharedModel : ObservableObject {
     func updateTicketId(type:Bool,ticketId:Int){
         if type {
             departureTicketId = ticketId
-         
-            print(departureTicketId)
-           
         }else{
             retrunTicketId = ticketId
-            
         }
-       
     }
-    
-    
 }

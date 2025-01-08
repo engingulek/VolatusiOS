@@ -53,6 +53,11 @@ enum TextTheme  : String {
     /// is All Airports
     case allAirports = "All Airports"
     
-    // airport not found
+    /// airport not found
     case notFoundAirport = "Airport Not Found"
+    /// is Depature Date
+    case dateDeparture = "Depature Date"
+    
+    /// is Return Date
+    case dateReturn = "Return Date"
 }

@@ -92,4 +92,39 @@ final class SharedModelTests : XCTestCase {
         )
     }
     
+    
+    func test_whenUpdateDate_returnDepatureDateTxet(){
+        sharedModel.updateDate(selectedType: .from, date: Date.now)
+        
+        let expectedDate = "January 08, 2025"
+        
+        XCTAssertEqual(expectedDate,
+                       sharedModel.depatureDateTxet,
+                       "depatureDateTxet is not correct")
+    }
+    
+    func test_whenUpdateDate_returnReturnDateTxet(){
+        sharedModel.updateDate(selectedType: .to, date: Date.now)
+        
+        let expectedDate = "January 08, 2025"
+        
+        XCTAssertEqual(expectedDate,
+                       sharedModel.returnDateText,
+                       "returnDateText is not correct")
+    }
+    
+    func test_upateteRetrunDateAccordingtoDeparture_returnDateText(){
+        let currentDate = Date.now
+        let retrunDate = Calendar.current.date(byAdding: .day, value: 2, to: currentDate)
+        sharedModel.updateDate(selectedType: .from, date: Date.now)
+        sharedModel.updateDate(selectedType: .to, date: retrunDate)
+        
+        let newDepartureDate =  Calendar.current.date(byAdding: .day, value: 5, to: currentDate)
+        
+        sharedModel.updateDate(selectedType: .from, date: newDepartureDate)
+        
+        XCTAssertEqual(sharedModel.depatureDateTxet, sharedModel.returnDateText)
+        
+    }
+    
 }

@@ -16,18 +16,19 @@ enum DateValueType {
 }
 
 protocol DateListViewModelProtocol: ObservableObject {
+    var uiState : DateUiState {get}
+    
     func onAppear(getDepartureDate:Date,getReturnDate:Date?,selectedType:SelectedType)
-    var weekdays: [String] { get }
-    var mountCalender: [Int: String] { get }
-    var dateCalender: [Int: [(type: DateValueType, dayValue: String)]] { get }
+ 
     func selectDate(index:Int, dayValue:String) -> Date
+    
+    func title(type:SelectedType) -> String
 }
 
 final class DateListViewModel: DateListViewModelProtocol {
    
-    @Published var dateCalender: [Int: [(type: DateValueType, dayValue: String)]] = [:]
-    @Published var mountCalender: [Int: String] = [:]
-    @Published var weekdays: [String] = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Pzr"]
+    @Published var uiState: DateUiState = DateUiState()
+
     private var oldIndex:Int = -1
     private var oldValueIndex:Int = -1
     private var olddayValue : String = ""
@@ -42,27 +43,36 @@ final class DateListViewModel: DateListViewModelProtocol {
                        selectedType:selectedType)
     }
     
+    func title(type: SelectedType) -> String {
+        switch type {
+        case .from:
+            return TextTheme.dateDeparture.rawValue
+        case .to:
+            return TextTheme.dateReturn.rawValue
+        }
+    }
+    
     func selectDate(index: Int, dayValue:String)  -> Date {
         if  selected {
             
             selected = false
-            dateCalender[oldIndex]?[oldValueIndex].type = DateValueType.defaultDate
+           uiState.dateCalender[oldIndex]?[oldValueIndex].type = DateValueType.defaultDate
             
             oldIndex = index
             
-            guard let list = dateCalender[index] else {return Date.now}
+            guard let list = uiState.dateCalender[index] else {return Date.now}
             guard let valueIndex = list.firstIndex(where: { $0.dayValue == dayValue }) else {return Date.now}
             oldValueIndex = valueIndex
-            dateCalender[index]?[valueIndex].type = DateValueType.selected
+            uiState.dateCalender[index]?[valueIndex].type = DateValueType.selected
             olddayValue = dayValue
             selected = true
             
         }else{
             oldIndex = index
-            guard let list = dateCalender[index] else {return Date.now}
+            guard let list = uiState.dateCalender[index] else {return Date.now}
             guard let valueIndex = list.firstIndex(where: { $0.dayValue == dayValue }) else {return Date.now}
             oldValueIndex = valueIndex
-            dateCalender[index]?[valueIndex].type = DateValueType.selected
+            uiState.dateCalender[index]?[valueIndex].type = DateValueType.selected
             olddayValue = dayValue
             selected = true
         }
@@ -79,27 +89,24 @@ final class DateListViewModel: DateListViewModelProtocol {
 
     private func createCalendar(getDepartureDate:Date,getReturnDate:Date?,selectedType:SelectedType) {
       
-        mountCalender = [:]
-    dateCalender  = [:]
+        uiState.mountCalender = [:]
+        uiState.dateCalender  = [:]
         let calendar = Calendar.current
         let departureDate = getDepartureDate
-        var depatureDateComponents = calendar.dateComponents([.day, .month, .year], from: departureDate)
-        depatureDateComponents.timeZone = TimeZone(abbreviation: "UTC")
-        var nowComponents = calendar.dateComponents([.day, .month, .year], from: Date.now)
-        nowComponents.timeZone = TimeZone(abbreviation: "UTC")
+        let nowComponents = calendar.dateComponents([.day, .month, .year], from: Date.now)
+       
        
         for i in 0...3 {
             if let dateWithAddedMonths = calendar.date(byAdding: .month, value: i, to: Date.now) {
-                var components = calendar.dateComponents([.month, .year], from: dateWithAddedMonths)
-                components.timeZone = TimeZone(abbreviation: "UTC")
+                let components = calendar.dateComponents([.month, .year], from: dateWithAddedMonths)
                 if let month = components.month, let year = components.year {
-                    mountCalender[i] = dateWithAddedMonths.covertDate(formatterType: .typeTwo)
+                    uiState.mountCalender[i] = dateWithAddedMonths.covertDate(formatterType: .typeTwo)
 
-                    if dateCalender[i] == nil {
+                    if uiState.dateCalender[i] == nil {
                         let firstDayOfMonth = calendar.date(from: DateComponents(year: year, month: month, day: 1))!
                         let weekday = calendar.component(.weekday, from: firstDayOfMonth)
                         let offset = (weekday - 2 + 7) % 7
-                        dateCalender[i] = Array(repeating: (type: .defaultDate, dayValue: ""), count: offset)
+                        uiState.dateCalender[i] = Array(repeating: (type: .defaultDate, dayValue: ""), count: offset)
                     }
 
                     let range = calendar.range(of: .day, in: .month, for: dateWithAddedMonths)!
@@ -109,7 +116,6 @@ final class DateListViewModel: DateListViewModelProtocol {
                         dateComponents.day = day
                         dateComponents.month = month
                         dateComponents.year = year
-                        dateComponents.timeZone = TimeZone(abbreviation: "UTC")
                         dates.append((index: i, dayValue: "\(day)", dateComponents: dateComponents))
                         
                         let dateRange = Calendar.current.date(from: dateComponents)!
@@ -128,10 +134,7 @@ final class DateListViewModel: DateListViewModelProtocol {
                         } else {
                             type = .defaultDate
                         }
-                        dateCalender[i]?.append((type: type, dayValue: "\(day)"))
-                    
-                        
-    
+                        uiState.dateCalender[i]?.append((type: type, dayValue: "\(day)"))
                     }
                 }
             }
