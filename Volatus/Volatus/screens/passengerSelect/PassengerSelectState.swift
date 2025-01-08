@@ -18,11 +18,10 @@ struct PassengerSelectState {
 
 
 
-struct PassengerValue{
+struct PassengerValue : Equatable{
     
     let title:String
     let ageSpaceTitle:String
     var count:Int
     var minusButtonStatus:Bool
-    
 }

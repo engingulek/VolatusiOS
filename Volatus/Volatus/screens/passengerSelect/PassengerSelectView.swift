@@ -13,7 +13,6 @@ struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
     @EnvironmentObject var sharedModel : SharedModel
     var body: some View {
         VStack {
-            
             ForEach(0..<viewModel.passengerSelectState.passengerList.count,id:\.self){ index in
                 VStack {
                     PassengerComponent(
@@ -21,15 +20,9 @@ struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
                         minusAction: {viewModel.onAction(action: .passengerCountMinus(index: index))},
                         plusAction: {viewModel.onAction(action: .passengerCountPlus(index:index))})
                 }
-                
-                
-              
-             
             }
             Spacer()
-            
             Button(action: {
-              
                 let list = viewModel.passengerSelectState.passengerList
                 sharedModel.updatePassenger(list: list)
                 dismiss()
@@ -45,13 +38,10 @@ struct PassengerSelectView<ViewModel:PassengerSelectViewModelProtocol>: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .padding()
             
-    
-       
             .navigationTitle(viewModel.passengerSelectState.passengerTitle)
         }.onAppear{
-            viewModel.opAppear(passengerValue: sharedModel.passengerList)
+            viewModel.onAppear(passengerValue: sharedModel.passengerList)
         }
-      
     }
 }
 
