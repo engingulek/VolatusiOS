@@ -12,7 +12,7 @@ struct AirportListView: View {
     let onTap:(Airport) -> Void
     var body: some View {
         VStack(alignment:.leading,spacing: 10) {
-            Text("All Airports")
+            Text(TextTheme.allAirports.rawValue)
                 .fontWeight(.semibold)
                 .font(.title2)
                 .padding(.horizontal)

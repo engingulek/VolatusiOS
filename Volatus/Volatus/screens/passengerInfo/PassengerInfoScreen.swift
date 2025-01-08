@@ -39,7 +39,7 @@ struct PassengerInfoScreen<ViewModel:PassengerInfoViewModelProtocol>: View {
                     info.showState ?
                     VStack(alignment:.leading){
                         PassengerInfoTextfieldComponent(
-                            title: "TR Id",
+                            title: TextTheme.trId.rawValue,
                             inputText: $viewModel.passengerInfoList[info.id].trIdNumber,
                             error: viewModel.passengerInfoErrorList[info.id].trIdNumberError,
                             type:.numberPad) { text in
@@ -47,7 +47,7 @@ struct PassengerInfoScreen<ViewModel:PassengerInfoViewModelProtocol>: View {
                             }
                         
                         PassengerInfoTextfieldComponent(
-                            title: "Name",
+                            title: TextTheme.name.rawValue,
                             inputText: $viewModel.passengerInfoList[info.id].name,
                             error: viewModel.passengerInfoErrorList[info.id].nameError,
                             type:.alphabet) { text in
@@ -56,7 +56,7 @@ struct PassengerInfoScreen<ViewModel:PassengerInfoViewModelProtocol>: View {
                         
                         
                         PassengerInfoTextfieldComponent(
-                            title: "Surname",
+                            title: TextTheme.surname.rawValue,
                             inputText: $viewModel.passengerInfoList[info.id].surname,
                             error: viewModel.passengerInfoErrorList[info.id].surnameError,
                             type:.alphabet) { text in
@@ -64,7 +64,7 @@ struct PassengerInfoScreen<ViewModel:PassengerInfoViewModelProtocol>: View {
                             }
                         
                         VStack(alignment:.center) {
-                            Text("Select Birthdate")
+                            Text(TextTheme.selectBirthdate.rawValue)
                                 .fontWeight(.semibold)
                             DatePicker("",
                                        selection: $viewModel.passengerInfoList[info.id].birthDate,

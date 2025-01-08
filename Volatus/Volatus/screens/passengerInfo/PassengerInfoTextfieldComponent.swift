@@ -18,7 +18,7 @@ struct PassengerInfoTextfieldComponent: View {
         VStack {
             Text(title)
                 .fontWeight(.semibold)
-            TextField("Enter",text:inputText)
+            TextField(TextTheme.enter.rawValue,text:inputText)
                 .font(.system(size: 18))
                 .padding(10) 
                 .keyboardType(type)
@@ -31,7 +31,7 @@ struct PassengerInfoTextfieldComponent: View {
             error.errorState ?
             Text(error.errorMessage)
                 .foregroundStyle(Color.red)
-                .fontWeight(.semibold) : Text("")
+                .fontWeight(.semibold) : Text(TextTheme.defaultEmpty.rawValue)
         }.padding(.horizontal)
     }
 }

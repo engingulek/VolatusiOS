@@ -6,17 +6,15 @@
 //
 
 import SwiftUI
-enum SearchType {
-    case forFrom
-    case forTo
+enum SelectedType {
+    case from
+    case to
 }
 struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
     
     @StateObject var viewModel:ViewModel
-   // @Binding var selectedFromLocation:Airport?
-  //  @Binding var selectedToLocation:Airport?
     @State private var searchText = ""
-    @State var searchType: SearchType
+    @State var selectedType: SelectedType
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sharedModel : SharedModel
     
@@ -34,17 +32,26 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(.horizontal,10)
                 .onChange(of: searchText) { _,newValue in
-                    viewModel.onChangeSearchText(
-                        text: newValue)
+                    viewModel.onActions(action: .onChangeSearchText(newValue))
                 }
             }.padding(.bottom,5)
          
-            
-            AirportListView(airtportList: viewModel.airportList) { airport in
-                sharedModel.updateLocation(searchType: searchType, airport: airport)
-               
+            viewModel.uiState.listState.state ?
+            AnyView(
+                VStack{
+                    Text(viewModel.uiState.listState.message)
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color(hex: ColorTheme.red.rawValue))
+                }.frame(maxHeight:.infinity)
+              
+            )
+            :
+            AnyView( AirportListView(airtportList: viewModel.airportList) { airport in
+                sharedModel.updateLocation(selectedType: selectedType, airport: airport)
                 dismiss()
-            }
+            })
+           
         }.onAppear{
             viewModel.onAppear()
         }
@@ -52,7 +59,7 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
 }
 
 #Preview{
-    AirportList(viewModel: AirportListViewModel(), searchType: .forFrom)
+    AirportList(viewModel: AirportListViewModel(), selectedType: .from)
 }
 
 

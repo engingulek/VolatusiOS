@@ -8,32 +8,33 @@
 import SwiftUI
 
 struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)
     @StateObject  var viewModel:ViewModel
-   
-    var type:Bool
+    var type:SelectedType
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sharedModel : SharedModel
-    
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                ForEach(Array(viewModel.mountCalender.keys.sorted()), id: \.self) { index in
+                //MARK: Mount And Year List
+                ForEach(Array(viewModel.uiState.mountCalender.keys.sorted()), id: \.self) { index in
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(viewModel.mountCalender[index] ?? "")
+                        Text(viewModel.uiState.mountCalender[index] ?? "")
                             .font(.callout)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        LazyVGrid(columns: columns) {
-                            ForEach(viewModel.weekdays, id: \.self) { day in
+                        //MARK: Week List
+                        LazyVGrid(columns: viewModel.uiState.columns) {
+                            ForEach(viewModel.uiState.weekdays, id: \.self) { day in
                                 Text(day)
                                     .font(.callout)
                                     .frame(maxWidth: .infinity)
                                     .foregroundColor(.gray)
                             }
                         }
-                        let dates = viewModel.dateCalender[index] ?? []
-                        LazyVGrid(columns: columns, spacing: 10) {
+                        
+                        let dates = viewModel.uiState.dateCalender[index] ?? []
+                        LazyVGrid(columns: viewModel.uiState.columns, spacing: 10) {
+                            //MARK: Days List
                             ForEach(dates, id: \.dayValue) { date in
                                 if date == date && date.dayValue != "" {
                                     Text(date.dayValue)
@@ -45,13 +46,10 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                                         .onTapGesture {
                                             if date.type != DateValueType.disable {
                                              let date = viewModel.selectDate(index: index,dayValue:date.dayValue)
-                                                sharedModel.updateDate(type: type, date: date)
-                                            
-                                               
+                                                sharedModel.updateDate(selectedType: type, date: date)
                                                 dismiss()
                                             }
                                         }
-                                    
                                 } else {
                                     Rectangle()
                                         .foregroundColor(.clear)
@@ -63,14 +61,12 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                 }
             }
             .padding()
-            .navigationTitle(type ? "Depature Date" : "Return Date")
+            .navigationTitle(viewModel.title(type: type))
         }.onAppear{
             
             viewModel.onAppear(
                 getDepartureDate: sharedModel.departureDate,
-                getReturnDate: sharedModel.returnDate, type: type)
+                getReturnDate: sharedModel.returnDate, selectedType: .from)
         }
     }
 }
-
-

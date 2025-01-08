@@ -10,5 +10,6 @@ import Foundation
 
 struct AirportUiState {
     let searchPlaceholder = TextTheme.searchPlaceholder.rawValue
+    var listState:(message:String,state:Bool) = (message:TextTheme.defaultEmpty.rawValue,false)
 
 }

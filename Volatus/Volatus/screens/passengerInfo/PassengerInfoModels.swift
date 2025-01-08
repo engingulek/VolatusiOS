@@ -25,8 +25,8 @@ struct PassengerInfo : Identifiable {
 
 struct PassengerInfoError : Identifiable {
     var id:Int
-    var trIdNumberError:(errorMessage:String,errorState:Bool) = ("",false)
-    var nameError:(errorMessage:String,errorState:Bool) = ("",false)
-    var surnameError:(errorMessage:String,errorState:Bool) = ("",false)
-    var birthDateError:(errorMessage:String,errorState:Bool) = ("",false)
+    var trIdNumberError:(errorMessage:String,errorState:Bool) = (TextTheme.defaultEmpty.rawValue,false)
+    var nameError:(errorMessage:String,errorState:Bool) = (TextTheme.defaultEmpty.rawValue,false)
+    var surnameError:(errorMessage:String,errorState:Bool) = (TextTheme.defaultEmpty.rawValue,false)
+    var birthDateError:(errorMessage:String,errorState:Bool) = (TextTheme.defaultEmpty.rawValue,false)
 }

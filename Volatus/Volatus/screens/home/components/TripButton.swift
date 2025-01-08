@@ -21,10 +21,10 @@ struct TripButton: View {
         .frame(width: 140)
         .background(Color(hex: tripStateData.backColor))
         .overlay(
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(hex: tripStateData.backColor), lineWidth: 1)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 

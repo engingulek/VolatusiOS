@@ -9,7 +9,7 @@ import Foundation
 
 enum DepartureTicketListActions{
     case onTappedDate(id:Int)
-
+    
 }
 struct DayAndPrice {
     let id:Int
@@ -19,28 +19,23 @@ struct DayAndPrice {
     
 }
 
-
-
 protocol DepartureTicketListViewModelProtocol : ObservableObject {
     var dateAndPrice : [DayAndPrice] {get}
     var updatedDepartureDate:Date  {get}
-        var updatedReturnDate: Date? {get}
-  
+    var updatedReturnDate: Date? {get}
+    
     func onAppear(depatureDate:Date,returnDate:Date?)
-    
-    
-  
     func onAction(action:DepartureTicketListActions)
-  
+    
 }
 
 
 final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol {
-   @Published var dateAndPrice: [DayAndPrice] = []
+    @Published var dateAndPrice: [DayAndPrice] = []
     
     private var oldSelectedIndex:Int?
-   var updatedDepartureDate:Date = Date.now
-   var updatedReturnDate: Date?
+    var updatedDepartureDate:Date = Date.now
+    var updatedReturnDate: Date?
     private var tempList:[DayAndPrice]  = []
     
     
@@ -54,38 +49,38 @@ final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol 
         switch action {
         case .onTappedDate(let id):
             selectedDateAction(id: id)
-      
+            
         }
     }
 }
 
-
-
 extension DepartureTicketListViewModel {
-   
+    
     private func createDatePrice(getDate:Date){
         dateAndPrice = []
         let calendar = Calendar.current
-         let formatter = DateFormatter()
-         formatter.dateFormat = "E d MMM"
-        let selectedDefautlDate = formatter.string(from: getDate)
-         for offset in 0..<30 {
-             if let dayDate = calendar.date(byAdding: .day, value: offset, to: Date.now) {
-                 let dateValue = formatter.string(from: dayDate)
-               
-                 let dayAndPrice = DayAndPrice(
+        
+        let selectedDefautlDate = getDate.covertDate(formatterType: .typeFour)
+        for offset in 0..<30 {
+            if let dayDate = calendar.date(byAdding: .day, value: offset, to: Date.now) {
+                let dateValue = dayDate.covertDate(formatterType: .typeFour)
+                
+                let dayAndPrice = DayAndPrice(
                     id: offset,
                     date: dayDate,
                     price: 1500,
-                    selectedStateColor: selectedDefautlDate == dateValue ? ColorTheme.red.rawValue : ColorTheme.gray.rawValue
-                 )
-             
-                 dateAndPrice.append(dayAndPrice)
-                 tempList.append(dayAndPrice)
-                 
-             }
-         }
-        oldSelectedIndex = dateAndPrice.filter { $0.date.covertDate(formatterType: .typeFour) == selectedDefautlDate }.first?.id
+                    selectedStateColor: selectedDefautlDate == dateValue 
+                    ? ColorTheme.red.rawValue
+                    : ColorTheme.gray.rawValue
+                )
+                
+                dateAndPrice.append(dayAndPrice)
+                tempList.append(dayAndPrice)
+            }
+        }
+        oldSelectedIndex = dateAndPrice.filter { 
+            $0.date.covertDate(formatterType: .typeFour
+            ) == selectedDefautlDate }.first?.id
     }
     
     private func selectedDateAction(id:Int){

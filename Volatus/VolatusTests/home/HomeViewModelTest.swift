@@ -11,10 +11,13 @@ import XCTest
 final class HomeViewModelTest : XCTestCase {
     
     private var viewModel : HomeViewModel!
+    private var sharedModel:SharedModel!
+    
     
     override func setUp() {
         super.setUp()
         viewModel = HomeViewModel()
+        sharedModel = SharedModel()
     }
     
     
@@ -28,8 +31,17 @@ final class HomeViewModelTest : XCTestCase {
                        "backImage is not correct")
         
         XCTAssertEqual(ImageTheme.swapeIcon.rawValue,
-                       state.swapIcon,
-                       "swapIcon is not correct")
+                       state.swapIcon.name,
+                       "swapIcon name is not correct")
+        
+        
+        XCTAssertEqual(ColorTheme.red.rawValue,
+                       state.swapIcon.color,
+                       "swapIcon color is not correct")
+        
+        XCTAssertEqual(30,
+                       state.swapIcon.size,
+                       "swapIcon size is not correct")
        
         XCTAssertEqual(TextTheme.search.rawValue,
                        state.searchButtonTitle,
@@ -105,16 +117,16 @@ final class HomeViewModelTest : XCTestCase {
     }
     
     func test_when_openscreenhomeview_return_DateState(){
-        let state = viewModel.dateState
+        let state = viewModel.uiState
         XCTAssertTrue(state.returnVisible)
     }
     
     func test_whenOnAction_onTappedOneWay_retrun_TripTypeState_and_DateState(){
         let tripTypeState = viewModel.tripTypeState
-        let dateState = viewModel.dateState
+        let uiState = viewModel.uiState
         viewModel.onAction(action: .onTappedOneWay)
         
-        XCTAssertTrue(dateState.returnVisible)
+        XCTAssertTrue(uiState.returnVisible)
         
         
         let oneWayTripeType = tripTypeState.oneWayTripeType
@@ -142,9 +154,9 @@ final class HomeViewModelTest : XCTestCase {
         viewModel.onAction(action: .onTappedRounded)
         
         let tripTypeState = viewModel.tripTypeState
-        let dateState = viewModel.dateState
+        let uiState = viewModel.uiState
         
-        XCTAssertFalse(dateState.returnVisible)
+        XCTAssertFalse(uiState.returnVisible)
         
         
         let oneWayTripeType = tripTypeState.oneWayTripeType
@@ -166,7 +178,4 @@ final class HomeViewModelTest : XCTestCase {
                        roundedTripeType.backColor,
                        "backColor of oneWayTripeType is not correcnt")
     }
-    
-    
-    
 }

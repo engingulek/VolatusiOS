@@ -12,6 +12,7 @@ class SharedModel : ObservableObject {
     var toAirport:Airport? = nil
     @Published var fromText : String = TextTheme.choosen.rawValue
     @Published var toText: String = TextTheme.choosen.rawValue
+    @Published var airportState :Bool = true
     
     var departureDate:Date = Date.now
     var returnDate:Date? = nil
@@ -21,8 +22,7 @@ class SharedModel : ObservableObject {
     
     var departureTicketId:Int?
     var retrunTicketId:Int?
-    
-    
+
     var passengerList: [PassengerValue] = [
         .init(title: TextTheme.adultTitle.rawValue,
               ageSpaceTitle: TextTheme.adultRangeTitle.rawValue,
@@ -37,19 +37,20 @@ class SharedModel : ObservableObject {
     
     @Published var passengerText = "1 Adult"
     
-    
-    
-    func updateLocation(searchType:SearchType,airport:Airport) {
-        switch searchType {
-        case .forFrom:
+    //MARK: updateLocation
+    func updateLocation(selectedType:SelectedType,airport:Airport) {
+        switch selectedType {
+        case .from:
             fromAirport = airport
             fromText = "\(airport.code) - \(airport.name)"
-        case .forTo:
+        case .to:
             toAirport = airport
-            toText = "\(airport.code) \(airport.name)"
+            toText = "\(airport.code) - \(airport.name)"
         }
+        
+        airportState = (fromAirport == nil || toAirport == nil) || (fromAirport?.id == toAirport?.id)
     }
-    
+    //MARK: swapAction
     func swapAction() {
         let tempLocation =  fromAirport
         fromAirport = toAirport
@@ -62,13 +63,13 @@ class SharedModel : ObservableObject {
         toText = "\(toAirport.code) - \(toAirport.name)"
     }
     
-    func updateDate(type:Bool,date:Date?) {
+    //MARK: updateDate
+    func updateDate(selectedType:SelectedType,date:Date?) {
         guard let date = date else {return}
-        if type {
+        if selectedType == .from {
             departureDate = date
         }else{
-            
-            returnDate = date
+           returnDate = date
         }
         
         depatureDateTxet = departureDate.covertDate(formatterType: .typeOne)
@@ -81,12 +82,9 @@ class SharedModel : ObservableObject {
         }else{
             returnDateText = departureDate.covertDate(formatterType: .typeOne)
         }
-        
-     
-        
-      
     }
     
+    //MARK: updatePassenger
     func updatePassenger(list:[PassengerValue]) {
         passengerList = list
         
@@ -95,16 +93,12 @@ class SharedModel : ObservableObject {
         passengerText = text
     }
     
+    //MARK: updateTicketId
     func updateTicketId(type:Bool,ticketId:Int){
         if type {
             departureTicketId = ticketId
-         
-            print(departureTicketId)
-           
         }else{
             retrunTicketId = ticketId
-            
         }
-       
     }
 }

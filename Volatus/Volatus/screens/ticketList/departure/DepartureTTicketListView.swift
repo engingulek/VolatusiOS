@@ -17,14 +17,12 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
             DayListComponent(
                 list: viewModel.dateAndPrice){ id in
                     viewModel.onAction(action: .onTappedDate(id: id))
-                    
-                    sharedModel.updateDate(type: true, date: viewModel.updatedDepartureDate)
-                    sharedModel.updateDate(type: false, date: viewModel.updatedReturnDate)
+                    sharedModel.updateDate(selectedType: .from, date: viewModel.updatedDepartureDate)
+                    sharedModel.updateDate(selectedType: .to, date: viewModel.updatedReturnDate)
            
                 }
             Spacer()
-            Text("Ticket Count :\(viewModel.dateAndPrice.count)")
-                .fontWeight(.semibold)
+            
             ScrollView {
                 LazyVStack(spacing: 10) {
                     ForEach(1...20, id: \.self) { index in
@@ -38,7 +36,7 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
             
         }.frame(maxWidth: .infinity,maxHeight: .infinity)
             .background(Color.gray.opacity(0.1))
-            .navigationTitle("Departure Ticket List")
+            .navigationTitle(TextTheme.departureTicketList.rawValue)
             .navigationDestination(isPresented: $navigation, destination: {
                 sharedModel.returnDate == nil ?
                 AnyView(  PassengerInfoScreen(viewModel:PassengerInfoViewModel()).environmentObject(sharedModel)) :
@@ -48,7 +46,6 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
             .onAppear{
                 viewModel.onAppear(depatureDate: sharedModel.departureDate, returnDate: sharedModel.returnDate)
             }
-          
     }
 }
 

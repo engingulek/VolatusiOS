@@ -18,7 +18,6 @@ struct LocationView: View {
                     .foregroundStyle(.gray)
                     .font(.callout)
                 
-                
                 Text(locationTitle)
                     .foregroundStyle(.black)
                     .font(.system(size: 15))
@@ -29,10 +28,10 @@ struct LocationView: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color.white)
-        .padding(16)
-        .cornerRadius(16)
+        .padding(15)
+        .cornerRadius(10)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.gray.opacity(0.5), lineWidth: 1)
         )
     }
@@ -41,5 +40,5 @@ struct LocationView: View {
 #Preview {
     LocationView(
         title: TextTheme.fromTitle.rawValue,
-        locationTitle: "Choosen")
+        locationTitle: TextTheme.choosen.rawValue)
 }

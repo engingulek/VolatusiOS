@@ -19,3 +19,15 @@ enum ImageTheme : String {
     case upArrow = "chevron.up"
     
 }
+
+struct ImageSystem {
+
+    var name:String
+    var color:String
+    var size:CGFloat
+}
+
+let swapSystemImage = ImageSystem(
+    name: ImageTheme.swapeIcon.rawValue,
+    color: ColorTheme.red.rawValue,
+    size: 30)
