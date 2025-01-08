@@ -369,8 +369,8 @@
 				7DA3991B2D20622C006B7927 /* airportList */,
 				7DB2E3F92D21AA4900939B05 /* date */,
 				7DEE3C352D240BC80049231F /* passengerSelect */,
-				7DA9B8DD2D282DEE0060CF54 /* passengerInfo */,
 				7D45E2E22D271FF000FDC1EE /* ticketList */,
+				7DA9B8DD2D282DEE0060CF54 /* passengerInfo */,
 			);
 			path = screens;
 			sourceTree = "<group>";

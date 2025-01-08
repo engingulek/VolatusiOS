@@ -66,4 +66,19 @@ enum TextTheme  : String {
     case yourDepartureTicketInfo = "Your Departure Flight"
     /// is Return Ticket List
     case returnTicketList = "Return Ticket List"
+    case trId = "TR Id"
+    /// is Enter
+    case enter = "Enter"
+    
+    case blankError = "This field cannot be left blank"
+    
+    case shortError = "This is too short"
+    
+    case trIdError = "Invalid Turkish ID number"
+    
+    case name = "Name"
+    
+    case surname = "Surname"
+    
+    case selectBirthdate = "Select Birthdate"
 }
