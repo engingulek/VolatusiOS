@@ -18,7 +18,6 @@ struct PassengerView: View {
                     .foregroundStyle(.gray)
                     .font(.callout)
                 
-                
                 Text(passenger)
                     .foregroundStyle(.black)
                     .font(.callout)
@@ -26,20 +25,20 @@ struct PassengerView: View {
                 
             }
             Spacer()
-            
-            
         }
         .frame(maxWidth: .infinity)
         .background(Color.white)
-        .padding(16)
-        .cornerRadius(16)
+        .padding(15)
+        .cornerRadius(10)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.gray.opacity(0.5), lineWidth: 1)
         )
     }
 }
 
 #Preview {
-    PassengerView(title: "",passenger: "")
+    PassengerView(
+        title: TextTheme.passenger.rawValue,
+        passenger: TextTheme.previewPassengerText.rawValue)
 }

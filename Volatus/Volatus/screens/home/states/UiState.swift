@@ -10,7 +10,7 @@ import SwiftUI
 struct UiState {
    
     let backImage : String = "background"
-    let swapIcon : String = ImageTheme.swapeIcon.rawValue
+    let swapIcon : ImageSystem = swapSystemImage
     let searchButtonTitle : String = TextTheme.search.rawValue
     
     let oneWayTitle:String =  TextTheme.oneWay.rawValue
@@ -24,9 +24,5 @@ struct UiState {
     let passenger : String = TextTheme.passenger.rawValue
     
     var passengerText:String = ""
-    
-    var searchButtonStatus:Bool = true
-    var searchButtonColor:String = ColorTheme.lightRed.rawValue
-    
- 
+    var returnVisible:Bool = true
 }

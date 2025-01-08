@@ -12,6 +12,7 @@ class SharedModel : ObservableObject {
     var toAirport:Airport? = nil
     @Published var fromText : String = TextTheme.choosen.rawValue
     @Published var toText: String = TextTheme.choosen.rawValue
+    @Published var airportState :Bool = true
     
     var departureDate:Date = Date.now
     var returnDate:Date? = nil
@@ -39,15 +40,17 @@ class SharedModel : ObservableObject {
     
     
     
-    func updateLocation(searchType:SearchType,airport:Airport) {
-        switch searchType {
-        case .forFrom:
+    func updateLocation(selectedType:SelectedType,airport:Airport) {
+        switch selectedType {
+        case .from:
             fromAirport = airport
             fromText = "\(airport.code) - \(airport.name)"
-        case .forTo:
+        case .to:
             toAirport = airport
-            toText = "\(airport.code) \(airport.name)"
+            toText = "\(airport.code) - \(airport.name)"
         }
+        
+        airportState = (fromAirport == nil || toAirport == nil) || (fromAirport?.id == toAirport?.id)
     }
     
     func swapAction() {
@@ -62,9 +65,9 @@ class SharedModel : ObservableObject {
         toText = "\(toAirport.code) - \(toAirport.name)"
     }
     
-    func updateDate(type:Bool,date:Date?) {
+    func updateDate(selectedType:SelectedType,date:Date?) {
         guard let date = date else {return}
-        if type {
+        if selectedType == .from {
             departureDate = date
         }else{
             
@@ -107,4 +110,6 @@ class SharedModel : ObservableObject {
         }
        
     }
+    
+    
 }

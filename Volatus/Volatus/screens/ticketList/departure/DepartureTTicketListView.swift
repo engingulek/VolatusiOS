@@ -18,8 +18,8 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
                 list: viewModel.dateAndPrice){ id in
                     viewModel.onAction(action: .onTappedDate(id: id))
                     
-                    sharedModel.updateDate(type: true, date: viewModel.updatedDepartureDate)
-                    sharedModel.updateDate(type: false, date: viewModel.updatedReturnDate)
+                    sharedModel.updateDate(selectedType: .from, date: viewModel.updatedDepartureDate)
+                    sharedModel.updateDate(selectedType: .to, date: viewModel.updatedReturnDate)
            
                 }
             Spacer()

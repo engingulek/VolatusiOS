@@ -6,17 +6,15 @@
 //
 
 import SwiftUI
-enum SearchType {
-    case forFrom
-    case forTo
+enum SelectedType {
+    case from
+    case to
 }
 struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
     
     @StateObject var viewModel:ViewModel
-   // @Binding var selectedFromLocation:Airport?
-  //  @Binding var selectedToLocation:Airport?
     @State private var searchText = ""
-    @State var searchType: SearchType
+    @State var selectedType: SelectedType
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sharedModel : SharedModel
     
@@ -41,7 +39,7 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
          
             
             AirportListView(airtportList: viewModel.airportList) { airport in
-                sharedModel.updateLocation(searchType: searchType, airport: airport)
+                sharedModel.updateLocation(selectedType: selectedType, airport: airport)
                
                 dismiss()
             }
@@ -52,7 +50,7 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
 }
 
 #Preview{
-    AirportList(viewModel: AirportListViewModel(), searchType: .forFrom)
+    AirportList(viewModel: AirportListViewModel(), selectedType: .from)
 }
 
 

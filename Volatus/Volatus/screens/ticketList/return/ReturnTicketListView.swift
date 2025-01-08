@@ -16,7 +16,7 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
             TicketInfoComponent(title: "Your Departure Flight")
             DayListComponent(list: viewModel.dateAndPrice) { id in
                 viewModel.onAction(action: .onTappedDate(id: id))
-                sharedModel.updateDate(type: false, date: viewModel.updatedReturnDate)
+                sharedModel.updateDate(selectedType: .to, date: viewModel.updatedReturnDate)
             }
             Spacer()
             Text("\(viewModel.dateAndPrice.count)")

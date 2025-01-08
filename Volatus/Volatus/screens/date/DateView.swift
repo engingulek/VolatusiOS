@@ -11,7 +11,7 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)
     @StateObject  var viewModel:ViewModel
    
-    var type:Bool
+    var type:SelectedType
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sharedModel : SharedModel
     
@@ -45,7 +45,7 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                                         .onTapGesture {
                                             if date.type != DateValueType.disable {
                                              let date = viewModel.selectDate(index: index,dayValue:date.dayValue)
-                                                sharedModel.updateDate(type: type, date: date)
+                                                sharedModel.updateDate(selectedType: type, date: date)
                                             
                                                
                                                 dismiss()
@@ -63,12 +63,12 @@ struct DateListView<ViewModel:DateListViewModelProtocol>: View  {
                 }
             }
             .padding()
-            .navigationTitle(type ? "Depature Date" : "Return Date")
+            .navigationTitle(type == .from ? "Depature Date" : "Return Date")
         }.onAppear{
             
             viewModel.onAppear(
                 getDepartureDate: sharedModel.departureDate,
-                getReturnDate: sharedModel.returnDate, type: type)
+                getReturnDate: sharedModel.returnDate, selectedType: .from)
         }
     }
 }

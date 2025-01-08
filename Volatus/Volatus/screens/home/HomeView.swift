@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct HomeView<ViewModel:HomeViewModelProtocol>: View {
+    
     @StateObject  var viewModel:ViewModel
-    @State var selectedDepatureDate : Date = .now
     @EnvironmentObject var sharedModel : SharedModel
     
- 
     var body: some View {
         ZStack{
             VStack{
@@ -22,27 +21,24 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 Spacer()
             }
             
-            VStack(spacing:15){
+            VStack(spacing:15){ //MARK: TripButtons Start
                 HStack{
-                    
                     TripButton(
                         title: viewModel.uiState.oneWayTitle,
                         tripStateData: viewModel.tripTypeState.oneWayTripeType,
                         action: {viewModel.onAction(action: .onTappedOneWay)})
                     
-                    
                     TripButton(
                         title: viewModel.uiState.roundedTitle,
                         tripStateData: viewModel.tripTypeState.roundedTripeType,
                         action: {viewModel.onAction(action: .onTappedRounded)})
-                    
-                }
+                }//MARK: TripButtons Finish
                 
                 
                 
-                NavigationLink {
+                NavigationLink {//MARK: Locations Start
                     AirportList(viewModel: AirportListViewModel(),
-                                searchType: .forFrom).environmentObject(sharedModel)
+                                selectedType: .from).environmentObject(sharedModel)
                 } label: {
                     LocationView(
                         title: viewModel.uiState.fromTitle,
@@ -52,48 +48,47 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 Button {
                     sharedModel.swapAction()
                 } label: {
-                    Image(systemName: viewModel.uiState.swapIcon)
-                        .font(.system(size: 30))
-                        .foregroundColor(.red)
+                    Image(systemName: viewModel.uiState.swapIcon.name)
+                        .font(.system(size: viewModel.uiState.swapIcon.size))
+                        .foregroundStyle(Color(hex: viewModel.uiState.swapIcon.color))
                 }
-                
-                
                 
                 NavigationLink {
                     AirportList(viewModel: AirportListViewModel(),
-                                searchType: .forTo).environmentObject(sharedModel)
+                                selectedType: .to).environmentObject(sharedModel)
                 } label: {
                     LocationView(
                         title: viewModel.uiState.toTitle,
                         locationTitle: sharedModel.toText)
-                }
-                HStack{
-                  
-                   NavigationLink {
-                       DateListView(viewModel: DateListViewModel(),
-                                     type: true).environmentObject(sharedModel)
-                    } label: {
-                    DateView(title: viewModel.uiState.departureTitle,
-                             date: sharedModel.depatureDateTxet)
-                    }
+                }//MARK: Locations Finish
+                
+                HStack{//MARK: Date Views Start
                     
                     NavigationLink {
                         DateListView(viewModel: DateListViewModel(),
-                                    type: false).environmentObject(sharedModel)
+                                     type: .from).environmentObject(sharedModel)
                     } label: {
-                        !viewModel.dateState.returnVisible || sharedModel.returnDate != nil ?
-                    DateView(title: viewModel.uiState.returnTitle,
-                             date: sharedModel.returnDateText) : nil
+                        DateView(title: viewModel.uiState.departureTitle,
+                                 date: sharedModel.depatureDateTxet)
                     }
                     
+                    NavigationLink { 
+                        DateListView(viewModel: DateListViewModel(),
+                                     type: .to).environmentObject(sharedModel)
+                    } label: {
+                        !viewModel.uiState.returnVisible || sharedModel.returnDate != nil ?
+                        DateView(title: viewModel.uiState.returnTitle,
+                                 date: sharedModel.returnDateText) : nil
+                    }//MARK: Date Views Finish
+                    
                 }
-                NavigationLink {
+                NavigationLink {//MARK: Passenger Views Start
                     PassengerSelectView(viewModel: PassengerSelectViewModel())
-                    .environmentObject(sharedModel)
+                        .environmentObject(sharedModel)
                 } label: {
                     PassengerView(title: viewModel.uiState.passenger,
                                   passenger:sharedModel.passengerText)
-                }
+                }//MARK: Passenger Views Finish
                 
                 NavigationLink {
                     DepartureTicketListView(
@@ -106,27 +101,27 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                         .foregroundStyle(.white)
                         .fontWeight(.semibold)
                         .frame(maxWidth:.infinity)
-                        .frame(height:40)
-                        .background(Color(hex: ColorTheme.red.rawValue))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .frame(height:50)
+                        .background(
+                            sharedModel.airportState
+                            ?   Color(hex: ColorTheme.lightRed.rawValue)
+                            :   Color(hex: ColorTheme.red.rawValue)
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
-                .disabled(sharedModel.fromAirport == nil && sharedModel.toAirport == nil)
-              
+                .disabled(sharedModel.airportState)
             }
             .frame(maxWidth: .infinity)
-            .padding(16)
+            .padding(15)
             .background(Color.white)
-            .cornerRadius(16)
+            .cornerRadius(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.gray.opacity(0.5), lineWidth: 1)
             )
-            
             .padding(.horizontal, 20)
             
         }.ignoresSafeArea()
-          
-        
     }
 }
 

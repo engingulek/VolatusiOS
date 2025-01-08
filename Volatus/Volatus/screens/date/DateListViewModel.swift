@@ -16,7 +16,7 @@ enum DateValueType {
 }
 
 protocol DateListViewModelProtocol: ObservableObject {
-    func onAppear(getDepartureDate:Date,getReturnDate:Date?,type:Bool)
+    func onAppear(getDepartureDate:Date,getReturnDate:Date?,selectedType:SelectedType)
     var weekdays: [String] { get }
     var mountCalender: [Int: String] { get }
     var dateCalender: [Int: [(type: DateValueType, dayValue: String)]] { get }
@@ -36,10 +36,10 @@ final class DateListViewModel: DateListViewModelProtocol {
     
     
 
-    func onAppear(getDepartureDate:Date,getReturnDate:Date?,type:Bool) {
+    func onAppear(getDepartureDate:Date,getReturnDate:Date?,selectedType:SelectedType) {
         createCalendar(getDepartureDate:getDepartureDate,
                        getReturnDate:getReturnDate,
-                       control:type)
+                       selectedType:selectedType)
     }
     
     func selectDate(index: Int, dayValue:String)  -> Date {
@@ -77,7 +77,7 @@ final class DateListViewModel: DateListViewModelProtocol {
     }
 
 
-    private func createCalendar(getDepartureDate:Date,getReturnDate:Date?,control:Bool) {
+    private func createCalendar(getDepartureDate:Date,getReturnDate:Date?,selectedType:SelectedType) {
       
         mountCalender = [:]
     dateCalender  = [:]
@@ -119,7 +119,7 @@ final class DateListViewModel: DateListViewModelProtocol {
 
                         if dateRange == nowDate {
                             type = .now
-                        } else if (control && nowDate > dateRange) || (!control && departureDate > dateRange) {
+                        } else if (selectedType == .from && nowDate > dateRange) || (selectedType == .to && departureDate > dateRange) {
                             type = .disable
                         } else if dateRange == departureDate || dateRange == getReturnDate {
                             type = .selected
