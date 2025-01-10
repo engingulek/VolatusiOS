@@ -41,6 +41,14 @@
 		7DA9B8DF2D282E0A0060CF54 /* PassengerInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8DE2D282E0A0060CF54 /* PassengerInfoScreen.swift */; };
 		7DA9B8E12D28374C0060CF54 /* SharedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B8E02D28374C0060CF54 /* SharedModel.swift */; };
 		7DA9B9012D287AA40060CF54 /* ReturnTicketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA9B9002D287AA40060CF54 /* ReturnTicketListViewModel.swift */; };
+		7DABF7AC2D31346600DDC2CA /* Constnats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7AB2D31346600DDC2CA /* Constnats.swift */; };
+		7DABF7AE2D31353C00DDC2CA /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7AD2D31353C00DDC2CA /* TargetType.swift */; };
+		7DABF7B12D31358600DDC2CA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7DABF7B02D31358600DDC2CA /* Alamofire */; };
+		7DABF7B32D31358600DDC2CA /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 7DABF7B22D31358600DDC2CA /* AlamofireDynamic */; };
+		7DABF7B52D31359E00DDC2CA /* NetworkPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B42D31359E00DDC2CA /* NetworkPath.swift */; };
+		7DABF7B72D3136EC00DDC2CA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B62D3136EC00DDC2CA /* NetworkManager.swift */; };
+		7DABF7B92D31376800DDC2CA /* AirportListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B82D31376800DDC2CA /* AirportListService.swift */; };
+		7DABF7BB2D313E1400DDC2CA /* AirportListMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */; };
 		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
 		7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FA2D21AA6300939B05 /* DateView.swift */; };
 		7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */; };
@@ -104,6 +112,12 @@
 		7DA9B8DE2D282E0A0060CF54 /* PassengerInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerInfoScreen.swift; sourceTree = "<group>"; };
 		7DA9B8E02D28374C0060CF54 /* SharedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModel.swift; sourceTree = "<group>"; };
 		7DA9B9002D287AA40060CF54 /* ReturnTicketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnTicketListViewModel.swift; sourceTree = "<group>"; };
+		7DABF7AB2D31346600DDC2CA /* Constnats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constnats.swift; sourceTree = "<group>"; };
+		7DABF7AD2D31353C00DDC2CA /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		7DABF7B42D31359E00DDC2CA /* NetworkPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPath.swift; sourceTree = "<group>"; };
+		7DABF7B62D3136EC00DDC2CA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		7DABF7B82D31376800DDC2CA /* AirportListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListService.swift; sourceTree = "<group>"; };
+		7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListMockService.swift; sourceTree = "<group>"; };
 		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
 		7DB2E3FA2D21AA6300939B05 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -125,6 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DABF7B12D31358600DDC2CA /* Alamofire in Frameworks */,
+				7DABF7B32D31358600DDC2CA /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +210,7 @@
 		7D5DAB492D1F350700A37B21 /* Volatus */ = {
 			isa = PBXGroup;
 			children = (
+				7DABF7A92D3133D400DDC2CA /* network */,
 				7D9565DA2D2EB8BD00CC3813 /* shared */,
 				7DA399012D20179E006B7927 /* extension */,
 				7DC913652D1F457600AD88C9 /* resources */,
@@ -225,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				7D9565D62D2EAEFA00CC3813 /* AirportListViewModelTests.swift */,
+				7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */,
 			);
 			path = airportList;
 			sourceTree = "<group>";
@@ -310,6 +328,7 @@
 				7DA3991C2D206254006B7927 /* AirportList.swift */,
 				7D08C1132D2156A300370EAC /* Airport.swift */,
 				7D08C1152D21572000370EAC /* AirportListViewModel.swift */,
+				7DABF7B82D31376800DDC2CA /* AirportListService.swift */,
 			);
 			path = airportList;
 			sourceTree = "<group>";
@@ -342,6 +361,17 @@
 				7D52C5722D299FB500FD78CE /* PassengerInfoTextfieldComponent.swift */,
 			);
 			path = passengerInfo;
+			sourceTree = "<group>";
+		};
+		7DABF7A92D3133D400DDC2CA /* network */ = {
+			isa = PBXGroup;
+			children = (
+				7DABF7AB2D31346600DDC2CA /* Constnats.swift */,
+				7DABF7AD2D31353C00DDC2CA /* TargetType.swift */,
+				7DABF7B42D31359E00DDC2CA /* NetworkPath.swift */,
+				7DABF7B62D3136EC00DDC2CA /* NetworkManager.swift */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 		7DB2E3F62D2184BA00939B05 /* states */ = {
@@ -442,6 +472,10 @@
 			dependencies = (
 			);
 			name = Volatus;
+			packageProductDependencies = (
+				7DABF7B02D31358600DDC2CA /* Alamofire */,
+				7DABF7B22D31358600DDC2CA /* AlamofireDynamic */,
+			);
 			productName = Volatus;
 			productReference = 7D5DAB472D1F350700A37B21 /* Volatus.app */;
 			productType = "com.apple.product-type.application";
@@ -492,6 +526,9 @@
 				Base,
 			);
 			mainGroup = 7D5DAB3E2D1F350700A37B21;
+			packageReferences = (
+				7DABF7AF2D31358600DDC2CA /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 7D5DAB482D1F350700A37B21 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -530,9 +567,13 @@
 				7DC913612D1F3B7A00AD88C9 /* HomeView.swift in Sources */,
 				7D52C56D2D294BBC00FD78CE /* PassengerInfoViewModel.swift in Sources */,
 				7DA3991D2D206254006B7927 /* AirportList.swift in Sources */,
+				7DABF7B72D3136EC00DDC2CA /* NetworkManager.swift in Sources */,
 				7DA399032D2017B2006B7927 /* Color+Extension.swift in Sources */,
 				7D52C56B2D2935B400FD78CE /* TicketInfoComponent.swift in Sources */,
+				7DABF7AE2D31353C00DDC2CA /* TargetType.swift in Sources */,
+				7DABF7B92D31376800DDC2CA /* AirportListService.swift in Sources */,
 				7DA398F72D201110006B7927 /* HomeViewModel.swift in Sources */,
+				7DABF7AC2D31346600DDC2CA /* Constnats.swift in Sources */,
 				7DEE3C372D240BE20049231F /* PassengerSelectView.swift in Sources */,
 				7DC913672D1F458A00AD88C9 /* ImageTheme.swift in Sources */,
 				7DA9B8DF2D282E0A0060CF54 /* PassengerInfoScreen.swift in Sources */,
@@ -543,6 +584,7 @@
 				7DA9B8DC2D282D4E0060CF54 /* TicketComponent.swift in Sources */,
 				7DEE3C3B2D240D410049231F /* PassengerSelectViewModel.swift in Sources */,
 				7DEE3C392D240CA70049231F /* PassengerSelectState.swift in Sources */,
+				7DABF7B52D31359E00DDC2CA /* NetworkPath.swift in Sources */,
 				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
 				7DA398FA2D201199006B7927 /* UiState.swift in Sources */,
 				7D08C1122D21561900370EAC /* AirportListView.swift in Sources */,
@@ -574,6 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D9565E02D2EBFD000CC3813 /* PassengerSelectViewModelTests.swift in Sources */,
+				7DABF7BB2D313E1400DDC2CA /* AirportListMockService.swift in Sources */,
 				7D9565D42D2E9D4F00CC3813 /* SharedModelTests.swift in Sources */,
 				7DA399122D20371E006B7927 /* VolatusTests.swift in Sources */,
 				7D9565D72D2EAEFA00CC3813 /* AirportListViewModelTests.swift in Sources */,
@@ -837,6 +880,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7DABF7AF2D31358600DDC2CA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7DABF7B02D31358600DDC2CA /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DABF7AF2D31358600DDC2CA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		7DABF7B22D31358600DDC2CA /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DABF7AF2D31358600DDC2CA /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D5DAB3F2D1F350700A37B21 /* Project object */;
 }

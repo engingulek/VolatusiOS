@@ -42,10 +42,10 @@ class SharedModel : ObservableObject {
         switch selectedType {
         case .from:
             fromAirport = airport
-            fromText = "\(airport.code) - \(airport.name)"
+            fromText = "\(airport.code) - \(airport.airname)"
         case .to:
             toAirport = airport
-            toText = "\(airport.code) - \(airport.name)"
+            toText = "\(airport.code) - \(airport.airname)"
         }
         
         airportState = (fromAirport == nil || toAirport == nil) || (fromAirport?.id == toAirport?.id)
@@ -57,10 +57,10 @@ class SharedModel : ObservableObject {
         toAirport = tempLocation
         
         guard let fromAirport = fromAirport else {return}
-        fromText = "\(fromAirport.code) - \(fromAirport.name)"
+        fromText = "\(fromAirport.code) - \(fromAirport.airname)"
         
         guard let toAirport = toAirport else {return}
-        toText = "\(toAirport.code) - \(toAirport.name)"
+        toText = "\(toAirport.code) - \(toAirport.airname)"
     }
     
     //MARK: updateDate

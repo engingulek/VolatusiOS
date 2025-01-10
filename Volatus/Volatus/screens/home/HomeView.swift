@@ -37,7 +37,7 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 
                 
                 NavigationLink {//MARK: Locations Start
-                    AirportList(viewModel: AirportListViewModel(),
+                    AirportList(viewModel: AirportListViewModel(service: AirportListService()),
                                 selectedType: .from).environmentObject(sharedModel)
                 } label: {
                     LocationView(
@@ -54,7 +54,7 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 }
                 
                 NavigationLink {
-                    AirportList(viewModel: AirportListViewModel(),
+                    AirportList(viewModel: AirportListViewModel(service: AirportListService()),
                                 selectedType: .to).environmentObject(sharedModel)
                 } label: {
                     LocationView(
