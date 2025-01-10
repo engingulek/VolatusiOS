@@ -6,42 +6,35 @@
 //
 
 import SwiftUI
-
+import Kingfisher
 struct TicketComponent: View {
+    let ticket:Ticket
     let onTap:() -> Void
     var body: some View {
         VStack {
             //MARK: head Start
             HStack{
-                Image(.testIcon)
-                    .resizable()
-                    .scaledToFill()
-                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                    .frame(width: 40,height: 40)
+                KFImage.from(url: URL(string: ticket.airlinesIcon))
                    
                 VStack(alignment: .leading){
-                    Text("Airlines Name")
+                    Text(ticket.airlineName)
                         
                         .fontWeight(.semibold)
-                    Text("Plane Type")
+                    Text(ticket.planeType)
                         .foregroundStyle(Color.gray)
                         .fontWeight(.semibold)
                 }
                 Spacer()
-                HStack{
-                    Image(systemName: ImageTheme.clock.rawValue)
-                    Text("2h:30m")
-                }
             } //MARK: head finish
             
             //MARK: middle Start
             HStack{
                 VStack(alignment:.leading){
-                    Text("09:15")
+                    Text(ticket.departureClock)
                         .font(.title)
                     HStack(spacing:2){
                         Image(systemName: ImageTheme.airplaneDeparture.rawValue)
-                        Text("Code City Name")
+                        Text("\(ticket.departureAirport.code) \(ticket.departureAirport.city)")
                             .font(.system(size: 15))
                            
                     }
@@ -49,11 +42,11 @@ struct TicketComponent: View {
                 Spacer()
                
                 VStack(alignment:.trailing){
-                    Text("11:25")
+                    Text(ticket.landingClock)
                         .font(.title)
                     HStack(spacing:2){
                         Image(systemName: ImageTheme.airplaneArrival.rawValue)
-                        Text("Code City Name")
+                        Text("\(ticket.arrivalAirport.code) \(ticket.arrivalAirport.city)")
                             .font(.system(size: 15))
                     }
                 }
@@ -62,7 +55,7 @@ struct TicketComponent: View {
             //MARK: bottom Start
             HStack{
                 Spacer()
-                Text("TRY 1.500")
+                Text("TRY \(ticket.price)")
                     .font(.title2)
                     .fontWeight(.semibold)
             }//MARK: bottom Finish
@@ -79,5 +72,5 @@ struct TicketComponent: View {
 }
 
 #Preview {
-    TicketComponent(onTap: {})
+    TicketComponent(ticket: Ticket(id: 1, airlinesIcon: "https://firebasestorage.googleapis.com/v0/b/feastly-f1988.appspot.com/o/volatus%2Fpegasus_airlines.png?alt=media&token=855a1097-4155-4db2-8c8d-7f4a2bc01532", airlineName: "Pegasus Airlines", planeType: "Airbus A320", departureClock: "08:30", landingClock: "12:00", price: 250, date: "Fri 10 Jan", departureAirport: Volatus.Airport(id: 1, country: "United States", city: "New York", code: "JFK", airname: "John F. Kennedy International Airport"), arrivalAirport: Volatus.Airport(id: 5, country: "Turkey", city: "Istanbul", code: "IST", airname: "Istanbul Airport")), onTap: {})
 }

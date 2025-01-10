@@ -23,16 +23,28 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
                 }
             Spacer()
             
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEach(1...20, id: \.self) { index in
-                        TicketComponent(){
-                            sharedModel.updateTicketId(type: true, ticketId: index)
-                            navigation = true
+            viewModel.messageState.state ?
+            AnyView(
+                VStack(alignment:.center){
+                    Text(viewModel.messageState.message)
+                        .multilineTextAlignment(.center)
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color(hex: ColorTheme.red.rawValue))
+                }.frame(maxHeight:.infinity)
+                    .frame(maxWidth: .infinity)
+              
+            ): AnyView(
+                ScrollView {
+                    LazyVStack(spacing: 10) {
+                        ForEach(viewModel.ticketList, id: \.id) { ticket in
+                            TicketComponent(ticket:ticket){
+                                sharedModel.updateTicketId(type: true, ticketId: ticket.id)
+                                navigation = true
+                            }
                         }
                     }
-                }
-            }
+                })
             
         }.frame(maxWidth: .infinity,maxHeight: .infinity)
             .background(Color.gray.opacity(0.1))
@@ -44,11 +56,13 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
                 )
             })
             .onAppear{
-                viewModel.onAppear(depatureDate: sharedModel.departureDate, returnDate: sharedModel.returnDate)
+                viewModel.onAppear(
+                    departureAirport: sharedModel.fromAirport, arrivalAirport: sharedModel.toAirport, 
+                    depatureDate: sharedModel.departureDate, returnDate: sharedModel.returnDate)
             }
     }
 }
 
 #Preview {
-    DepartureTicketListView(viewModel: DepartureTicketListViewModel())
+    DepartureTicketListView(viewModel: DepartureTicketListViewModel(service: DepartureTicketListService()))
 }

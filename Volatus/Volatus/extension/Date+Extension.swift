@@ -13,6 +13,7 @@ enum DateFormatterType:String {
     case typeTwo = "MMMM yyyy"
     case typeThree = "d MMMM yyyy"
     case typeFour = "E d MMM"
+    case typeSix = "HH:mm"
 }
 
 extension Date {
@@ -27,3 +28,4 @@ extension Date {
         return calendar.date(byAdding: .year, value: -years, to: self) ?? Date.now
         }
 }
+

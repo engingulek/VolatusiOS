@@ -49,6 +49,11 @@
 		7DABF7B72D3136EC00DDC2CA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B62D3136EC00DDC2CA /* NetworkManager.swift */; };
 		7DABF7B92D31376800DDC2CA /* AirportListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B82D31376800DDC2CA /* AirportListService.swift */; };
 		7DABF7BB2D313E1400DDC2CA /* AirportListMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */; };
+		7DABF7BD2D3160C900DDC2CA /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7BC2D3160C900DDC2CA /* Ticket.swift */; };
+		7DABF7BF2D3160F000DDC2CA /* DepartureTicketListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7BE2D3160F000DDC2CA /* DepartureTicketListService.swift */; };
+		7DABF7C22D31663000DDC2CA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7DABF7C12D31663000DDC2CA /* Kingfisher */; };
+		7DABF7C42D31680E00DDC2CA /* KFImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7C32D31680E00DDC2CA /* KFImage+Extension.swift */; };
+		7DABF7C62D31713B00DDC2CA /* MockDepartureTicketListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7C52D31713A00DDC2CA /* MockDepartureTicketListService.swift */; };
 		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
 		7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FA2D21AA6300939B05 /* DateView.swift */; };
 		7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */; };
@@ -118,6 +123,10 @@
 		7DABF7B62D3136EC00DDC2CA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7DABF7B82D31376800DDC2CA /* AirportListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListService.swift; sourceTree = "<group>"; };
 		7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListMockService.swift; sourceTree = "<group>"; };
+		7DABF7BC2D3160C900DDC2CA /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		7DABF7BE2D3160F000DDC2CA /* DepartureTicketListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTicketListService.swift; sourceTree = "<group>"; };
+		7DABF7C32D31680E00DDC2CA /* KFImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KFImage+Extension.swift"; sourceTree = "<group>"; };
+		7DABF7C52D31713A00DDC2CA /* MockDepartureTicketListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDepartureTicketListService.swift; sourceTree = "<group>"; };
 		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
 		7DB2E3FA2D21AA6300939B05 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -139,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DABF7C22D31663000DDC2CA /* Kingfisher in Frameworks */,
 				7DABF7B12D31358600DDC2CA /* Alamofire in Frameworks */,
 				7DABF7B32D31358600DDC2CA /* AlamofireDynamic in Frameworks */,
 			);
@@ -168,6 +178,7 @@
 				7DA9B8D82D282CE50060CF54 /* return */,
 				7DA9B8D72D282CD60060CF54 /* departure */,
 				7D45E2E52D2727E900FDC1EE /* components */,
+				7DABF7BC2D3160C900DDC2CA /* Ticket.swift */,
 			);
 			path = ticketList;
 			sourceTree = "<group>";
@@ -275,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				7D9565E32D2ECBF200CC3813 /* DepartureViewModelTests.swift */,
+				7DABF7C52D31713A00DDC2CA /* MockDepartureTicketListService.swift */,
 			);
 			path = departureList;
 			sourceTree = "<group>";
@@ -295,6 +307,7 @@
 				7DA399022D2017B2006B7927 /* Color+Extension.swift */,
 				7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */,
 				7DEE3C332D2305A60049231F /* String+Extension.swift */,
+				7DABF7C32D31680E00DDC2CA /* KFImage+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -338,6 +351,7 @@
 			children = (
 				7D45E2E32D27200400FDC1EE /* DepartureTTicketListView.swift */,
 				7DA9B8D12D28028C0060CF54 /* DepartureTicketListViewModel.swift */,
+				7DABF7BE2D3160F000DDC2CA /* DepartureTicketListService.swift */,
 			);
 			path = departure;
 			sourceTree = "<group>";
@@ -475,6 +489,7 @@
 			packageProductDependencies = (
 				7DABF7B02D31358600DDC2CA /* Alamofire */,
 				7DABF7B22D31358600DDC2CA /* AlamofireDynamic */,
+				7DABF7C12D31663000DDC2CA /* Kingfisher */,
 			);
 			productName = Volatus;
 			productReference = 7D5DAB472D1F350700A37B21 /* Volatus.app */;
@@ -528,6 +543,7 @@
 			mainGroup = 7D5DAB3E2D1F350700A37B21;
 			packageReferences = (
 				7DABF7AF2D31358600DDC2CA /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7DABF7C02D31663000DDC2CA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 7D5DAB482D1F350700A37B21 /* Products */;
 			projectDirPath = "";
@@ -587,11 +603,13 @@
 				7DABF7B52D31359E00DDC2CA /* NetworkPath.swift in Sources */,
 				7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */,
 				7DA398FA2D201199006B7927 /* UiState.swift in Sources */,
+				7DABF7BF2D3160F000DDC2CA /* DepartureTicketListService.swift in Sources */,
 				7D08C1122D21561900370EAC /* AirportListView.swift in Sources */,
 				7DA399002D201637006B7927 /* ColorTheme.swift in Sources */,
 				7DA9B8DA2D282CF70060CF54 /* ReturnTicketListView.swift in Sources */,
 				7DA9B8E12D28374C0060CF54 /* SharedModel.swift in Sources */,
 				7DC913642D1F441300AD88C9 /* LocationView.swift in Sources */,
+				7DABF7C42D31680E00DDC2CA /* KFImage+Extension.swift in Sources */,
 				7DA399072D20245B006B7927 /* LocationState.swift in Sources */,
 				7D45E2E42D27200400FDC1EE /* DepartureTTicketListView.swift in Sources */,
 				7DA398FE2D2014EB006B7927 /* TripTypeState.swift in Sources */,
@@ -606,6 +624,7 @@
 				7DC9136D2D1F4AEC00AD88C9 /* PassengerView.swift in Sources */,
 				7D99CFED2D22BB9500263945 /* DateListViewModel.swift in Sources */,
 				7DA9B8D22D28028C0060CF54 /* DepartureTicketListViewModel.swift in Sources */,
+				7DABF7BD2D3160C900DDC2CA /* Ticket.swift in Sources */,
 				7DA9B9012D287AA40060CF54 /* ReturnTicketListViewModel.swift in Sources */,
 				7D45E2E72D27281A00FDC1EE /* DayListComponent.swift in Sources */,
 			);
@@ -621,6 +640,7 @@
 				7DA399122D20371E006B7927 /* VolatusTests.swift in Sources */,
 				7D9565D72D2EAEFA00CC3813 /* AirportListViewModelTests.swift in Sources */,
 				7DA3991A2D20374E006B7927 /* HomeViewModelTest.swift in Sources */,
+				7DABF7C62D31713B00DDC2CA /* MockDepartureTicketListService.swift in Sources */,
 				7D9565E42D2ECBF200CC3813 /* DepartureViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -890,6 +910,14 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		7DABF7C02D31663000DDC2CA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -902,6 +930,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7DABF7AF2D31358600DDC2CA /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		7DABF7C12D31663000DDC2CA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DABF7C02D31663000DDC2CA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
