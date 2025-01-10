@@ -25,8 +25,7 @@ final class SharedModelTests : XCTestCase {
     func test_whenOnlyUpdatedFrom_retrunTrue(){
         let selectedAirportOnAirportList = Airport(
             id: 1,
-            name: "Airport Name",
-            code: "AN", city: "Test City", country: "Test Name")
+            country: "AN", city: "Test City", code: "AN", airname: "Test Name")
         
         sharedModel.updateLocation(selectedType: .from, airport: selectedAirportOnAirportList)
         
@@ -37,8 +36,7 @@ final class SharedModelTests : XCTestCase {
     func test_whenOnlyUpdatedYo_retrunTrue(){
         let selectedAirportOnAirportList = Airport(
             id: 1,
-            name: "Airport Name",
-            code: "AN", city: "Test City", country: "Test Name")
+            country: "AN", city: "Test City", code: "AN", airname: "Test Name")
         
         sharedModel.updateLocation(selectedType: .to, airport: selectedAirportOnAirportList)
         
@@ -50,8 +48,7 @@ final class SharedModelTests : XCTestCase {
     func test_whenUpdatedFromAndToSameAirpoert_retrunTrue(){
         let selectedAirportOnAirportList = Airport(
             id: 1,
-            name: "Airport Name",
-            code: "AN", city: "Test City", country: "Test Name")
+            country: "AN", city: "Test City", code: "AN", airname: "Test Name")
         
         sharedModel.updateLocation(selectedType: .from, airport: selectedAirportOnAirportList)
         
@@ -64,8 +61,7 @@ final class SharedModelTests : XCTestCase {
     func test_whenupdateLocationOnSharedModel_returnFromText(){
         let selectedAirportOnAirportList = Airport(
             id: 1,
-            name: "Airport Name",
-            code: "AN", city: "Test City", country: "Test Name")
+            country: "AN", city: "Test City", code: "AN", airname: "Test Name")
         
         sharedModel.updateLocation(selectedType: .from, airport: selectedAirportOnAirportList)
         
@@ -80,8 +76,7 @@ final class SharedModelTests : XCTestCase {
     func test_whenupdateLocationOnSharedModel_returnToText(){
         let selectedAirportOnAirportList = Airport(
             id: 1,
-            name: "Airport Name",
-            code: "AN", city: "Test City", country: "Test Name")
+            country: "AN", city: "Test City", code: "AN", airname: "Test Name")
         
         sharedModel.updateLocation(selectedType: .to, airport: selectedAirportOnAirportList)
         

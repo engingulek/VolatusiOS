@@ -55,13 +55,13 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
         }.onAppear{
             viewModel.onAppear()
         }.task {
-           await viewModel.task()
-        }
+            viewModel.task()
+        }.navigationTitle(NavTitle.airportList.rawValue)
     }
 }
 
 #Preview{
-    AirportList(viewModel: AirportListViewModel(), selectedType: .from)
+    AirportList(viewModel: AirportListViewModel(service: AirportListService()), selectedType: .from)
 }
 
 

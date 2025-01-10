@@ -81,4 +81,11 @@ enum TextTheme  : String {
     case surname = "Surname"
     
     case selectBirthdate = "Select Birthdate"
+    
+    case errorMessage = "Something went wrong"
+}
+
+
+enum NavTitle  : String{
+    case airportList = "Airport List"
 }

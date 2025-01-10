@@ -6,16 +6,17 @@
 //
 
 import Foundation
-import Foundation
 import XCTest
 @testable import Volatus
 
 final class AirportListViewModelTests : XCTestCase {
     private var viewModel:AirportListViewModel!
+    private var service:AirportListMockService!
     
     override func setUp() {
         super.setUp()
-        viewModel = AirportListViewModel()
+        service = AirportListMockService()
+        viewModel = AirportListViewModel(service: service)
     }
     
     
@@ -53,18 +54,59 @@ final class AirportListViewModelTests : XCTestCase {
         
     }
     
-    func test_onChangeSearchText_retrunNotEmptyMessage(){
-        viewModel.onAppear()
-        viewModel.onActions(action: .onChangeSearchText("Istanbul Airport"))
-        
+    func test_onChangeSearchText_returnNotEmptyMessage()  {
+        let expectation = XCTestExpectation(description: "Async task completed")
         XCTAssertEqual(
             TextTheme.defaultEmpty.rawValue,
             viewModel.uiState.listState.message,
-        "listState message is not correct")
+            "listState message is not correct"
+            )
+     
         
-        XCTAssertFalse(viewModel.uiState.listState.state,
-                       "listState.state is not false")
+        service.airportList = [
+            Airport(id: 1, country: "Turkey", city: "Istanbul", code: "IST", airname: "Istanbul Airport")
+        ]
         
+        viewModel.task()
+        viewModel.onAppear()
+        viewModel.onActions(action: .onChangeSearchText("ist"))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+           
+            XCTAssertEqual(
+                TextTheme.defaultEmpty.rawValue,
+                self.viewModel.uiState.listState.message,
+                "listState message is not correct"
+                )
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
     
+    func test_onOpenScreen_ReturnErrorFromService(){
+        let expectation = XCTestExpectation(description: "Async task completed")
+        XCTAssertEqual(
+            TextTheme.defaultEmpty.rawValue,
+            viewModel.uiState.listState.message,
+            "listState message is not correct"
+            )
+     
+        service.airportList = [
+         
+        ]
+        service.mockErrorAirportList = true
+        
+        viewModel.task()
+        viewModel.onAppear()
+     
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+           
+            XCTAssertEqual(
+                TextTheme.errorMessage.rawValue,
+                self.viewModel.uiState.listState.message,
+                "listState message is not correct"
+                )
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
+    }
 }

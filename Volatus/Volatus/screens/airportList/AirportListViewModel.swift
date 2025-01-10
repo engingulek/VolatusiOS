@@ -18,7 +18,7 @@ protocol AirportListViewModelProtocol:ObservableObject {
    
     func onAppear()
     func onActions(action:AirportListViewActions)
-    func task() async
+    func task() 
 }
 
 final class AirportListViewModel : AirportListViewModelProtocol {
@@ -26,7 +26,11 @@ final class AirportListViewModel : AirportListViewModelProtocol {
     @Published var airportList: [Airport] = []
     @Published var uiState: AirportUiState = AirportUiState()
     private var tempAirportList : [Airport] = []
-    private let service: AirportListServiceProtocol = AirportListService()
+    private let service: AirportListServiceProtocol
+    
+    init(service: AirportListServiceProtocol) {
+        self.service = service
+    }
     
     func onAppear() {
     
@@ -40,27 +44,32 @@ final class AirportListViewModel : AirportListViewModelProtocol {
         }
     }
     
-    func task() async {
-        await fetchAllAirport()
+    func task()  {
+        Task{
+            await fetchAllAirport()
+        }
+      
     }
 }
 
 
 extension AirportListViewModel {
     private func onChangeSearchTextAction(text: String) {
-     
-         if text.isEmpty {
-             airportList = tempAirportList
-             uiState.listState = (message:TextTheme.defaultEmpty.rawValue,false)
-         }else{
-             airportList = tempAirportList.filter{ $0.airname.lowercased().contains(text.lowercased())}
-             if airportList.isEmpty {
-                 uiState.listState = (message:TextTheme.notFoundAirport.rawValue,true)
-             }else {
-                 uiState.listState = (message:TextTheme.defaultEmpty.rawValue,false)
-             }
-           
-         }
+        if(!uiState.listState.state) {
+            if text.isEmpty {
+                airportList = tempAirportList
+                uiState.listState = (message:TextTheme.defaultEmpty.rawValue,false)
+            }else{
+                airportList = tempAirportList.filter{ $0.airname.lowercased().contains(text.lowercased())}
+                if airportList.isEmpty {
+                    uiState.listState = (message:TextTheme.notFoundAirport.rawValue,true)
+                }else {
+                    uiState.listState = (message:TextTheme.defaultEmpty.rawValue,false)
+                }
+              
+            }
+        }
+        
      }
     
     
@@ -71,6 +80,7 @@ extension AirportListViewModel {
                 guard let self = self else {return}
                 airportList = list
                 tempAirportList = list
+                uiState.listState = (message:TextTheme.defaultEmpty.rawValue,false)
             }
             
          
@@ -79,6 +89,7 @@ extension AirportListViewModel {
                 guard let self = self else {return}
                 airportList = []
                 tempAirportList = []
+                uiState.listState = (message:TextTheme.errorMessage.rawValue,true)
             }
            
         }

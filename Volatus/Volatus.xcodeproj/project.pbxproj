@@ -48,6 +48,7 @@
 		7DABF7B52D31359E00DDC2CA /* NetworkPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B42D31359E00DDC2CA /* NetworkPath.swift */; };
 		7DABF7B72D3136EC00DDC2CA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B62D3136EC00DDC2CA /* NetworkManager.swift */; };
 		7DABF7B92D31376800DDC2CA /* AirportListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7B82D31376800DDC2CA /* AirportListService.swift */; };
+		7DABF7BB2D313E1400DDC2CA /* AirportListMockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */; };
 		7DB2E3F82D2184D200939B05 /* AirportUiState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3F72D2184D200939B05 /* AirportUiState.swift */; };
 		7DB2E3FB2D21AA6300939B05 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FA2D21AA6300939B05 /* DateView.swift */; };
 		7DB2E3FD2D21ADE400939B05 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */; };
@@ -116,6 +117,7 @@
 		7DABF7B42D31359E00DDC2CA /* NetworkPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPath.swift; sourceTree = "<group>"; };
 		7DABF7B62D3136EC00DDC2CA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7DABF7B82D31376800DDC2CA /* AirportListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListService.swift; sourceTree = "<group>"; };
+		7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportListMockService.swift; sourceTree = "<group>"; };
 		7DB2E3F72D2184D200939B05 /* AirportUiState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportUiState.swift; sourceTree = "<group>"; };
 		7DB2E3FA2D21AA6300939B05 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		7DB2E3FC2D21ADE400939B05 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				7D9565D62D2EAEFA00CC3813 /* AirportListViewModelTests.swift */,
+				7DABF7BA2D313E1400DDC2CA /* AirportListMockService.swift */,
 			);
 			path = airportList;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D9565E02D2EBFD000CC3813 /* PassengerSelectViewModelTests.swift in Sources */,
+				7DABF7BB2D313E1400DDC2CA /* AirportListMockService.swift in Sources */,
 				7D9565D42D2E9D4F00CC3813 /* SharedModelTests.swift in Sources */,
 				7DA399122D20371E006B7927 /* VolatusTests.swift in Sources */,
 				7D9565D72D2EAEFA00CC3813 /* AirportListViewModelTests.swift in Sources */,
