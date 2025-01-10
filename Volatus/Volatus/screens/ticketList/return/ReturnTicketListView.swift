@@ -23,10 +23,10 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
             ScrollView {
                 LazyVStack(spacing: 10) {
                     ForEach(1...20, id: \.self) { index in
-                        TicketComponent(){
+                        /*TicketComponent(){
                             sharedModel.updateTicketId(type: false, ticketId: index)
                             navigation = true
-                        }
+                        }*/
                     }
                 }
             }

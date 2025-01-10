@@ -14,10 +14,12 @@ import XCTest
 final class DepartureViewModelTests : XCTestCase {
     private var viewModel:DepartureTicketListViewModel!
     private var sharedModel:SharedModel!
+    private var service:MockDepartureTicketListService!
     
     override  func setUp() {
         super.setUp()
-        viewModel = DepartureTicketListViewModel()
+        service = MockDepartureTicketListService()
+        viewModel = DepartureTicketListViewModel(service: service )
         sharedModel = SharedModel()
     }
     
@@ -26,7 +28,7 @@ final class DepartureViewModelTests : XCTestCase {
         let currentDate = Date.now
         let selectedDepartureDate = Calendar.current.date(byAdding: .day, value: 2, to: currentDate)
         sharedModel.updateDate(selectedType: .from, date: selectedDepartureDate)
-        viewModel.onAppear(depatureDate: sharedModel.departureDate, returnDate: nil)
+        viewModel.onAppear(departureAirport: nil, arrivalAirport: nil, depatureDate:  sharedModel.departureDate, returnDate: nil)
         
         let list = viewModel.dateAndPrice
         
@@ -44,7 +46,7 @@ final class DepartureViewModelTests : XCTestCase {
         let currentDate = Date.now
         let selectedDepartureDate = Calendar.current.date(byAdding: .day, value: 2, to: currentDate)
         sharedModel.updateDate(selectedType: .from, date: selectedDepartureDate)
-        viewModel.onAppear(depatureDate: sharedModel.departureDate, returnDate: nil)
+        viewModel.onAppear(departureAirport: nil, arrivalAirport: nil, depatureDate:  sharedModel.departureDate, returnDate: nil)
         
         viewModel.onAction(action: .onTappedDate(id: 5))
         
@@ -60,5 +62,60 @@ final class DepartureViewModelTests : XCTestCase {
                 XCTAssertEqual(dayAndPrice.selectedStateColor, ColorTheme.gray.rawValue)
             }
         }
+    }
+    
+    func test_ticketlist_whenAirportsarenil_Error() {
+        let expectation = XCTestExpectation(description: "Async task completed")
+        
+        XCTAssertEqual(
+            TextTheme.defaultEmpty.rawValue,
+            viewModel.messageState.message,
+            "listState message is not correct"
+            )
+        
+        service.ticketList = []
+        
+        
+        viewModel.onAppear(departureAirport: nil, arrivalAirport: nil, depatureDate:  sharedModel.departureDate, returnDate: nil)
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+           
+            XCTAssertEqual(
+                TextTheme.errorMessage.rawValue,
+                self.viewModel.messageState.message,
+                "listState message is not correct"
+                )
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
+    }
+    
+    
+    func test_ticketlist_Errorfromdatabse() {
+        let expectation = XCTestExpectation(description: "Async task completed")
+        
+        XCTAssertEqual(
+            TextTheme.defaultEmpty.rawValue,
+            viewModel.messageState.message,
+            "listState message is not correct"
+            )
+        
+        service.ticketList = []
+        service.mockError = true
+        
+        viewModel.onAppear(departureAirport: Airport(id: 1, country: "", city: "", code: "", airname: ""), arrivalAirport: Airport(id: 2, country: "", city: "", code: "", airname: ""), depatureDate:  sharedModel.departureDate, returnDate: nil)
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+           
+            XCTAssertEqual(
+                TextTheme.errorMessage.rawValue,
+                self.viewModel.messageState.message,
+                "listState message is not correct"
+                )
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
 }

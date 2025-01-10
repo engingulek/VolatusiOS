@@ -10,6 +10,7 @@ import Alamofire
 
 enum NetworkPath {
     case getAllAirport
+    case getTickets(Int,Int,String)
     
 }
 
@@ -23,6 +24,10 @@ extension NetworkPath : TargetType {
         switch self {
         case .getAllAirport:
             return Constants.airport.rawValue + Constants.getAll.rawValue
+        case .getTickets(let departureId, let arrivalId, let date):
+            return Constants.ticket.rawValue
+            + Constants.getTickets.rawValue
+            + "?" + "departureAirportId=\(departureId)&arrivalAirportId=\(arrivalId)&date=\(date)"
         }
     }
     

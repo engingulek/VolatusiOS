@@ -18,6 +18,12 @@ extension String{
         return date
     }
     
+    
+    func converDateForApi() -> String {
+        return self.replacingOccurrences(of: " ", with: "%20")
+    }
+    
+    
     func isValidTCNumber() -> Bool {
         guard self.count == 11 else { return false }
         guard self.first != "0" else { return false }
@@ -46,6 +52,7 @@ extension String{
         
         return true
     }
+    
 
 }
 

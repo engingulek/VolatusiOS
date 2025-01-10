@@ -92,7 +92,7 @@ struct HomeView<ViewModel:HomeViewModelProtocol>: View {
                 
                 NavigationLink {
                     DepartureTicketListView(
-                        viewModel: DepartureTicketListViewModel()
+                        viewModel: DepartureTicketListViewModel(service: DepartureTicketListService())
                     ).environmentObject(sharedModel)
                     
                 } label: {

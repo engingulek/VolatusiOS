@@ -83,6 +83,8 @@ enum TextTheme  : String {
     case selectBirthdate = "Select Birthdate"
     
     case errorMessage = "Something went wrong"
+    
+    case noTicket = "No Tickets Available"
 }
 
 

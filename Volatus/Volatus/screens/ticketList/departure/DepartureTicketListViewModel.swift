@@ -23,25 +23,47 @@ protocol DepartureTicketListViewModelProtocol : ObservableObject {
     var dateAndPrice : [DayAndPrice] {get}
     var updatedDepartureDate:Date  {get}
     var updatedReturnDate: Date? {get}
+    var ticketList:[Ticket] {get}
+    var messageState : (message:String,state:Bool) {get}
     
-    func onAppear(depatureDate:Date,returnDate:Date?)
+    func onAppear(departureAirport:Airport?,arrivalAirport:Airport?,depatureDate:Date,returnDate:Date?)
     func onAction(action:DepartureTicketListActions)
+    
     
 }
 
 
 final class DepartureTicketListViewModel : DepartureTicketListViewModelProtocol {
     @Published var dateAndPrice: [DayAndPrice] = []
-    
+    @Published var ticketList:[Ticket] = []
+    @Published var messageState : (message:String,state:Bool) = (message:TextTheme.defaultEmpty.rawValue,state:false)
     private var oldSelectedIndex:Int?
     var updatedDepartureDate:Date = Date.now
     var updatedReturnDate: Date?
     private var tempList:[DayAndPrice]  = []
+    private var service:DepartureTicketListServiceProtocol
+    private var selecteddepartureAirport:Airport?
+    private var selectedarrivalAirport:Airport?
     
     
-    func onAppear(depatureDate:Date,returnDate:Date?) {
+    init( service: DepartureTicketListServiceProtocol) {
+        
+        self.service = service
+    }
+    
+    
+    func onAppear(departureAirport:Airport?,arrivalAirport:Airport?,
+                  depatureDate:Date,returnDate:Date?) {
+      
+        selecteddepartureAirport = departureAirport
+        selectedarrivalAirport = arrivalAirport
         createDatePrice(getDate: depatureDate)
         updatedReturnDate = returnDate
+        
+        Task{
+          await  getTicketList(date: depatureDate.covertDate(formatterType: .typeFour))
+        }
+      
     }
     
     
@@ -91,10 +113,50 @@ extension DepartureTicketListViewModel {
         dateAndPrice[id].selectedStateColor = ColorTheme.red.rawValue
         let selectedDate =  dateAndPrice[id].date
         updatedDepartureDate = selectedDate
+        
+        Task{
+          await  getTicketList(date: selectedDate.covertDate(formatterType: .typeFour))
+        }
+        
+        
         guard let returnDate = updatedReturnDate else {return}
         
         if(selectedDate >= returnDate) {
             updatedReturnDate = selectedDate
+        }
+    }
+    
+    private func getTicketList(date:String) async{
+        
+        guard let selecteddepartureAirport = selecteddepartureAirport else {
+            messageState = (message:TextTheme.errorMessage.rawValue,state:true)
+            return}
+        guard let selectedarrivalAirport = selectedarrivalAirport else {
+            messageState = (message:TextTheme.errorMessage.rawValue,state:true)
+            return}
+        
+        do {
+            let list = try await service.getTickets(
+                departureId: selecteddepartureAirport.id,
+                arrivalId: selectedarrivalAirport.id,
+                date: date.converDateForApi())
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {return}
+                ticketList = list
+                if list.isEmpty {
+                    messageState = (message:TextTheme.noTicket.rawValue,state:true)
+                }else{
+                    messageState = (message:TextTheme.defaultEmpty.rawValue,state:false)
+                }
+             
+                
+            }
+        }catch{
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {return}
+                ticketList = []
+                messageState = (message:TextTheme.errorMessage.rawValue,state:true)
+            }
         }
     }
 }
