@@ -9,7 +9,7 @@ import Foundation
 
 
 enum Constants : String {
-    case baseUrl = "http://localhost:8080/api"
-    case airport = "airport"
+    case baseUrl = "http://localhost:8080/api/"
+    case airport = "airport/"
     case getAll = "getAll"
 }

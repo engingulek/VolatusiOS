@@ -24,7 +24,7 @@ struct AirportListView: View {
                     Text("\(item.city),\(item.country)")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
-                    Text("\(item.code)-\(item.name)")
+                    Text("\(item.code)-\(item.airname)")
                         .font(.system(size: 18))
                         .fontWeight(.semibold)
                         .foregroundStyle(.gray)

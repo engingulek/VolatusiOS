@@ -7,10 +7,7 @@
 
 import Foundation
 
-struct Airport{
-    let id:Int
-    let name:String
-    let code:String
-    let city:String
-    let country:String
+struct Airport: Codable {
+    let id: Int
+    let country, city, code, airname: String
 }

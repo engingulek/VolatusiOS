@@ -54,6 +54,8 @@ struct AirportList<ViewModel:AirportListViewModelProtocol>: View {
            
         }.onAppear{
             viewModel.onAppear()
+        }.task {
+           await viewModel.task()
         }
     }
 }
