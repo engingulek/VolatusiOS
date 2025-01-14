@@ -20,8 +20,8 @@ class SharedModel : ObservableObject {
     @Published    var depatureDateTxet:String = Date.now.covertDate(formatterType: .typeOne)
     @Published   var returnDateText:String = ""
     
-    var departureTicketId:Int?
-    var retrunTicketId:Int?
+    var departureTicket:Ticket?
+    var retrunTicket:Ticket?
 
     var passengerList: [PassengerValue] = [
         .init(title: TextTheme.adultTitle.rawValue,
@@ -94,11 +94,11 @@ class SharedModel : ObservableObject {
     }
     
     //MARK: updateTicketId
-    func updateTicketId(type:Bool,ticketId:Int){
+    func updateTicketId(type:Bool,ticket:Ticket){
         if type {
-            departureTicketId = ticketId
+            departureTicket = ticket
         }else{
-            retrunTicketId = ticketId
+            retrunTicket = ticket
         }
     }
 }

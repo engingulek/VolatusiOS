@@ -39,7 +39,7 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
                     LazyVStack(spacing: 10) {
                         ForEach(viewModel.ticketList, id: \.id) { ticket in
                             TicketComponent(ticket:ticket){
-                                sharedModel.updateTicketId(type: true, ticketId: ticket.id)
+                                sharedModel.updateTicketId(type: true, ticket: ticket)
                                 navigation = true
                             }
                         }
@@ -52,7 +52,7 @@ struct DepartureTicketListView<ViewModel:DepartureTicketListViewModelProtocol>: 
             .navigationDestination(isPresented: $navigation, destination: {
                 sharedModel.returnDate == nil ?
                 AnyView(  PassengerInfoScreen(viewModel:PassengerInfoViewModel()).environmentObject(sharedModel)) :
-                AnyView(ReturnTicketListView(viewModel: ReturnTicketListViewModel()).environmentObject(sharedModel)
+                AnyView(ReturnTicketListView(viewModel: ReturnTicketListViewModel(service: ReturnTicketListService())).environmentObject(sharedModel)
                 )
             })
             .onAppear{

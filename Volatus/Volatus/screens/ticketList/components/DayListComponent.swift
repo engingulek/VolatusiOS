@@ -21,7 +21,6 @@ struct DayListComponent: View {
                             Text(value.date.covertDate(formatterType: .typeFour))
                                 .font(.title2)
                         }
-                        Text("TRY \(value.price)")
                         Divider()
                             .frame(height: 3)
                             .background(Color(hex: value.selectedStateColor))

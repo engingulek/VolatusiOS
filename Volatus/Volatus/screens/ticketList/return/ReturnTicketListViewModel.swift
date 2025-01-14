@@ -15,7 +15,9 @@ enum ReturnTicketListActions{
 protocol ReturnTicketListViewModelProtocol : ObservableObject {
     var dateAndPrice : [DayAndPrice] {get}
     var updatedReturnDate: Date? {get}
-    func onAppear(departureDate:Date,returnDate:Date)
+    var ticketList:[Ticket] {get}
+    var messageState : (message:String,state:Bool) {get}
+    func onAppear(departureAirport:Airport?,arrivalAirport:Airport?,departureDate:Date,returnDate:Date)
     func onAction(action:ReturnTicketListActions)
 }
 
@@ -23,10 +25,29 @@ protocol ReturnTicketListViewModelProtocol : ObservableObject {
 final class ReturnTicketListViewModel : ReturnTicketListViewModelProtocol {
     
     @Published var dateAndPrice: [DayAndPrice] = []
+    @Published var ticketList:[Ticket] = []
+    @Published var messageState : (message:String,state:Bool) = (message:TextTheme.defaultEmpty.rawValue,state:false)
     private var oldSelectedIndex:Int?
     var updatedReturnDate: Date?
-    func onAppear(departureDate: Date,returnDate:Date) {
+    private var service:ReturnTicketListServiceProtocol
+    private var selecteddepartureAirport:Airport?
+    private var selectedarrivalAirport:Airport?
+    
+    
+    init(service: ReturnTicketListServiceProtocol) {
+        self.service = service
+    }
+    
+    func onAppear(departureAirport:Airport?,arrivalAirport:Airport?,departureDate: Date,returnDate:Date) {
+        
+        selecteddepartureAirport = departureAirport
+        selectedarrivalAirport = arrivalAirport
         createDatePrice(departureDate: departureDate, returnDate: returnDate)
+        
+        Task{
+          await  getTicketList(date: returnDate.covertDate(formatterType: .typeFour))
+        }
+
     }
     
     
@@ -52,7 +73,7 @@ extension ReturnTicketListViewModel {
                 let dayAndPrice = DayAndPrice(
                     id: offset,
                     date: dayDate,
-                    price: 1500,
+              
                     selectedStateColor: selectedDefautlDate == dateValue
                     ? ColorTheme.red.rawValue
                     : ColorTheme.gray.rawValue
@@ -74,5 +95,40 @@ extension ReturnTicketListViewModel {
         dateAndPrice[id].selectedStateColor = ColorTheme.red.rawValue
         let selectedDate =  dateAndPrice[id].date
         updatedReturnDate = selectedDate
+    }
+    
+    
+    private func getTicketList(date:String) async{
+        
+        guard let selecteddepartureAirport = selecteddepartureAirport else {
+            messageState = (message:TextTheme.errorMessage.rawValue,state:true)
+            return}
+        guard let selectedarrivalAirport = selectedarrivalAirport else {
+            messageState = (message:TextTheme.errorMessage.rawValue,state:true)
+            return}
+        
+        do {
+            let list = try await service.getTickets(
+                departureId: selecteddepartureAirport.id,
+                arrivalId: selectedarrivalAirport.id,
+                date: date.converDateForApi())
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {return}
+                ticketList = list
+                if list.isEmpty {
+                    messageState = (message:TextTheme.noTicket.rawValue,state:true)
+                }else{
+                    messageState = (message:TextTheme.defaultEmpty.rawValue,state:false)
+                }
+             
+                
+            }
+        }catch{
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {return}
+                ticketList = []
+                messageState = (message:TextTheme.errorMessage.rawValue,state:true)
+            }
+        }
     }
 }

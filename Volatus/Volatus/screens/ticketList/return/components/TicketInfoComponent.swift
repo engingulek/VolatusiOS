@@ -9,31 +9,34 @@ import SwiftUI
 
 struct TicketInfoComponent: View {
     let title:String
+    let ticket:Ticket?
     var body: some View {
+        
+        ticket != nil ?
         VStack(alignment:.leading){
             Text(title)
                 .foregroundStyle(Color.red)
                
             VStack{
                 HStack{
-                    Text("From City 00:00")
+                    Text("\(ticket!.departureAirport.city) \(ticket!.departureClock)")
                     Spacer()
-                    Text("To City 00:00")
+                    Text("\(ticket!.arrivalAirport.city) \(ticket!.landingClock)")
                 }
               
                 HStack{
                   
-                    Text("01/01/2025")
+                    Text(ticket?.date ?? "")
                     Spacer()
-                    Text("TRY 800.00")
+                 
                 }
             }
         } .fontWeight(.semibold)
             .padding()
-            .background(Color.white)
+            .background(Color.white) : nil
     }
 }
 
 #Preview {
-    TicketInfoComponent(title: "Your Departure Flight")
+    TicketInfoComponent(title: "Your Departure Flight", ticket: Ticket(id: 1, airlinesIcon: "", airlineName: "", planeType: "", departureClock: "", landingClock: "", price: 0, date: "", departureAirport: Airport(id: 1, country: "", city: "", code: "", airname: ""), arrivalAirport: Airport(id: 2, country: "", city: "", code: "", airname: "")))
 }

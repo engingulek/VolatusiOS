@@ -13,20 +13,22 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
     @State private  var navigation: Bool = false
     var body: some View {
         VStack {
-            TicketInfoComponent(title: TextTheme.yourDepartureTicketInfo.rawValue)
+            TicketInfoComponent(
+                title: TextTheme.yourDepartureTicketInfo.rawValue,
+                ticket: sharedModel.departureTicket
+            )
             DayListComponent(list: viewModel.dateAndPrice) { id in
                 viewModel.onAction(action: .onTappedDate(id: id))
                 sharedModel.updateDate(selectedType: .to, date: viewModel.updatedReturnDate)
             }
             Spacer()
-            Text("\(viewModel.dateAndPrice.count)")
             ScrollView {
                 LazyVStack(spacing: 10) {
-                    ForEach(1...20, id: \.self) { index in
-                        /*TicketComponent(){
-                            sharedModel.updateTicketId(type: false, ticketId: index)
+                    ForEach(viewModel.ticketList, id: \.id) { ticket in
+                        TicketComponent(ticket: ticket) {
+                            sharedModel.updateTicketId(type: false, ticket: ticket)
                             navigation = true
-                        }*/
+                        }
                     }
                 }
             }
@@ -40,6 +42,8 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
                 })
                 .onAppear{
                     viewModel.onAppear(
+                        departureAirport:sharedModel.toAirport,
+                        arrivalAirport: sharedModel.fromAirport,
                         departureDate: sharedModel.departureDate,
                         returnDate: sharedModel.returnDate ?? sharedModel.departureDate)
                 }
@@ -47,5 +51,5 @@ struct ReturnTicketListView<ViewModel:ReturnTicketListViewModelProtocol>: View {
 }
 
 #Preview {
-    ReturnTicketListView(viewModel: ReturnTicketListViewModel())
+    ReturnTicketListView(viewModel: ReturnTicketListViewModel(service: ReturnTicketListService()))
 }
