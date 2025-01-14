@@ -7,16 +7,12 @@
 
 import Foundation
 
-
-
 struct PassengerSelectState {
     var passengerList:[PassengerValue] = []
     var passengerTitle:String = TextTheme.passengerTitle.rawValue
     var confirmButtonTitle : String = TextTheme.confirm.rawValue
     
 }
-
-
 
 struct PassengerValue : Equatable{
     

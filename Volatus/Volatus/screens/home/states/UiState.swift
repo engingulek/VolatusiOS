@@ -13,7 +13,7 @@ struct UiState {
     let swapIcon : ImageSystem = swapSystemImage
     let searchButtonTitle : String = TextTheme.search.rawValue
     
-    let oneWayTitle:String =  TextTheme.oneWay.rawValue
+    let oneWayTitle:String = TextTheme.oneWay.rawValue
     let roundedTitle:String = TextTheme.roundedTitle.rawValue
     
     let departureTitle:String = TextTheme.departure.rawValue

@@ -11,6 +11,4 @@ struct LocationState {
     var fromText : String = TextTheme.choosen.rawValue
     var toText: String = TextTheme.choosen.rawValue
     var selectedType:SelectedType = .from
-    
-    
 }
