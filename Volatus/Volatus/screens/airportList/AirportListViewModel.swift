@@ -33,7 +33,6 @@ final class AirportListViewModel : AirportListViewModelProtocol {
     }
     
     func onAppear() {
-    
         tempAirportList = airportList
     }
     
