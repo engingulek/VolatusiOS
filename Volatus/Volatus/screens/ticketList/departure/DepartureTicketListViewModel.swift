@@ -14,7 +14,6 @@ enum DepartureTicketListActions{
 struct DayAndPrice {
     let id:Int
     let date:Date
-    let price:Int
     var selectedStateColor:String
     
 }
@@ -90,7 +89,6 @@ extension DepartureTicketListViewModel {
                 let dayAndPrice = DayAndPrice(
                     id: offset,
                     date: dayDate,
-                    price: 1500,
                     selectedStateColor: selectedDefautlDate == dateValue 
                     ? ColorTheme.red.rawValue
                     : ColorTheme.gray.rawValue

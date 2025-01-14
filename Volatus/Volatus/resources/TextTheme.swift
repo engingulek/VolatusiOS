@@ -63,7 +63,9 @@ enum TextTheme  : String {
     /// is Departure Ticket List
     case departureTicketList = "Departure Ticket List"
     /// is Your Departure Flight
-    case yourDepartureTicketInfo = "Your Departure Flight"
+    case yourDepartureTicketInfo = "Your Departure Ticket"
+    
+    case yourReturnTicketInfo = "Your Retrun Ticket"
     /// is Return Ticket List
     case returnTicketList = "Return Ticket List"
     case trId = "TR Id"

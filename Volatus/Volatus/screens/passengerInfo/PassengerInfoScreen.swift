@@ -13,8 +13,10 @@ struct PassengerInfoScreen<ViewModel:PassengerInfoViewModelProtocol>: View {
 
     var body: some View {
         VStack{
-            TicketInfoComponent(title: "Your Departure Flight")
-            /*sharedModel.retrunTicketId != nil ? TicketInfoComponent(title: "Your Return Flight") : nil*/
+            TicketInfoComponent(title: TextTheme.yourDepartureTicketInfo.rawValue,ticket: sharedModel.departureTicket)
+            sharedModel.retrunTicket != nil 
+            ? TicketInfoComponent(title: TextTheme.yourReturnTicketInfo.rawValue,ticket: sharedModel.retrunTicket)
+            : nil
             
             ScrollView {
                 ForEach(viewModel.infoShowList,id: \.id) { info in
